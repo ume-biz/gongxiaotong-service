@@ -34,7 +34,7 @@ import org.springframework.context.annotation.ImportResource;
         org.umeframework.dora.appconfig.DefaultHttpProxyConfiguration.class,
         org.umeframework.dora.appconfig.DefaultJdbcDataSourceManagerConfiguration.class,
         org.umeframework.dora.appconfig.DefaultLogConfiguration.class,
-        //org.umeframework.dora.appconfig.DefaultLoginServiceConfiguration.class,
+        org.umeframework.dora.appconfig.DefaultLoginServiceConfiguration.class,
         org.umeframework.dora.appconfig.DefaultMessageConfiguration.class,
         org.umeframework.dora.appconfig.DefaultServiceAjaxConfiguration.class,
         org.umeframework.dora.appconfig.DefaultServiceInterceptChainConfiguration.class,
@@ -47,7 +47,7 @@ import org.springframework.context.annotation.ImportResource;
         // 当前项目的自动化配置
         cn.com.gxt.app.config.AppAutoConfiguration.class })
 // 该设置创建并导入示例用的数据库及数据脚本；如果应用(通过application.properties的ume.jdbc设置)已变更为其他的数据库，请删除此设置。
-@ImportResource("classpath:config/gxt-service/initDataConfiguration.xml")
+@ImportResource("classpath:config/gongxiaotong-service/initDataConfiguration.xml")
 public class Application {
 
 	/**

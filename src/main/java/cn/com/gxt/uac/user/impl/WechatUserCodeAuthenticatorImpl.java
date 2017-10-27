@@ -30,7 +30,7 @@ public class WechatUserCodeAuthenticatorImpl extends BaseAuthenticator<Map<Strin
 	/**
 	 * 微信通用服务接口实例。
 	 */
-	@Resource(name = "wechatCommonService")
+	@Resource//(name = "wechatCommonService")
 	private WechatCommonService wechatCommonService;
 	/**
 	 * UmeUserDto对象中微信openid对应属性的名称。

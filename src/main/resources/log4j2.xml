@@ -8,7 +8,7 @@
 		</Console>
         <RollingFile 
                 name="RollingFile" 
-                fileName="log/gxt-service.log" 
+                fileName="log/gongxiaotong-service.log" 
                 filePattern="log/$${date:yyyy-MM}/ume-quickstart-%d{MMdd}-%i.log">
             <!-- <PatternLayout pattern="[%d{MMdd HH:mm:ss.SSS}][%5p][%X{thread}][%X{system}][%X{service}][%X{client}][%X{user}] %m%n"/> -->
             <PatternLayout>

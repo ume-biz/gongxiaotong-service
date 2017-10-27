@@ -25,8 +25,8 @@
      ">
 
 	<jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS" enabled="true">
-        <jdbc:script location="classpath:config/gxt-service/ddl/h2/create-table.sql" encoding="UTF-8"/>
-        <jdbc:script location="classpath:config/gxt-service/ddl/h2/create-table#data.sql" encoding="UTF-8"/>
+        <jdbc:script location="classpath:config/gongxiaotong-service/ddl/h2/create-table.sql" encoding="UTF-8"/>
+        <jdbc:script location="classpath:config/gongxiaotong-service/ddl/h2/create-table#data.sql" encoding="UTF-8"/>
 
 	</jdbc:initialize-database>
 
