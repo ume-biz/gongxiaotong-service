@@ -26,7 +26,7 @@ import org.umeframework.wechat.service.dto.WechatWebAccTokenDto;
  * 
  * @author mayue
  */
-public abstract class WechatUserCodeAuthenticatorImpl extends BaseAuthenticator<Map<String, Object>> implements MessageConst {
+public class WechatUserCodeAuthenticatorImpl extends BaseAuthenticator<Map<String, Object>> implements MessageConst {
 	/**
 	 * 微信通用服务接口实例。
 	 */
