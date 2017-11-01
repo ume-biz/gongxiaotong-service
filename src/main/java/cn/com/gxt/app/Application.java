@@ -23,16 +23,7 @@ import cn.com.gxt.uac.user.impl.DefaultAuthenticatorImpl;
 import cn.com.gxt.uac.user.impl.WechatUserCodeAuthenticatorImpl;
 
 /**
- * Spring Boot启动用的主类<br>
- * 只需在该类的头部用注解标注的形式，即可启动一个内嵌Web服务器的Java项目<br>
- * <br>
- * Dora框架提供基于注解自动配置和基于XML配置两种方案，分别采用如下说明的方法来选择配置方式：<br>
- * <li>基于注解自动配置 - 在主类的头部添加"@ImportAutoConfiguration"设置
- * <li>基于注解自动配置 - 在主类的头部添加"@ImportResource"设置
- * <li>对于要从自动配置中排除的模块，使用"@EnableAutoConfiguration(exclude=...)"设置 <br>
- * <li>基于XML配置的场合，使用：@ImportResource("classpath:applicationContext.xml")<br>
- * <li>基于DORA自动配置，但不配置数据源的场合，使用：@ImportAutoConfiguration({
- * DoraAutoConfigurationNoDataSource.class})<br>
+ * 供销通服务平台启动用入口程序及配置定义。<br>
  * 
  * @author Yue MA
  */
@@ -69,7 +60,7 @@ import cn.com.gxt.uac.user.impl.WechatUserCodeAuthenticatorImpl;
 public class Application {
 
 	/**
-	 * Start Application
+	 * SpringApplication启动主程序。<br>
 	 * 
 	 * @param args
 	 */
@@ -83,8 +74,9 @@ public class Application {
 		}
 	}
 
+	// 以下是该项目自定义的实例配置
 	/**
-	 * 用户鉴权服务组件声明。<br>
+	 * 默认的用户登录鉴权实例。<br>
 	 * 
 	 * @return
 	 */
@@ -95,13 +87,13 @@ public class Application {
 	}
 
 	/**
-	 * httpProxy
+	 * 微信服务器通信用HttpClient实例。<br>
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	@Bean(name = "urlEncodedHttpProxy")
-	public HttpProxy httpProxy() throws Exception {
+	public HttpProxy urlEncodedHttpProxy() throws Exception {
 		HttpProxyImpl instance = new HttpProxyImpl();
 		instance.setAppContentType("application/x-www-form-urlencoded");
 		instance.setEntityContentType("application/x-www-form-urlencoded");
@@ -112,7 +104,7 @@ public class Application {
 	}
 
 	/**
-	 * wechatConfig
+	 * 微信服务调用相关的配置实例。<br>
 	 * 
 	 * @return
 	 * @throws Exception
@@ -124,6 +116,12 @@ public class Application {
 		return instance;
 	}
 
+	/**
+	 * 微信登录服务实例。<br>
+	 * 
+	 * @param userAuthenticator
+	 * @return
+	 */
 	@Scope("singleton")
 	@Bean(name = "wechatUserLoginService")
 	public UserLoginService wechatUserLoginService(
@@ -134,6 +132,11 @@ public class Application {
 		return instance;
 	}
 
+	/**
+	 * 微信登录用鉴权实例。<br>
+	 * 
+	 * @return
+	 */
 	@Bean(name = "wechatUserAuthenticator")
 	public UserAuthenticator<?> wechatUserAuthenticator() {
 		WechatUserCodeAuthenticatorImpl instance = new WechatUserCodeAuthenticatorImpl();
