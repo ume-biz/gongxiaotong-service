@@ -23,20 +23,20 @@
 
 或者直接输入如下的Web服务的URL，进行数据访问，默认开启的URL如下：
 # 默认启动的Web服务的列表及参数描述
-http://localhost:8080/gxt-service/rest/sys/gxt-service-901/
-http://localhost:8080/gxt-service/rest/sys/gxt-service-901/[["gxt-service-001","gxt-service-002"]]
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-901/
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-901/[["gongxiaotong-service-001","gongxiaotong-service-002"]]
 
 # 登录
-http://localhost:8080/gxt-service/rest/sys/gxt-service-a01/["admin","88888888"]
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-a01/["admin","88888888"]
 # 登出
-http://localhost:8080/gxt-service/rest/sys/gxt-service-a02/["admin"]
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-a02/["admin"]
 
 # 以Album(唱片访问)为例开发的Web服务的样例
-http://localhost:8080/gxt-service/rest/sys/gxt-service-001/[1]
-http://localhost:8080/gxt-service/rest/sys/gxt-service-001/[4]
-http://localhost:8080/gxt-service/rest/sys/gxt-service-002/["Dire Straits"]
-http://localhost:8080/gxt-service/rest/sys/gxt-service-003/["Dire Straits"]
-http://localhost:8080/gxt-service/rest/sys/gxt-service-003/["Dire Straits", {"albumArtist":"Jeff Beck"}]
-http://localhost:8080/gxt-service/rest/sys/gxt-service-004/{"basicInfo":{"albumCode":4},"trackList":[{"albumCode":4,"trackNo":1,"trackName":"I Put A Spell On You"}]}
-http://localhost:8080/gxt-service/rest/sys/gxt-service-010/[["Fleetwood Mac","Jeff Beck"]]
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-001/[1]
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-001/[4]
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-002/["Dire Straits"]
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-003/["Dire Straits"]
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-003/["Dire Straits", {"albumArtist":"Jeff Beck"}]
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-004/{"basicInfo":{"albumCode":4},"trackList":[{"albumCode":4,"trackNo":1,"trackName":"I Put A Spell On You"}]}
+http://localhost:8080/gongxiaotong-service/rest/sys/gongxiaotong-service-010/[["Fleetwood Mac","Jeff Beck"]]
 
