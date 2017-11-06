@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.gxt.entity">
+  <!-- 需求主信息 [REQ_MAIN] -->
+  
+  <!-- Insert one -->
+  <insert id="REQ_MAIN_INSERT" parameterType="cn.com.gxt.entity.ReqMainDto">
+    INSERT INTO REQ_MAIN (
+      REQ_CODE,
+      REQ_DESC,
+      REQ_DELIVERY_DATE,
+      REQ_DELIVERY_ADDRESS,
+      REQ_CONTACT_MOBILE,
+      REQ_TOTAL_ESTIMATION,
+      REQ_FINAL_BID_CODE,
+      REQ_STATUS,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      #{reqCode},
+      #{reqDesc},
+      #{reqDeliveryDate},
+      #{reqDeliveryAddress},
+      #{reqContactMobile},
+      #{reqTotalEstimation},
+      #{reqFinalBidCode},
+      #{reqStatus},
+      #{createAuthor},
+      current_timestamp(),
+      #{updateAuthor},
+      current_timestamp()
+    )
+  </insert>
+
+  <!-- Update with optimism check) -->
+  <update id="REQ_MAIN_UPDATE" parameterType="cn.com.gxt.entity.ReqMainDto">
+    UPDATE REQ_MAIN
+    SET
+      REQ_DESC = #{reqDesc},
+      REQ_DELIVERY_DATE = #{reqDeliveryDate},
+      REQ_DELIVERY_ADDRESS = #{reqDeliveryAddress},
+      REQ_CONTACT_MOBILE = #{reqContactMobile},
+      REQ_TOTAL_ESTIMATION = #{reqTotalEstimation},
+      REQ_FINAL_BID_CODE = #{reqFinalBidCode},
+      REQ_STATUS = #{reqStatus},
+      CREATE_AUTHOR = #{createAuthor},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_AUTHOR = #{updateAuthor},
+      UPDATE_DATETIME = current_timestamp() 
+    WHERE UPDATE_DATETIME = #{updateDatetime}
+      AND REQ_CODE = #{reqCode}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+
+  <!-- Smart update -->
+  <update id="REQ_MAIN_SMART_UPDATE" parameterType="cn.com.gxt.entity.ReqMainDto">
+    UPDATE REQ_MAIN
+    <set>
+      <if test="reqDesc!=null">REQ_DESC = #{reqDesc},</if>
+      <if test="reqDeliveryDate!=null">REQ_DELIVERY_DATE = #{reqDeliveryDate},</if>
+      <if test="reqDeliveryAddress!=null">REQ_DELIVERY_ADDRESS = #{reqDeliveryAddress},</if>
+      <if test="reqContactMobile!=null">REQ_CONTACT_MOBILE = #{reqContactMobile},</if>
+      <if test="reqTotalEstimation!=null">REQ_TOTAL_ESTIMATION = #{reqTotalEstimation},</if>
+      <if test="reqFinalBidCode!=null">REQ_FINAL_BID_CODE = #{reqFinalBidCode},</if>
+      <if test="reqStatus!=null">REQ_STATUS = #{reqStatus},</if>
+      <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
+      <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
+      <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
+      UPDATE_DATETIME = current_timestamp()
+    </set>
+    WHERE 
+       REQ_CODE = #{reqCode}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+  
+  <!-- Delete one -->
+  <delete id="REQ_MAIN_DELETE" parameterType="cn.com.gxt.entity.ReqMainDto">
+    DELETE FROM REQ_MAIN
+    WHERE
+      REQ_CODE = #{reqCode} 
+  </delete>
+
+  <!-- Find by primary key -->
+  <select id="REQ_MAIN_FIND" resultType="cn.com.gxt.entity.ReqMainDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      REQ_DESC AS "reqDesc",
+      REQ_DELIVERY_DATE AS "reqDeliveryDate",
+      REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT_MOBILE AS "reqContactMobile",
+      REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
+      REQ_FINAL_BID_CODE AS "reqFinalBidCode",
+      REQ_STATUS AS "reqStatus",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_MAIN
+    WHERE
+      REQ_CODE = #{reqCode} 
+  </select>
+
+  <!-- Find by primary key for update with row lock -->
+  <select id="REQ_MAIN_FIND_FOR_UPDATE" resultType="cn.com.gxt.entity.ReqMainDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      REQ_DESC AS "reqDesc",
+      REQ_DELIVERY_DATE AS "reqDeliveryDate",
+      REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT_MOBILE AS "reqContactMobile",
+      REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
+      REQ_FINAL_BID_CODE AS "reqFinalBidCode",
+      REQ_STATUS AS "reqStatus",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_MAIN
+    WHERE
+      REQ_CODE = #{reqCode} 
+    FOR UPDATE
+  </select>
+
+  <!-- Search -->
+  <select id="REQ_MAIN_SEARCH" resultType="cn.com.gxt.entity.ReqMainDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      REQ_DESC AS "reqDesc",
+      REQ_DELIVERY_DATE AS "reqDeliveryDate",
+      REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT_MOBILE AS "reqContactMobile",
+      REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
+      REQ_FINAL_BID_CODE AS "reqFinalBidCode",
+      REQ_STATUS AS "reqStatus",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_MAIN
+    WHERE 1 = 1 
+      <if test="reqCode != null">AND REQ_CODE = #{reqCode}</if>
+      <if test="reqDesc != null">AND REQ_DESC = #{reqDesc}</if>
+      <if test="reqDeliveryDate != null">AND REQ_DELIVERY_DATE = #{reqDeliveryDate}</if>
+      <if test="reqDeliveryAddress != null">AND REQ_DELIVERY_ADDRESS = #{reqDeliveryAddress}</if>
+      <if test="reqContactMobile != null">AND REQ_CONTACT_MOBILE = #{reqContactMobile}</if>
+      <if test="reqTotalEstimation != null">AND REQ_TOTAL_ESTIMATION = #{reqTotalEstimation}</if>
+      <if test="reqFinalBidCode != null">AND REQ_FINAL_BID_CODE = #{reqFinalBidCode}</if>
+      <if test="reqStatus != null">AND REQ_STATUS = #{reqStatus}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+
+  <!-- Like Search -->
+  <select id="REQ_MAIN_LIKE_SEARCH" resultType="cn.com.gxt.entity.ReqMainDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      REQ_DESC AS "reqDesc",
+      REQ_DELIVERY_DATE AS "reqDeliveryDate",
+      REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT_MOBILE AS "reqContactMobile",
+      REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
+      REQ_FINAL_BID_CODE AS "reqFinalBidCode",
+      REQ_STATUS AS "reqStatus",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_MAIN
+    WHERE 1 = 1 
+      <if test="reqCode != null">AND REQ_CODE LIKE CONCAT('%', #{reqCode}, '%')</if>
+      <if test="reqDesc != null">AND REQ_DESC LIKE CONCAT('%', #{reqDesc}, '%')</if>
+      <if test="reqDeliveryDate != null">AND REQ_DELIVERY_DATE LIKE CONCAT('%', #{reqDeliveryDate}, '%')</if>
+      <if test="reqDeliveryAddress != null">AND REQ_DELIVERY_ADDRESS LIKE CONCAT('%', #{reqDeliveryAddress}, '%')</if>
+      <if test="reqContactMobile != null">AND REQ_CONTACT_MOBILE LIKE CONCAT('%', #{reqContactMobile}, '%')</if>
+      <if test="reqTotalEstimation != null">AND REQ_TOTAL_ESTIMATION LIKE CONCAT('%', #{reqTotalEstimation}, '%')</if>
+      <if test="reqFinalBidCode != null">AND REQ_FINAL_BID_CODE LIKE CONCAT('%', #{reqFinalBidCode}, '%')</if>
+      <if test="reqStatus != null">AND REQ_STATUS LIKE CONCAT('%', #{reqStatus}, '%')</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>    
+  </select>
+  
+  <!-- Dynamic Search -->
+  <select id="REQ_MAIN_DYNA_SEARCH" resultType="cn.com.gxt.entity.ReqMainDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      REQ_DESC AS "reqDesc",
+      REQ_DELIVERY_DATE AS "reqDeliveryDate",
+      REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT_MOBILE AS "reqContactMobile",
+      REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
+      REQ_FINAL_BID_CODE AS "reqFinalBidCode",
+      REQ_STATUS AS "reqStatus",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_MAIN
+    WHERE 1 = 1 
+      <if test="reqCode != null">AND ( ${reqCode} )</if>
+      <if test="reqDesc != null">AND ( ${reqDesc} )</if>
+      <if test="reqDeliveryDate != null">AND ( ${reqDeliveryDate} )</if>
+      <if test="reqDeliveryAddress != null">AND ( ${reqDeliveryAddress} )</if>
+      <if test="reqContactMobile != null">AND ( ${reqContactMobile} )</if>
+      <if test="reqTotalEstimation != null">AND ( ${reqTotalEstimation} )</if>
+      <if test="reqFinalBidCode != null">AND ( ${reqFinalBidCode} )</if>
+      <if test="reqStatus != null">AND ( ${reqStatus} )</if>
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+      <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+      <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+  
+  <!-- Count by input condition -->
+  <select id="REQ_MAIN_COUNT" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM REQ_MAIN
+    WHERE 1 = 1 
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="reqCode != null">AND REQ_CODE = #{reqCode}</if>
+      <if test="reqDesc != null">AND REQ_DESC = #{reqDesc}</if>
+      <if test="reqDeliveryDate != null">AND REQ_DELIVERY_DATE = #{reqDeliveryDate}</if>
+      <if test="reqDeliveryAddress != null">AND REQ_DELIVERY_ADDRESS = #{reqDeliveryAddress}</if>
+      <if test="reqContactMobile != null">AND REQ_CONTACT_MOBILE = #{reqContactMobile}</if>
+      <if test="reqTotalEstimation != null">AND REQ_TOTAL_ESTIMATION = #{reqTotalEstimation}</if>
+      <if test="reqFinalBidCode != null">AND REQ_FINAL_BID_CODE = #{reqFinalBidCode}</if>
+      <if test="reqStatus != null">AND REQ_STATUS = #{reqStatus}</if>
+  </select>
+
+</mapper>
+

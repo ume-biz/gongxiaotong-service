@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.com.gxt.uac.entity">
-  <!-- UME用户表 [UME_USER] -->
+  <!-- 供销通用户表 [UME_USER] -->
   
   <!-- Insert one -->
   <insert id="UME_USER_INSERT" parameterType="cn.com.gxt.uac.entity.UmeUserDto">
@@ -17,6 +17,13 @@
       USER_HEAD_IMAGE,
       USER_DESC,
       USER_STATUS,
+      USER_POST_ADDR,
+      USER_POST_ADDR_OTHER,
+      USER_BANK_ACC_NO,
+      USER_BANK_ACC_NO_OTHER,
+      USER_BANK_ACC_NAME,
+      USER_BANK_ACC_NAME_OTHER,
+      USER_IDENTITY_CARD,
       CREATE_AUTHOR,
       CREATE_DATETIME,
       UPDATE_AUTHOR,
@@ -32,6 +39,13 @@
       #{userHeadImage},
       #{userDesc},
       #{userStatus},
+      #{userPostAddr},
+      #{userPostAddrOther},
+      #{userBankAccNo},
+      #{userBankAccNoOther},
+      #{userBankAccName},
+      #{userBankAccNameOther},
+      #{userIdentityCard},
       #{createAuthor},
       current_timestamp(),
       #{updateAuthor},
@@ -52,6 +66,13 @@
       USER_HEAD_IMAGE = #{userHeadImage},
       USER_DESC = #{userDesc},
       USER_STATUS = #{userStatus},
+      USER_POST_ADDR = #{userPostAddr},
+      USER_POST_ADDR_OTHER = #{userPostAddrOther},
+      USER_BANK_ACC_NO = #{userBankAccNo},
+      USER_BANK_ACC_NO_OTHER = #{userBankAccNoOther},
+      USER_BANK_ACC_NAME = #{userBankAccName},
+      USER_BANK_ACC_NAME_OTHER = #{userBankAccNameOther},
+      USER_IDENTITY_CARD = #{userIdentityCard},
       CREATE_AUTHOR = #{createAuthor},
       CREATE_DATETIME = #{createDatetime},
       UPDATE_AUTHOR = #{updateAuthor},
@@ -74,6 +95,13 @@
       <if test="userHeadImage!=null">USER_HEAD_IMAGE = #{userHeadImage},</if>
       <if test="userDesc!=null">USER_DESC = #{userDesc},</if>
       <if test="userStatus!=null">USER_STATUS = #{userStatus},</if>
+      <if test="userPostAddr!=null">USER_POST_ADDR = #{userPostAddr},</if>
+      <if test="userPostAddrOther!=null">USER_POST_ADDR_OTHER = #{userPostAddrOther},</if>
+      <if test="userBankAccNo!=null">USER_BANK_ACC_NO = #{userBankAccNo},</if>
+      <if test="userBankAccNoOther!=null">USER_BANK_ACC_NO_OTHER = #{userBankAccNoOther},</if>
+      <if test="userBankAccName!=null">USER_BANK_ACC_NAME = #{userBankAccName},</if>
+      <if test="userBankAccNameOther!=null">USER_BANK_ACC_NAME_OTHER = #{userBankAccNameOther},</if>
+      <if test="userIdentityCard!=null">USER_IDENTITY_CARD = #{userIdentityCard},</if>
       <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
       <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
       <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
@@ -104,6 +132,13 @@
       USER_HEAD_IMAGE AS "userHeadImage",
       USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
+      USER_POST_ADDR AS "userPostAddr",
+      USER_POST_ADDR_OTHER AS "userPostAddrOther",
+      USER_BANK_ACC_NO AS "userBankAccNo",
+      USER_BANK_ACC_NO_OTHER AS "userBankAccNoOther",
+      USER_BANK_ACC_NAME AS "userBankAccName",
+      USER_BANK_ACC_NAME_OTHER AS "userBankAccNameOther",
+      USER_IDENTITY_CARD AS "userIdentityCard",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
@@ -126,6 +161,13 @@
       USER_HEAD_IMAGE AS "userHeadImage",
       USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
+      USER_POST_ADDR AS "userPostAddr",
+      USER_POST_ADDR_OTHER AS "userPostAddrOther",
+      USER_BANK_ACC_NO AS "userBankAccNo",
+      USER_BANK_ACC_NO_OTHER AS "userBankAccNoOther",
+      USER_BANK_ACC_NAME AS "userBankAccName",
+      USER_BANK_ACC_NAME_OTHER AS "userBankAccNameOther",
+      USER_IDENTITY_CARD AS "userIdentityCard",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
@@ -149,6 +191,13 @@
       USER_HEAD_IMAGE AS "userHeadImage",
       USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
+      USER_POST_ADDR AS "userPostAddr",
+      USER_POST_ADDR_OTHER AS "userPostAddrOther",
+      USER_BANK_ACC_NO AS "userBankAccNo",
+      USER_BANK_ACC_NO_OTHER AS "userBankAccNoOther",
+      USER_BANK_ACC_NAME AS "userBankAccName",
+      USER_BANK_ACC_NAME_OTHER AS "userBankAccNameOther",
+      USER_IDENTITY_CARD AS "userIdentityCard",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
@@ -165,6 +214,13 @@
       <if test="userHeadImage != null">AND USER_HEAD_IMAGE = #{userHeadImage}</if>
       <if test="userDesc != null">AND USER_DESC = #{userDesc}</if>
       <if test="userStatus != null">AND USER_STATUS = #{userStatus}</if>
+      <if test="userPostAddr != null">AND USER_POST_ADDR = #{userPostAddr}</if>
+      <if test="userPostAddrOther != null">AND USER_POST_ADDR_OTHER = #{userPostAddrOther}</if>
+      <if test="userBankAccNo != null">AND USER_BANK_ACC_NO = #{userBankAccNo}</if>
+      <if test="userBankAccNoOther != null">AND USER_BANK_ACC_NO_OTHER = #{userBankAccNoOther}</if>
+      <if test="userBankAccName != null">AND USER_BANK_ACC_NAME = #{userBankAccName}</if>
+      <if test="userBankAccNameOther != null">AND USER_BANK_ACC_NAME_OTHER = #{userBankAccNameOther}</if>
+      <if test="userIdentityCard != null">AND USER_IDENTITY_CARD = #{userIdentityCard}</if>
       <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
       <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
       <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
@@ -187,6 +243,13 @@
       USER_HEAD_IMAGE AS "userHeadImage",
       USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
+      USER_POST_ADDR AS "userPostAddr",
+      USER_POST_ADDR_OTHER AS "userPostAddrOther",
+      USER_BANK_ACC_NO AS "userBankAccNo",
+      USER_BANK_ACC_NO_OTHER AS "userBankAccNoOther",
+      USER_BANK_ACC_NAME AS "userBankAccName",
+      USER_BANK_ACC_NAME_OTHER AS "userBankAccNameOther",
+      USER_IDENTITY_CARD AS "userIdentityCard",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
@@ -203,6 +266,13 @@
       <if test="userHeadImage != null">AND USER_HEAD_IMAGE LIKE CONCAT('%', #{userHeadImage}, '%')</if>
       <if test="userDesc != null">AND USER_DESC LIKE CONCAT('%', #{userDesc}, '%')</if>
       <if test="userStatus != null">AND USER_STATUS LIKE CONCAT('%', #{userStatus}, '%')</if>
+      <if test="userPostAddr != null">AND USER_POST_ADDR LIKE CONCAT('%', #{userPostAddr}, '%')</if>
+      <if test="userPostAddrOther != null">AND USER_POST_ADDR_OTHER LIKE CONCAT('%', #{userPostAddrOther}, '%')</if>
+      <if test="userBankAccNo != null">AND USER_BANK_ACC_NO LIKE CONCAT('%', #{userBankAccNo}, '%')</if>
+      <if test="userBankAccNoOther != null">AND USER_BANK_ACC_NO_OTHER LIKE CONCAT('%', #{userBankAccNoOther}, '%')</if>
+      <if test="userBankAccName != null">AND USER_BANK_ACC_NAME LIKE CONCAT('%', #{userBankAccName}, '%')</if>
+      <if test="userBankAccNameOther != null">AND USER_BANK_ACC_NAME_OTHER LIKE CONCAT('%', #{userBankAccNameOther}, '%')</if>
+      <if test="userIdentityCard != null">AND USER_IDENTITY_CARD LIKE CONCAT('%', #{userIdentityCard}, '%')</if>
       <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
       <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
       <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
@@ -225,6 +295,13 @@
       USER_HEAD_IMAGE AS "userHeadImage",
       USER_DESC AS "userDesc",
       USER_STATUS AS "userStatus",
+      USER_POST_ADDR AS "userPostAddr",
+      USER_POST_ADDR_OTHER AS "userPostAddrOther",
+      USER_BANK_ACC_NO AS "userBankAccNo",
+      USER_BANK_ACC_NO_OTHER AS "userBankAccNoOther",
+      USER_BANK_ACC_NAME AS "userBankAccName",
+      USER_BANK_ACC_NAME_OTHER AS "userBankAccNameOther",
+      USER_IDENTITY_CARD AS "userIdentityCard",
       CREATE_AUTHOR AS "createAuthor",
       CREATE_DATETIME AS "createDatetime",
       UPDATE_AUTHOR AS "updateAuthor",
@@ -241,6 +318,13 @@
       <if test="userHeadImage != null">AND ( ${userHeadImage} )</if>
       <if test="userDesc != null">AND ( ${userDesc} )</if>
       <if test="userStatus != null">AND ( ${userStatus} )</if>
+      <if test="userPostAddr != null">AND ( ${userPostAddr} )</if>
+      <if test="userPostAddrOther != null">AND ( ${userPostAddrOther} )</if>
+      <if test="userBankAccNo != null">AND ( ${userBankAccNo} )</if>
+      <if test="userBankAccNoOther != null">AND ( ${userBankAccNoOther} )</if>
+      <if test="userBankAccName != null">AND ( ${userBankAccName} )</if>
+      <if test="userBankAccNameOther != null">AND ( ${userBankAccNameOther} )</if>
+      <if test="userIdentityCard != null">AND ( ${userIdentityCard} )</if>
       <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
       <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
       <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
@@ -263,6 +347,13 @@
       <if test="userHeadImage != null">AND USER_HEAD_IMAGE = #{userHeadImage}</if>
       <if test="userDesc != null">AND USER_DESC = #{userDesc}</if>
       <if test="userStatus != null">AND USER_STATUS = #{userStatus}</if>
+      <if test="userPostAddr != null">AND USER_POST_ADDR = #{userPostAddr}</if>
+      <if test="userPostAddrOther != null">AND USER_POST_ADDR_OTHER = #{userPostAddrOther}</if>
+      <if test="userBankAccNo != null">AND USER_BANK_ACC_NO = #{userBankAccNo}</if>
+      <if test="userBankAccNoOther != null">AND USER_BANK_ACC_NO_OTHER = #{userBankAccNoOther}</if>
+      <if test="userBankAccName != null">AND USER_BANK_ACC_NAME = #{userBankAccName}</if>
+      <if test="userBankAccNameOther != null">AND USER_BANK_ACC_NAME_OTHER = #{userBankAccNameOther}</if>
+      <if test="userIdentityCard != null">AND USER_IDENTITY_CARD = #{userIdentityCard}</if>
   </select>
 
 </mapper>

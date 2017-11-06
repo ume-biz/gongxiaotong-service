@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.com.gxt.uac.entity">
-  <!-- UME资源管理表 [UME_RESOURCE] -->
+  <!-- 供销通资源管理表 [UME_RESOURCE] -->
   
   <!-- Insert one -->
   <insert id="UME_RESOURCE_INSERT" parameterType="cn.com.gxt.uac.entity.UmeResourceDto">

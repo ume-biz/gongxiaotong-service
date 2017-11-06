@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.gxt.entity">
+  <!-- 需求竞标信息 [REQ_BID] -->
+  
+  <!-- Insert one -->
+  <insert id="REQ_BID_INSERT" parameterType="cn.com.gxt.entity.ReqBidDto">
+    INSERT INTO REQ_BID (
+      REQ_CODE,
+      BID_CODE,
+      BID_DESC,
+      BID_PRICE,
+      BID_OWNER,
+      BID_OWNER_MOBILE,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      #{reqCode},
+      #{bidCode},
+      #{bidDesc},
+      #{bidPrice},
+      #{bidOwner},
+      #{bidOwnerMobile},
+      #{createAuthor},
+      current_timestamp(),
+      #{updateAuthor},
+      current_timestamp()
+    )
+  </insert>
+
+  <!-- Update with optimism check) -->
+  <update id="REQ_BID_UPDATE" parameterType="cn.com.gxt.entity.ReqBidDto">
+    UPDATE REQ_BID
+    SET
+      BID_DESC = #{bidDesc},
+      BID_PRICE = #{bidPrice},
+      BID_OWNER = #{bidOwner},
+      BID_OWNER_MOBILE = #{bidOwnerMobile},
+      CREATE_AUTHOR = #{createAuthor},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_AUTHOR = #{updateAuthor},
+      UPDATE_DATETIME = current_timestamp() 
+    WHERE UPDATE_DATETIME = #{updateDatetime}
+      AND REQ_CODE = #{reqCode}
+      AND BID_CODE = #{bidCode}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+
+  <!-- Smart update -->
+  <update id="REQ_BID_SMART_UPDATE" parameterType="cn.com.gxt.entity.ReqBidDto">
+    UPDATE REQ_BID
+    <set>
+      <if test="bidDesc!=null">BID_DESC = #{bidDesc},</if>
+      <if test="bidPrice!=null">BID_PRICE = #{bidPrice},</if>
+      <if test="bidOwner!=null">BID_OWNER = #{bidOwner},</if>
+      <if test="bidOwnerMobile!=null">BID_OWNER_MOBILE = #{bidOwnerMobile},</if>
+      <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
+      <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
+      <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
+      UPDATE_DATETIME = current_timestamp()
+    </set>
+    WHERE 
+       REQ_CODE = #{reqCode}
+       AND  BID_CODE = #{bidCode}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+  
+  <!-- Delete one -->
+  <delete id="REQ_BID_DELETE" parameterType="cn.com.gxt.entity.ReqBidDto">
+    DELETE FROM REQ_BID
+    WHERE
+      REQ_CODE = #{reqCode} AND 
+      BID_CODE = #{bidCode} 
+  </delete>
+
+  <!-- Find by primary key -->
+  <select id="REQ_BID_FIND" resultType="cn.com.gxt.entity.ReqBidDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      BID_CODE AS "bidCode",
+      BID_DESC AS "bidDesc",
+      BID_PRICE AS "bidPrice",
+      BID_OWNER AS "bidOwner",
+      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_BID
+    WHERE
+      REQ_CODE = #{reqCode} AND 
+      BID_CODE = #{bidCode} 
+  </select>
+
+  <!-- Find by primary key for update with row lock -->
+  <select id="REQ_BID_FIND_FOR_UPDATE" resultType="cn.com.gxt.entity.ReqBidDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      BID_CODE AS "bidCode",
+      BID_DESC AS "bidDesc",
+      BID_PRICE AS "bidPrice",
+      BID_OWNER AS "bidOwner",
+      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_BID
+    WHERE
+      REQ_CODE = #{reqCode} AND 
+      BID_CODE = #{bidCode} 
+    FOR UPDATE
+  </select>
+
+  <!-- Search -->
+  <select id="REQ_BID_SEARCH" resultType="cn.com.gxt.entity.ReqBidDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      BID_CODE AS "bidCode",
+      BID_DESC AS "bidDesc",
+      BID_PRICE AS "bidPrice",
+      BID_OWNER AS "bidOwner",
+      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_BID
+    WHERE 1 = 1 
+      <if test="reqCode != null">AND REQ_CODE = #{reqCode}</if>
+      <if test="bidCode != null">AND BID_CODE = #{bidCode}</if>
+      <if test="bidDesc != null">AND BID_DESC = #{bidDesc}</if>
+      <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
+      <if test="bidOwner != null">AND BID_OWNER = #{bidOwner}</if>
+      <if test="bidOwnerMobile != null">AND BID_OWNER_MOBILE = #{bidOwnerMobile}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+
+  <!-- Like Search -->
+  <select id="REQ_BID_LIKE_SEARCH" resultType="cn.com.gxt.entity.ReqBidDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      BID_CODE AS "bidCode",
+      BID_DESC AS "bidDesc",
+      BID_PRICE AS "bidPrice",
+      BID_OWNER AS "bidOwner",
+      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_BID
+    WHERE 1 = 1 
+      <if test="reqCode != null">AND REQ_CODE LIKE CONCAT('%', #{reqCode}, '%')</if>
+      <if test="bidCode != null">AND BID_CODE LIKE CONCAT('%', #{bidCode}, '%')</if>
+      <if test="bidDesc != null">AND BID_DESC LIKE CONCAT('%', #{bidDesc}, '%')</if>
+      <if test="bidPrice != null">AND BID_PRICE LIKE CONCAT('%', #{bidPrice}, '%')</if>
+      <if test="bidOwner != null">AND BID_OWNER LIKE CONCAT('%', #{bidOwner}, '%')</if>
+      <if test="bidOwnerMobile != null">AND BID_OWNER_MOBILE LIKE CONCAT('%', #{bidOwnerMobile}, '%')</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>    
+  </select>
+  
+  <!-- Dynamic Search -->
+  <select id="REQ_BID_DYNA_SEARCH" resultType="cn.com.gxt.entity.ReqBidDto">
+    SELECT
+      REQ_CODE AS "reqCode",
+      BID_CODE AS "bidCode",
+      BID_DESC AS "bidDesc",
+      BID_PRICE AS "bidPrice",
+      BID_OWNER AS "bidOwner",
+      BID_OWNER_MOBILE AS "bidOwnerMobile",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_BID
+    WHERE 1 = 1 
+      <if test="reqCode != null">AND ( ${reqCode} )</if>
+      <if test="bidCode != null">AND ( ${bidCode} )</if>
+      <if test="bidDesc != null">AND ( ${bidDesc} )</if>
+      <if test="bidPrice != null">AND ( ${bidPrice} )</if>
+      <if test="bidOwner != null">AND ( ${bidOwner} )</if>
+      <if test="bidOwnerMobile != null">AND ( ${bidOwnerMobile} )</if>
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+      <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+      <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+  
+  <!-- Count by input condition -->
+  <select id="REQ_BID_COUNT" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM REQ_BID
+    WHERE 1 = 1 
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="reqCode != null">AND REQ_CODE = #{reqCode}</if>
+      <if test="bidCode != null">AND BID_CODE = #{bidCode}</if>
+      <if test="bidDesc != null">AND BID_DESC = #{bidDesc}</if>
+      <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
+      <if test="bidOwner != null">AND BID_OWNER = #{bidOwner}</if>
+      <if test="bidOwnerMobile != null">AND BID_OWNER_MOBILE = #{bidOwnerMobile}</if>
+  </select>
+
+</mapper>
+
