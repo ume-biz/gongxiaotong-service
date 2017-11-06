@@ -5,7 +5,7 @@ import java.util.Map;
 import cn.com.gxt.entity.ReqBidDto;
 
 /*
- * 需求竞标信息:REQ_BID<br>
+ * 需求竞标信息表:REQ_BID<br>
  * Crud service interface declare.<br>
  *
  * @author DORA.Generator

@@ -5,7 +5,7 @@ import java.util.Map;
 import cn.com.gxt.entity.ReqMainDto;
 
 /*
- * 需求主信息:REQ_MAIN<br>
+ * 需求发布主信息表:REQ_MAIN<br>
  * Crud service interface declare.<br>
  *
  * @author DORA.Generator

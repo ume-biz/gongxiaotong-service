@@ -14,13 +14,13 @@ import org.umeframework.dora.bean.BeanUtil;
 import org.umeframework.dora.service.TableEntity;
 
 /**
- * Entity class map to table "需求主信息"
+ * Entity class map to table "需求发布主信息表"
  *
  * @author ume-team
  */
 @Entity
 @Table(name="REQ_MAIN")
-@TableDesc(label="需求主信息")
+@TableDesc(label="需求发布主信息表")
 public class ReqMainDto extends TableEntity implements Serializable {
    /**
     * Default serial version code
@@ -62,10 +62,18 @@ public class ReqMainDto extends TableEntity implements Serializable {
     private String reqDeliveryAddress;
 
    /**
+    * 联系人 
+    */
+    @Size(max=16)
+    @ColumnDesc(index=5, type="VARCHAR", label="联系人")
+    @Column(name="REQ_CONTACT", nullable=true, length=16)
+    private String reqContact;
+
+   /**
     * 联系电话 
     */
     @Size(max=16)
-    @ColumnDesc(index=5, type="VARCHAR", label="联系电话")
+    @ColumnDesc(index=6, type="VARCHAR", label="联系电话")
     @Column(name="REQ_CONTACT_MOBILE", nullable=true, length=16)
     private String reqContactMobile;
 
@@ -73,7 +81,7 @@ public class ReqMainDto extends TableEntity implements Serializable {
     * 需求总价估算 
     * 单位:分
     */
-    @ColumnDesc(index=6, type="INT", label="需求总价估算")
+    @ColumnDesc(index=7, type="INT", label="需求总价估算")
     @Column(name="REQ_TOTAL_ESTIMATION", nullable=true)
     private Integer reqTotalEstimation;
 
@@ -81,7 +89,7 @@ public class ReqMainDto extends TableEntity implements Serializable {
     * 最终报价编号 
     */
     @Size(max=32)
-    @ColumnDesc(index=7, type="VARCHAR", label="最终报价编号")
+    @ColumnDesc(index=8, type="VARCHAR", label="最终报价编号")
     @Column(name="REQ_FINAL_BID_CODE", nullable=true, length=32)
     private String reqFinalBidCode;
 
@@ -91,36 +99,36 @@ public class ReqMainDto extends TableEntity implements Serializable {
 15:抢单确认 
 25:支付失败 
 26:支付成功 
-100:全部完成
+100:确认完成
 0:系统取消
     */
     @NotEmpty
-    @ColumnDesc(index=8, type="INT", label="需求状态")
+    @ColumnDesc(index=9, type="INT", label="需求状态")
     @Column(name="REQ_STATUS", nullable=false)
     private Integer reqStatus;
 
    /**
     * Create Author (default setting while insert)
     */
-    @ColumnDesc(index=(8 + 1), type="VARCHAR", label="createAuthor")
+    @ColumnDesc(index=(9 + 1), type="VARCHAR", label="createAuthor")
     @Column(name="CREATE_AUTHOR", nullable=true, length=32)
     private String createAuthor;
    /**
     * Create Datetime (default setting while insert)
     */
-    @ColumnDesc(index=(8 + 2), type="TIMESTAMP", label="createDatetime")
+    @ColumnDesc(index=(9 + 2), type="TIMESTAMP", label="createDatetime")
     @Column(name="CREATE_DATETIME", nullable=true)
     private java.sql.Timestamp createDatetime;
    /**
     * Update Author (refresh on each update)
     */
-    @ColumnDesc(index=(8 + 3), type="VARCHAR", label="updateAuthor")
+    @ColumnDesc(index=(9 + 3), type="VARCHAR", label="updateAuthor")
     @Column(name="UPDATE_AUTHOR", nullable=true, length=32)
     private String updateAuthor;
    /**
     * Update Datetime (refresh on each update)
     */
-    @ColumnDesc(index=(8 + 4), type="TIMESTAMP", label="updateDatetime")
+    @ColumnDesc(index=(9 + 4), type="TIMESTAMP", label="updateDatetime")
     @Column(name="UPDATE_DATETIME", nullable=true)
     private java.sql.Timestamp updateDatetime;
 
@@ -178,6 +186,20 @@ public class ReqMainDto extends TableEntity implements Serializable {
     public void setReqDeliveryAddress(
             String reqDeliveryAddress) {
         this.reqDeliveryAddress = reqDeliveryAddress;
+    }
+
+    /**
+     *　Get the "联系人"
+     */
+    public String getReqContact() {
+        return this.reqContact;
+    }
+    /**
+     *　Set the "联系人"
+     */
+    public void setReqContact(
+            String reqContact) {
+        this.reqContact = reqContact;
     }
 
     /**
@@ -337,6 +359,7 @@ public class ReqMainDto extends TableEntity implements Serializable {
         public static final String reqDesc = "reqDesc";
         public static final String reqDeliveryDate = "reqDeliveryDate";
         public static final String reqDeliveryAddress = "reqDeliveryAddress";
+        public static final String reqContact = "reqContact";
         public static final String reqContactMobile = "reqContactMobile";
         public static final String reqTotalEstimation = "reqTotalEstimation";
         public static final String reqFinalBidCode = "reqFinalBidCode";
@@ -355,6 +378,7 @@ public class ReqMainDto extends TableEntity implements Serializable {
         public static final String REQ_DESC = "REQ_DESC";
         public static final String REQ_DELIVERY_DATE = "REQ_DELIVERY_DATE";
         public static final String REQ_DELIVERY_ADDRESS = "REQ_DELIVERY_ADDRESS";
+        public static final String REQ_CONTACT = "REQ_CONTACT";
         public static final String REQ_CONTACT_MOBILE = "REQ_CONTACT_MOBILE";
         public static final String REQ_TOTAL_ESTIMATION = "REQ_TOTAL_ESTIMATION";
         public static final String REQ_FINAL_BID_CODE = "REQ_FINAL_BID_CODE";

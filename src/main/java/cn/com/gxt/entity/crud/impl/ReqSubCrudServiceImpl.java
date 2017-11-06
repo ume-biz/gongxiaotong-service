@@ -10,7 +10,7 @@ import cn.com.gxt.entity.ReqSubDto;
 import cn.com.gxt.entity.crud.ReqSubCrudService;
 
 /**
- * 需求品类明细信息:REQ_SUB<br>
+ * 需求发布明细信息表:REQ_SUB<br>
  * Crud service implementation class.<br>
  *
  * @author DORA.Generator

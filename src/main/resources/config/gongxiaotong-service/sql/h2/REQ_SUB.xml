@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.com.gxt.entity">
-  <!-- 需求品类明细信息 [REQ_SUB] -->
+  <!-- 需求发布明细信息表 [REQ_SUB] -->
   
   <!-- Insert one -->
   <insert id="REQ_SUB_INSERT" parameterType="cn.com.gxt.entity.ReqSubDto">

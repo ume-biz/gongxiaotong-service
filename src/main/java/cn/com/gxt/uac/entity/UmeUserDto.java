@@ -116,86 +116,35 @@ public class UmeUserDto extends TableEntity implements Serializable {
     private Integer userStatus;
 
    /**
-    * 用户收货地址(默认) 
-    */
-    @Size(max=256)
-    @ColumnDesc(index=11, type="VARCHAR", label="用户收货地址(默认)")
-    @Column(name="USER_POST_ADDR", nullable=true, length=256)
-    private String userPostAddr;
-
-   /**
-    * 用户收货地址(备用) 
-    * 多个名称的时候用分号“；”分隔
-    */
-    @Size(max=1024)
-    @ColumnDesc(index=12, type="VARCHAR", label="用户收货地址(备用)")
-    @Column(name="USER_POST_ADDR_OTHER", nullable=true, length=1024)
-    private String userPostAddrOther;
-
-   /**
-    * 用户银行账号(默认) 
-    */
-    @Size(max=32)
-    @ColumnDesc(index=13, type="VARCHAR", label="用户银行账号(默认)")
-    @Column(name="USER_BANK_ACC_NO", nullable=true, length=32)
-    private String userBankAccNo;
-
-   /**
-    * 用户银行账号(备用) 
-    * 多个名称的时候用分号“；”分隔
-    */
-    @Size(max=128)
-    @ColumnDesc(index=14, type="VARCHAR", label="用户银行账号(备用)")
-    @Column(name="USER_BANK_ACC_NO_OTHER", nullable=true, length=128)
-    private String userBankAccNoOther;
-
-   /**
-    * 用户银行名称(默认) 
-    */
-    @Size(max=32)
-    @ColumnDesc(index=15, type="VARCHAR", label="用户银行名称(默认)")
-    @Column(name="USER_BANK_ACC_NAME", nullable=true, length=32)
-    private String userBankAccName;
-
-   /**
-    * 用户银行名称(备用) 
-    * 多个名称的时候用分号“；”分隔
-    */
-    @Size(max=128)
-    @ColumnDesc(index=16, type="VARCHAR", label="用户银行名称(备用)")
-    @Column(name="USER_BANK_ACC_NAME_OTHER", nullable=true, length=128)
-    private String userBankAccNameOther;
-
-   /**
     * 用户身份证号码 
     */
     @Size(max=32)
-    @ColumnDesc(index=17, type="VARCHAR", label="用户身份证号码")
+    @ColumnDesc(index=11, type="VARCHAR", label="用户身份证号码")
     @Column(name="USER_IDENTITY_CARD", nullable=true, length=32)
     private String userIdentityCard;
 
    /**
     * Create Author (default setting while insert)
     */
-    @ColumnDesc(index=(17 + 1), type="VARCHAR", label="createAuthor")
+    @ColumnDesc(index=(11 + 1), type="VARCHAR", label="createAuthor")
     @Column(name="CREATE_AUTHOR", nullable=true, length=32)
     private String createAuthor;
    /**
     * Create Datetime (default setting while insert)
     */
-    @ColumnDesc(index=(17 + 2), type="TIMESTAMP", label="createDatetime")
+    @ColumnDesc(index=(11 + 2), type="TIMESTAMP", label="createDatetime")
     @Column(name="CREATE_DATETIME", nullable=true)
     private java.sql.Timestamp createDatetime;
    /**
     * Update Author (refresh on each update)
     */
-    @ColumnDesc(index=(17 + 3), type="VARCHAR", label="updateAuthor")
+    @ColumnDesc(index=(11 + 3), type="VARCHAR", label="updateAuthor")
     @Column(name="UPDATE_AUTHOR", nullable=true, length=32)
     private String updateAuthor;
    /**
     * Update Datetime (refresh on each update)
     */
-    @ColumnDesc(index=(17 + 4), type="TIMESTAMP", label="updateDatetime")
+    @ColumnDesc(index=(11 + 4), type="TIMESTAMP", label="updateDatetime")
     @Column(name="UPDATE_DATETIME", nullable=true)
     private java.sql.Timestamp updateDatetime;
 
@@ -340,90 +289,6 @@ public class UmeUserDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "用户收货地址(默认)"
-     */
-    public String getUserPostAddr() {
-        return this.userPostAddr;
-    }
-    /**
-     *　Set the "用户收货地址(默认)"
-     */
-    public void setUserPostAddr(
-            String userPostAddr) {
-        this.userPostAddr = userPostAddr;
-    }
-
-    /**
-     *　Get the "用户收货地址(备用)"
-     */
-    public String getUserPostAddrOther() {
-        return this.userPostAddrOther;
-    }
-    /**
-     *　Set the "用户收货地址(备用)"
-     */
-    public void setUserPostAddrOther(
-            String userPostAddrOther) {
-        this.userPostAddrOther = userPostAddrOther;
-    }
-
-    /**
-     *　Get the "用户银行账号(默认)"
-     */
-    public String getUserBankAccNo() {
-        return this.userBankAccNo;
-    }
-    /**
-     *　Set the "用户银行账号(默认)"
-     */
-    public void setUserBankAccNo(
-            String userBankAccNo) {
-        this.userBankAccNo = userBankAccNo;
-    }
-
-    /**
-     *　Get the "用户银行账号(备用)"
-     */
-    public String getUserBankAccNoOther() {
-        return this.userBankAccNoOther;
-    }
-    /**
-     *　Set the "用户银行账号(备用)"
-     */
-    public void setUserBankAccNoOther(
-            String userBankAccNoOther) {
-        this.userBankAccNoOther = userBankAccNoOther;
-    }
-
-    /**
-     *　Get the "用户银行名称(默认)"
-     */
-    public String getUserBankAccName() {
-        return this.userBankAccName;
-    }
-    /**
-     *　Set the "用户银行名称(默认)"
-     */
-    public void setUserBankAccName(
-            String userBankAccName) {
-        this.userBankAccName = userBankAccName;
-    }
-
-    /**
-     *　Get the "用户银行名称(备用)"
-     */
-    public String getUserBankAccNameOther() {
-        return this.userBankAccNameOther;
-    }
-    /**
-     *　Set the "用户银行名称(备用)"
-     */
-    public void setUserBankAccNameOther(
-            String userBankAccNameOther) {
-        this.userBankAccNameOther = userBankAccNameOther;
-    }
-
-    /**
      *　Get the "用户身份证号码"
      */
     public String getUserIdentityCard() {
@@ -544,12 +409,6 @@ public class UmeUserDto extends TableEntity implements Serializable {
         public static final String userHeadImage = "userHeadImage";
         public static final String userDesc = "userDesc";
         public static final String userStatus = "userStatus";
-        public static final String userPostAddr = "userPostAddr";
-        public static final String userPostAddrOther = "userPostAddrOther";
-        public static final String userBankAccNo = "userBankAccNo";
-        public static final String userBankAccNoOther = "userBankAccNoOther";
-        public static final String userBankAccName = "userBankAccName";
-        public static final String userBankAccNameOther = "userBankAccNameOther";
         public static final String userIdentityCard = "userIdentityCard";
         public static final String createAuthor = "createAuthor";
         public static final String createDatetime = "createDatetime";
@@ -571,12 +430,6 @@ public class UmeUserDto extends TableEntity implements Serializable {
         public static final String USER_HEAD_IMAGE = "USER_HEAD_IMAGE";
         public static final String USER_DESC = "USER_DESC";
         public static final String USER_STATUS = "USER_STATUS";
-        public static final String USER_POST_ADDR = "USER_POST_ADDR";
-        public static final String USER_POST_ADDR_OTHER = "USER_POST_ADDR_OTHER";
-        public static final String USER_BANK_ACC_NO = "USER_BANK_ACC_NO";
-        public static final String USER_BANK_ACC_NO_OTHER = "USER_BANK_ACC_NO_OTHER";
-        public static final String USER_BANK_ACC_NAME = "USER_BANK_ACC_NAME";
-        public static final String USER_BANK_ACC_NAME_OTHER = "USER_BANK_ACC_NAME_OTHER";
         public static final String USER_IDENTITY_CARD = "USER_IDENTITY_CARD";
         public static final String CREATE_AUTHOR = "CREATE_AUTHOR";
         public static final String CREATE_DATETIME = "CREATE_DATETIME";

@@ -14,13 +14,13 @@ import org.umeframework.dora.bean.BeanUtil;
 import org.umeframework.dora.service.TableEntity;
 
 /**
- * Entity class map to table "需求品类明细信息"
+ * Entity class map to table "需求发布明细信息表"
  *
  * @author ume-team
  */
 @Entity
 @Table(name="REQ_SUB")
-@TableDesc(label="需求品类明细信息")
+@TableDesc(label="需求发布明细信息表")
 public class ReqSubDto extends TableEntity implements Serializable {
    /**
     * Default serial version code

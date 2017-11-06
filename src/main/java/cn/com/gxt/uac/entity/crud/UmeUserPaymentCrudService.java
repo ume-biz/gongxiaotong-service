@@ -1,23 +1,23 @@
-package cn.com.gxt.entity.crud;
+package cn.com.gxt.uac.entity.crud;
 
 import java.util.List;
 import java.util.Map;
-import cn.com.gxt.entity.ReqSubDto;
+import cn.com.gxt.uac.entity.UmeUserPaymentDto;
 
 /*
- * 需求发布明细信息表:REQ_SUB<br>
+ * 用户支付卡绑定管理表:UME_USER_PAYMENT<br>
  * Crud service interface declare.<br>
  *
  * @author DORA.Generator
  */
-public interface ReqSubCrudService {
+public interface UmeUserPaymentCrudService {
     /**
      * Insert entity.<br>
      * 
      * @param entity - entity instance
      * @return
      */
-    Integer create(ReqSubDto entity);
+    Integer create(UmeUserPaymentDto entity);
     
     /**
      * Insert entity list.<br>
@@ -25,7 +25,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createList(List<ReqSubDto> entityList);
+    List<Integer> createList(List<UmeUserPaymentDto> entityList);
     
     /**
      * Update entity when exist, insert new record if not exist.<br>
@@ -33,7 +33,7 @@ public interface ReqSubCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer createOrUpdate(ReqSubDto entity);
+    Integer createOrUpdate(UmeUserPaymentDto entity);
     
     /**
      * Update entity list when exist, insert new records if not exist.<br>
@@ -41,7 +41,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createOrUpdateList(List<ReqSubDto> entityList);
+    List<Integer> createOrUpdateList(List<UmeUserPaymentDto> entityList);
     
     /**
      * Update entity.<br>
@@ -49,7 +49,7 @@ public interface ReqSubCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer update(ReqSubDto entity);
+    Integer update(UmeUserPaymentDto entity);
     
     /**
      * Update entity list.<br>
@@ -57,7 +57,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateList(List<ReqSubDto> entityList);
+    List<Integer> updateList(List<UmeUserPaymentDto> entityList);
     
     /**
      * Update entity (full filed update include null value).<br>
@@ -65,7 +65,7 @@ public interface ReqSubCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer updateFully(ReqSubDto entity);
+    Integer updateFully(UmeUserPaymentDto entity);
     
     /**
      * Update entity list (full filed update include null value).<br>
@@ -73,7 +73,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateFullyList(List<ReqSubDto> entityList);
+    List<Integer> updateFullyList(List<UmeUserPaymentDto> entityList);
 
     /**
      * Delete entity.<br>
@@ -81,7 +81,7 @@ public interface ReqSubCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer delete(ReqSubDto entity);
+    Integer delete(UmeUserPaymentDto entity);
     
     /**
      * Delete entity list.<br>
@@ -89,7 +89,7 @@ public interface ReqSubCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> deleteList(List<ReqSubDto> entityList);
+    List<Integer> deleteList(List<UmeUserPaymentDto> entityList);
     
     /**
      * Find entity by primary key set.<br>
@@ -97,7 +97,7 @@ public interface ReqSubCrudService {
      * @param condition - query parameter
      * @return - matched entity instance
      */
-    ReqSubDto find(ReqSubDto condition);
+    UmeUserPaymentDto find(UmeUserPaymentDto condition);
     
     /**
      * Search entity list use equal match.<br>
@@ -105,7 +105,7 @@ public interface ReqSubCrudService {
      * @param condition - query parameter
      * @return - matched entity instance list
      */
-    List<ReqSubDto> search(ReqSubDto condition);
+    List<UmeUserPaymentDto> search(UmeUserPaymentDto condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
@@ -113,7 +113,7 @@ public interface ReqSubCrudService {
      * @param condition - query parameter
      * @return - matched entity instance list
      */
-    List<ReqSubDto> likeSearch(Map<String, String> condition);
+    List<UmeUserPaymentDto> likeSearch(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
@@ -121,7 +121,7 @@ public interface ReqSubCrudService {
      * @param condition - query parameter
      * @return - matched entity instance list
      */
-    List<ReqSubDto> dynaSearch(Map<String, String> condition);
+    List<UmeUserPaymentDto> dynaSearch(Map<String, String> condition);
     
     /**
      * Count.<br>

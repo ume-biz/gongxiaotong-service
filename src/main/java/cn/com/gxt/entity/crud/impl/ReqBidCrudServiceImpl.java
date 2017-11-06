@@ -10,7 +10,7 @@ import cn.com.gxt.entity.ReqBidDto;
 import cn.com.gxt.entity.crud.ReqBidCrudService;
 
 /**
- * 需求竞标信息:REQ_BID<br>
+ * 需求竞标信息表:REQ_BID<br>
  * Crud service implementation class.<br>
  *
  * @author DORA.Generator

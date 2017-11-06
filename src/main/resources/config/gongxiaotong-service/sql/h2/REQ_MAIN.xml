@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.com.gxt.entity">
-  <!-- 需求主信息 [REQ_MAIN] -->
+  <!-- 需求发布主信息表 [REQ_MAIN] -->
   
   <!-- Insert one -->
   <insert id="REQ_MAIN_INSERT" parameterType="cn.com.gxt.entity.ReqMainDto">
@@ -11,6 +11,7 @@
       REQ_DESC,
       REQ_DELIVERY_DATE,
       REQ_DELIVERY_ADDRESS,
+      REQ_CONTACT,
       REQ_CONTACT_MOBILE,
       REQ_TOTAL_ESTIMATION,
       REQ_FINAL_BID_CODE,
@@ -24,6 +25,7 @@
       #{reqDesc},
       #{reqDeliveryDate},
       #{reqDeliveryAddress},
+      #{reqContact},
       #{reqContactMobile},
       #{reqTotalEstimation},
       #{reqFinalBidCode},
@@ -42,6 +44,7 @@
       REQ_DESC = #{reqDesc},
       REQ_DELIVERY_DATE = #{reqDeliveryDate},
       REQ_DELIVERY_ADDRESS = #{reqDeliveryAddress},
+      REQ_CONTACT = #{reqContact},
       REQ_CONTACT_MOBILE = #{reqContactMobile},
       REQ_TOTAL_ESTIMATION = #{reqTotalEstimation},
       REQ_FINAL_BID_CODE = #{reqFinalBidCode},
@@ -62,6 +65,7 @@
       <if test="reqDesc!=null">REQ_DESC = #{reqDesc},</if>
       <if test="reqDeliveryDate!=null">REQ_DELIVERY_DATE = #{reqDeliveryDate},</if>
       <if test="reqDeliveryAddress!=null">REQ_DELIVERY_ADDRESS = #{reqDeliveryAddress},</if>
+      <if test="reqContact!=null">REQ_CONTACT = #{reqContact},</if>
       <if test="reqContactMobile!=null">REQ_CONTACT_MOBILE = #{reqContactMobile},</if>
       <if test="reqTotalEstimation!=null">REQ_TOTAL_ESTIMATION = #{reqTotalEstimation},</if>
       <if test="reqFinalBidCode!=null">REQ_FINAL_BID_CODE = #{reqFinalBidCode},</if>
@@ -90,6 +94,7 @@
       REQ_DESC AS "reqDesc",
       REQ_DELIVERY_DATE AS "reqDeliveryDate",
       REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT AS "reqContact",
       REQ_CONTACT_MOBILE AS "reqContactMobile",
       REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
       REQ_FINAL_BID_CODE AS "reqFinalBidCode",
@@ -110,6 +115,7 @@
       REQ_DESC AS "reqDesc",
       REQ_DELIVERY_DATE AS "reqDeliveryDate",
       REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT AS "reqContact",
       REQ_CONTACT_MOBILE AS "reqContactMobile",
       REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
       REQ_FINAL_BID_CODE AS "reqFinalBidCode",
@@ -131,6 +137,7 @@
       REQ_DESC AS "reqDesc",
       REQ_DELIVERY_DATE AS "reqDeliveryDate",
       REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT AS "reqContact",
       REQ_CONTACT_MOBILE AS "reqContactMobile",
       REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
       REQ_FINAL_BID_CODE AS "reqFinalBidCode",
@@ -145,6 +152,7 @@
       <if test="reqDesc != null">AND REQ_DESC = #{reqDesc}</if>
       <if test="reqDeliveryDate != null">AND REQ_DELIVERY_DATE = #{reqDeliveryDate}</if>
       <if test="reqDeliveryAddress != null">AND REQ_DELIVERY_ADDRESS = #{reqDeliveryAddress}</if>
+      <if test="reqContact != null">AND REQ_CONTACT = #{reqContact}</if>
       <if test="reqContactMobile != null">AND REQ_CONTACT_MOBILE = #{reqContactMobile}</if>
       <if test="reqTotalEstimation != null">AND REQ_TOTAL_ESTIMATION = #{reqTotalEstimation}</if>
       <if test="reqFinalBidCode != null">AND REQ_FINAL_BID_CODE = #{reqFinalBidCode}</if>
@@ -165,6 +173,7 @@
       REQ_DESC AS "reqDesc",
       REQ_DELIVERY_DATE AS "reqDeliveryDate",
       REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT AS "reqContact",
       REQ_CONTACT_MOBILE AS "reqContactMobile",
       REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
       REQ_FINAL_BID_CODE AS "reqFinalBidCode",
@@ -179,6 +188,7 @@
       <if test="reqDesc != null">AND REQ_DESC LIKE CONCAT('%', #{reqDesc}, '%')</if>
       <if test="reqDeliveryDate != null">AND REQ_DELIVERY_DATE LIKE CONCAT('%', #{reqDeliveryDate}, '%')</if>
       <if test="reqDeliveryAddress != null">AND REQ_DELIVERY_ADDRESS LIKE CONCAT('%', #{reqDeliveryAddress}, '%')</if>
+      <if test="reqContact != null">AND REQ_CONTACT LIKE CONCAT('%', #{reqContact}, '%')</if>
       <if test="reqContactMobile != null">AND REQ_CONTACT_MOBILE LIKE CONCAT('%', #{reqContactMobile}, '%')</if>
       <if test="reqTotalEstimation != null">AND REQ_TOTAL_ESTIMATION LIKE CONCAT('%', #{reqTotalEstimation}, '%')</if>
       <if test="reqFinalBidCode != null">AND REQ_FINAL_BID_CODE LIKE CONCAT('%', #{reqFinalBidCode}, '%')</if>
@@ -199,6 +209,7 @@
       REQ_DESC AS "reqDesc",
       REQ_DELIVERY_DATE AS "reqDeliveryDate",
       REQ_DELIVERY_ADDRESS AS "reqDeliveryAddress",
+      REQ_CONTACT AS "reqContact",
       REQ_CONTACT_MOBILE AS "reqContactMobile",
       REQ_TOTAL_ESTIMATION AS "reqTotalEstimation",
       REQ_FINAL_BID_CODE AS "reqFinalBidCode",
@@ -213,6 +224,7 @@
       <if test="reqDesc != null">AND ( ${reqDesc} )</if>
       <if test="reqDeliveryDate != null">AND ( ${reqDeliveryDate} )</if>
       <if test="reqDeliveryAddress != null">AND ( ${reqDeliveryAddress} )</if>
+      <if test="reqContact != null">AND ( ${reqContact} )</if>
       <if test="reqContactMobile != null">AND ( ${reqContactMobile} )</if>
       <if test="reqTotalEstimation != null">AND ( ${reqTotalEstimation} )</if>
       <if test="reqFinalBidCode != null">AND ( ${reqFinalBidCode} )</if>
@@ -233,6 +245,7 @@
       <if test="reqDesc != null">AND REQ_DESC = #{reqDesc}</if>
       <if test="reqDeliveryDate != null">AND REQ_DELIVERY_DATE = #{reqDeliveryDate}</if>
       <if test="reqDeliveryAddress != null">AND REQ_DELIVERY_ADDRESS = #{reqDeliveryAddress}</if>
+      <if test="reqContact != null">AND REQ_CONTACT = #{reqContact}</if>
       <if test="reqContactMobile != null">AND REQ_CONTACT_MOBILE = #{reqContactMobile}</if>
       <if test="reqTotalEstimation != null">AND REQ_TOTAL_ESTIMATION = #{reqTotalEstimation}</if>
       <if test="reqFinalBidCode != null">AND REQ_FINAL_BID_CODE = #{reqFinalBidCode}</if>
