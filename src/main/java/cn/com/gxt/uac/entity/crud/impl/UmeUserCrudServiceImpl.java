@@ -10,13 +10,13 @@ import cn.com.gxt.uac.entity.UmeUserDto;
 import cn.com.gxt.uac.entity.crud.UmeUserCrudService;
 
 /**
- * 供销通用户表:UME_USER<br>
- * Crud service implementation class.<br>
+ * 供销通用户表:UME_USER CRUD service implementation.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 @org.springframework.stereotype.Service
 public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCrudService {
+
     /* (non-Javadoc)
      * 
      * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
@@ -25,7 +25,8 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     @TransactionRequired
     public Integer create(UmeUserDto entity) {
         validate(entity);
-        return getDao().update(UmeUserDto.SQLID.INSERT, entity);
+        int result = super.getDao().update(UmeUserDto.SQLID.INSERT, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -37,7 +38,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     public List<Integer> createList(List<UmeUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserDto entity : entityList) {
-            result.add(create(entity));
+            result.add(this.create(entity));
         }
         return result;
     }
@@ -49,12 +50,12 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     @Override
     @TransactionRequired
     public Integer createOrUpdate(UmeUserDto entity) {
-        UmeUserDto existed = getDao().queryForObject(UmeUserDto.SQLID.FIND, entity, UmeUserDto.class);
+        UmeUserDto existed = super.getDao().queryForObject(UmeUserDto.SQLID.FIND, entity, UmeUserDto.class);
         if (existed == null) {
-            return getDao().update(UmeUserDto.SQLID.INSERT, entity);
+            return this.create(entity);
         } else {
             validate(entity);
-            return getDao().update(UmeUserDto.SQLID.SMART_UPDATE, entity);
+            return this.update(entity);
         }
     }
     
@@ -67,7 +68,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     public List<Integer> createOrUpdateList(List<UmeUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserDto entity : entityList) {
-            result.add(createOrUpdate(entity));
+            result.add(this.createOrUpdate(entity));
         }
         return result;
     }
@@ -80,7 +81,8 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     @TransactionRequired
     public Integer update(UmeUserDto entity) {
         validate(entity);
-        return getDao().update(UmeUserDto.SQLID.SMART_UPDATE, entity);
+        int result = super.getDao().update(UmeUserDto.SQLID.SMART_UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -92,7 +94,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     public List<Integer> updateList(List<UmeUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserDto entity : entityList) {
-            result.add(update(entity));
+            result.add(this.update(entity));
         }
         return result;
     }
@@ -105,7 +107,8 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     @TransactionRequired
     public Integer updateFully(UmeUserDto entity) {
         validate(entity);
-        return getDao().update(UmeUserDto.SQLID.UPDATE, entity);
+        int result = super.getDao().update(UmeUserDto.SQLID.UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -117,7 +120,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     public List<Integer> updateFullyList(List<UmeUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserDto entity : entityList) {
-            result.add(updateFully(entity));
+            result.add(this.updateFully(entity));
         }
         return result;
     }
@@ -129,7 +132,8 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     @Override
     @TransactionRequired
     public Integer delete(UmeUserDto entity) {
-        return getDao().update(UmeUserDto.SQLID.DELETE, entity);
+        int result = super.getDao().update(UmeUserDto.SQLID.DELETE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -141,7 +145,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     public List<Integer> deleteList(List<UmeUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeUserDto entity : entityList) {
-            result.add(delete(entity));
+            result.add(this.delete(entity));
         }
         return result;
     }
@@ -152,7 +156,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
      */
     @Override
     public UmeUserDto find(UmeUserDto queryParam) {
-        return getDao().queryForObject(UmeUserDto.SQLID.FIND, queryParam, UmeUserDto.class);
+        return super.getDao().queryForObject(UmeUserDto.SQLID.FIND, queryParam, UmeUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -161,7 +165,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
      */
     @Override
     public List<UmeUserDto> search(UmeUserDto condition) {
-        return getDao().queryForObjectList(UmeUserDto.SQLID.SEARCH, condition, UmeUserDto.class);
+        return super.getDao().queryForObjectList(UmeUserDto.SQLID.SEARCH, condition, UmeUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -170,7 +174,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
      */
     @Override
     public List<UmeUserDto> likeSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(UmeUserDto.SQLID.LIKE_SEARCH, condition, UmeUserDto.class);
+        return super.getDao().queryForObjectList(UmeUserDto.SQLID.LIKE_SEARCH, condition, UmeUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -179,7 +183,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
      */
     @Override
     public List<UmeUserDto> dynaSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(UmeUserDto.SQLID.DYNA_SEARCH, condition, UmeUserDto.class);
+        return super.getDao().queryForObjectList(UmeUserDto.SQLID.DYNA_SEARCH, condition, UmeUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -188,7 +192,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
      */
     @Override
     public Integer count(Map<String, String> condition) {
-        return getDao().count(UmeUserDto.SQLID.COUNT, condition);
+        return super.getDao().count(UmeUserDto.SQLID.COUNT, condition);
     }
 
     /**

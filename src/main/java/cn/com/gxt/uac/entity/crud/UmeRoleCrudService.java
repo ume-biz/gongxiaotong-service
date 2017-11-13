@@ -5,10 +5,9 @@ import java.util.Map;
 import cn.com.gxt.uac.entity.UmeRoleDto;
 
 /*
- * 供销通角色定义表:UME_ROLE<br>
- * Crud service interface declare.<br>
+ * 供销通角色定义表:UME_ROLE CRUD service interface declare.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 public interface UmeRoleCrudService {
     /**

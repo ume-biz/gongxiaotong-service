@@ -36,7 +36,7 @@
       current_timestamp()
     )
   </insert>
-
+  
   <!-- Update with optimism check) -->
   <update id="UME_USER_ADDRESS_UPDATE" parameterType="cn.com.gxt.uac.entity.UmeUserAddressDto">
     UPDATE UME_USER_ADDRESS
@@ -254,6 +254,89 @@
       <if test="contactNumber != null">AND CONTACT_NUMBER = #{contactNumber}</if>
       <if test="addressType != null">AND ADDRESS_TYPE = #{addressType}</if>
   </select>
+
+
+  <insert id="UME_USER_ADDRESS_HT_INSERT_C" parameterType="cn.com.gxt.uac.entity.UmeUserAddressDto">
+    INSERT INTO UME_USER_ADDRESS_HT (
+      USER_ID,
+      SEQ,
+      ADDRESS_PROVINCE,
+      ADDRESS_CITY,
+      ADDRESS_DISTRICT,
+      ADDRESS_REST,
+      CONTACT_PERSON,
+      CONTACT_NUMBER,
+      ADDRESS_TYPE,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{userId},
+      #{seq},
+      #{addressProvince},
+      #{addressCity},
+      #{addressDistrict},
+      #{addressRest},
+      #{contactPerson},
+      #{contactNumber},
+      #{addressType},
+      current_timestamp(),
+      'C'
+    )
+  </insert>
+  <insert id="UME_USER_ADDRESS_HT_INSERT_U" parameterType="cn.com.gxt.uac.entity.UmeUserAddressDto">
+    INSERT INTO UME_USER_ADDRESS_HT (
+      USER_ID,
+      SEQ,
+      ADDRESS_PROVINCE,
+      ADDRESS_CITY,
+      ADDRESS_DISTRICT,
+      ADDRESS_REST,
+      CONTACT_PERSON,
+      CONTACT_NUMBER,
+      ADDRESS_TYPE,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{userId},
+      #{seq},
+      #{addressProvince},
+      #{addressCity},
+      #{addressDistrict},
+      #{addressRest},
+      #{contactPerson},
+      #{contactNumber},
+      #{addressType},
+      current_timestamp(),
+      'U'
+    )
+  </insert>
+  <insert id="UME_USER_ADDRESS_HT_INSERT_D" parameterType="cn.com.gxt.uac.entity.UmeUserAddressDto">
+    INSERT INTO UME_USER_ADDRESS_HT (
+      USER_ID,
+      SEQ,
+      ADDRESS_PROVINCE,
+      ADDRESS_CITY,
+      ADDRESS_DISTRICT,
+      ADDRESS_REST,
+      CONTACT_PERSON,
+      CONTACT_NUMBER,
+      ADDRESS_TYPE,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{userId},
+      #{seq},
+      #{addressProvince},
+      #{addressCity},
+      #{addressDistrict},
+      #{addressRest},
+      #{contactPerson},
+      #{contactNumber},
+      #{addressType},
+      current_timestamp(),
+      'D'
+    )
+  </insert>
 
 </mapper>
 

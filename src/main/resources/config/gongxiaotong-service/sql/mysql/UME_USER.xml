@@ -40,7 +40,7 @@
       current_timestamp()
     )
   </insert>
-
+  
   <!-- Update with optimism check) -->
   <update id="UME_USER_UPDATE" parameterType="cn.com.gxt.uac.entity.UmeUserDto">
     UPDATE UME_USER
@@ -277,6 +277,8 @@
       <if test="userStatus != null">AND USER_STATUS = #{userStatus}</if>
       <if test="userIdentityCard != null">AND USER_IDENTITY_CARD = #{userIdentityCard}</if>
   </select>
+
+
 
 </mapper>
 

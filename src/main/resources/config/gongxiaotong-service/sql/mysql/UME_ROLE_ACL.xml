@@ -26,7 +26,7 @@
       current_timestamp()
     )
   </insert>
-
+  
   <!-- Update with optimism check) -->
   <update id="UME_ROLE_ACL_UPDATE" parameterType="cn.com.gxt.uac.entity.UmeRoleAclDto">
     UPDATE UME_ROLE_ACL
@@ -195,6 +195,8 @@
       <if test="accResType != null">AND ACC_RES_TYPE = #{accResType}</if>
       <if test="accLevel != null">AND ACC_LEVEL = #{accLevel}</if>
   </select>
+
+
 
 </mapper>
 

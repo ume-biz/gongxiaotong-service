@@ -5,10 +5,9 @@ import java.util.Map;
 import cn.com.gxt.uac.entity.UmeUserDto;
 
 /*
- * 供销通用户表:UME_USER<br>
- * Crud service interface declare.<br>
+ * 供销通用户表:UME_USER CRUD service interface declare.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 public interface UmeUserCrudService {
     /**

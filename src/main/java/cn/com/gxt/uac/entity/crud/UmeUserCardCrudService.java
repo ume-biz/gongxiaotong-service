@@ -2,21 +2,21 @@ package cn.com.gxt.uac.entity.crud;
 
 import java.util.List;
 import java.util.Map;
-import cn.com.gxt.uac.entity.UmeUserAddressDto;
+import cn.com.gxt.uac.entity.UmeUserCardDto;
 
 /*
- * 用户配送地址管理表:UME_USER_ADDRESS CRUD service interface declare.<br>
+ * 用户支付卡绑定管理表:UME_USER_CARD CRUD service interface declare.<br>
  *
  * @author UME-Generator
  */
-public interface UmeUserAddressCrudService {
+public interface UmeUserCardCrudService {
     /**
      * Insert entity.<br>
      * 
      * @param entity - entity instance
      * @return
      */
-    Integer create(UmeUserAddressDto entity);
+    Integer create(UmeUserCardDto entity);
     
     /**
      * Insert entity list.<br>
@@ -24,7 +24,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createList(List<UmeUserAddressDto> entityList);
+    List<Integer> createList(List<UmeUserCardDto> entityList);
     
     /**
      * Update entity when exist, insert new record if not exist.<br>
@@ -32,7 +32,7 @@ public interface UmeUserAddressCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer createOrUpdate(UmeUserAddressDto entity);
+    Integer createOrUpdate(UmeUserCardDto entity);
     
     /**
      * Update entity list when exist, insert new records if not exist.<br>
@@ -40,7 +40,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createOrUpdateList(List<UmeUserAddressDto> entityList);
+    List<Integer> createOrUpdateList(List<UmeUserCardDto> entityList);
     
     /**
      * Update entity.<br>
@@ -48,7 +48,7 @@ public interface UmeUserAddressCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer update(UmeUserAddressDto entity);
+    Integer update(UmeUserCardDto entity);
     
     /**
      * Update entity list.<br>
@@ -56,7 +56,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateList(List<UmeUserAddressDto> entityList);
+    List<Integer> updateList(List<UmeUserCardDto> entityList);
     
     /**
      * Update entity (full filed update include null value).<br>
@@ -64,7 +64,7 @@ public interface UmeUserAddressCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer updateFully(UmeUserAddressDto entity);
+    Integer updateFully(UmeUserCardDto entity);
     
     /**
      * Update entity list (full filed update include null value).<br>
@@ -72,7 +72,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateFullyList(List<UmeUserAddressDto> entityList);
+    List<Integer> updateFullyList(List<UmeUserCardDto> entityList);
 
     /**
      * Delete entity.<br>
@@ -80,7 +80,7 @@ public interface UmeUserAddressCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer delete(UmeUserAddressDto entity);
+    Integer delete(UmeUserCardDto entity);
     
     /**
      * Delete entity list.<br>
@@ -88,7 +88,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> deleteList(List<UmeUserAddressDto> entityList);
+    List<Integer> deleteList(List<UmeUserCardDto> entityList);
     
     /**
      * Find entity by primary key set.<br>
@@ -96,7 +96,7 @@ public interface UmeUserAddressCrudService {
      * @param condition - query parameter
      * @return - matched entity instance
      */
-    UmeUserAddressDto find(UmeUserAddressDto condition);
+    UmeUserCardDto find(UmeUserCardDto condition);
     
     /**
      * Search entity list use equal match.<br>
@@ -104,7 +104,7 @@ public interface UmeUserAddressCrudService {
      * @param condition - query parameter
      * @return - matched entity instance list
      */
-    List<UmeUserAddressDto> search(UmeUserAddressDto condition);
+    List<UmeUserCardDto> search(UmeUserCardDto condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
@@ -112,7 +112,7 @@ public interface UmeUserAddressCrudService {
      * @param condition - query parameter
      * @return - matched entity instance list
      */
-    List<UmeUserAddressDto> likeSearch(Map<String, String> condition);
+    List<UmeUserCardDto> likeSearch(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
@@ -120,7 +120,7 @@ public interface UmeUserAddressCrudService {
      * @param condition - query parameter
      * @return - matched entity instance list
      */
-    List<UmeUserAddressDto> dynaSearch(Map<String, String> condition);
+    List<UmeUserCardDto> dynaSearch(Map<String, String> condition);
     
     /**
      * Count.<br>

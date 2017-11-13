@@ -5,10 +5,9 @@ import java.util.Map;
 import cn.com.gxt.uac.entity.UmeWechatUserDto;
 
 /*
- * 微信用户基础属性表:UME_WECHAT_USER<br>
- * Crud service interface declare.<br>
+ * 微信用户基础属性表:UME_WECHAT_USER CRUD service interface declare.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 public interface UmeWechatUserCrudService {
     /**

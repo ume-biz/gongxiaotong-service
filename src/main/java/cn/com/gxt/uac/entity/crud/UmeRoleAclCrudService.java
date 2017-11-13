@@ -5,10 +5,9 @@ import java.util.Map;
 import cn.com.gxt.uac.entity.UmeRoleAclDto;
 
 /*
- * 供销通角色资源访问权限关系表:UME_ROLE_ACL<br>
- * Crud service interface declare.<br>
+ * 供销通角色资源访问权限关系表:UME_ROLE_ACL CRUD service interface declare.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 public interface UmeRoleAclCrudService {
     /**

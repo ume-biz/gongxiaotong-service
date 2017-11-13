@@ -5,10 +5,9 @@ import java.util.Map;
 import cn.com.gxt.uac.entity.UmeResourceDto;
 
 /*
- * 供销通资源管理表:UME_RESOURCE<br>
- * Crud service interface declare.<br>
+ * 供销通资源管理表:UME_RESOURCE CRUD service interface declare.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 public interface UmeResourceCrudService {
     /**

@@ -10,13 +10,13 @@ import cn.com.gxt.uac.entity.UmeWechatUserDto;
 import cn.com.gxt.uac.entity.crud.UmeWechatUserCrudService;
 
 /**
- * 微信用户基础属性表:UME_WECHAT_USER<br>
- * Crud service implementation class.<br>
+ * 微信用户基础属性表:UME_WECHAT_USER CRUD service implementation.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 @org.springframework.stereotype.Service
 public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements UmeWechatUserCrudService {
+
     /* (non-Javadoc)
      * 
      * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
@@ -25,7 +25,8 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     @TransactionRequired
     public Integer create(UmeWechatUserDto entity) {
         validate(entity);
-        return getDao().update(UmeWechatUserDto.SQLID.INSERT, entity);
+        int result = super.getDao().update(UmeWechatUserDto.SQLID.INSERT, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -37,7 +38,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     public List<Integer> createList(List<UmeWechatUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeWechatUserDto entity : entityList) {
-            result.add(create(entity));
+            result.add(this.create(entity));
         }
         return result;
     }
@@ -49,12 +50,12 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     @Override
     @TransactionRequired
     public Integer createOrUpdate(UmeWechatUserDto entity) {
-        UmeWechatUserDto existed = getDao().queryForObject(UmeWechatUserDto.SQLID.FIND, entity, UmeWechatUserDto.class);
+        UmeWechatUserDto existed = super.getDao().queryForObject(UmeWechatUserDto.SQLID.FIND, entity, UmeWechatUserDto.class);
         if (existed == null) {
-            return getDao().update(UmeWechatUserDto.SQLID.INSERT, entity);
+            return this.create(entity);
         } else {
             validate(entity);
-            return getDao().update(UmeWechatUserDto.SQLID.SMART_UPDATE, entity);
+            return this.update(entity);
         }
     }
     
@@ -67,7 +68,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     public List<Integer> createOrUpdateList(List<UmeWechatUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeWechatUserDto entity : entityList) {
-            result.add(createOrUpdate(entity));
+            result.add(this.createOrUpdate(entity));
         }
         return result;
     }
@@ -80,7 +81,8 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     @TransactionRequired
     public Integer update(UmeWechatUserDto entity) {
         validate(entity);
-        return getDao().update(UmeWechatUserDto.SQLID.SMART_UPDATE, entity);
+        int result = super.getDao().update(UmeWechatUserDto.SQLID.SMART_UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -92,7 +94,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     public List<Integer> updateList(List<UmeWechatUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeWechatUserDto entity : entityList) {
-            result.add(update(entity));
+            result.add(this.update(entity));
         }
         return result;
     }
@@ -105,7 +107,8 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     @TransactionRequired
     public Integer updateFully(UmeWechatUserDto entity) {
         validate(entity);
-        return getDao().update(UmeWechatUserDto.SQLID.UPDATE, entity);
+        int result = super.getDao().update(UmeWechatUserDto.SQLID.UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -117,7 +120,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     public List<Integer> updateFullyList(List<UmeWechatUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeWechatUserDto entity : entityList) {
-            result.add(updateFully(entity));
+            result.add(this.updateFully(entity));
         }
         return result;
     }
@@ -129,7 +132,8 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     @Override
     @TransactionRequired
     public Integer delete(UmeWechatUserDto entity) {
-        return getDao().update(UmeWechatUserDto.SQLID.DELETE, entity);
+        int result = super.getDao().update(UmeWechatUserDto.SQLID.DELETE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -141,7 +145,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     public List<Integer> deleteList(List<UmeWechatUserDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeWechatUserDto entity : entityList) {
-            result.add(delete(entity));
+            result.add(this.delete(entity));
         }
         return result;
     }
@@ -152,7 +156,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
      */
     @Override
     public UmeWechatUserDto find(UmeWechatUserDto queryParam) {
-        return getDao().queryForObject(UmeWechatUserDto.SQLID.FIND, queryParam, UmeWechatUserDto.class);
+        return super.getDao().queryForObject(UmeWechatUserDto.SQLID.FIND, queryParam, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -161,7 +165,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
      */
     @Override
     public List<UmeWechatUserDto> search(UmeWechatUserDto condition) {
-        return getDao().queryForObjectList(UmeWechatUserDto.SQLID.SEARCH, condition, UmeWechatUserDto.class);
+        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.SEARCH, condition, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -170,7 +174,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
      */
     @Override
     public List<UmeWechatUserDto> likeSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(UmeWechatUserDto.SQLID.LIKE_SEARCH, condition, UmeWechatUserDto.class);
+        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.LIKE_SEARCH, condition, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -179,7 +183,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
      */
     @Override
     public List<UmeWechatUserDto> dynaSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(UmeWechatUserDto.SQLID.DYNA_SEARCH, condition, UmeWechatUserDto.class);
+        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.DYNA_SEARCH, condition, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -188,7 +192,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
      */
     @Override
     public Integer count(Map<String, String> condition) {
-        return getDao().count(UmeWechatUserDto.SQLID.COUNT, condition);
+        return super.getDao().count(UmeWechatUserDto.SQLID.COUNT, condition);
     }
 
     /**

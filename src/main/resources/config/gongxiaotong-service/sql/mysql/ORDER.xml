@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.gxt.entity">
+  <!-- 需求信息主表 [ORDER] -->
+  
+  <!-- Insert one -->
+  <insert id="ORDER_INSERT" parameterType="cn.com.gxt.entity.OrderDto">
+    INSERT INTO ORDER (
+      ORDER_CODE,
+      ORDER_DESC,
+      ORDER_DELIVERY_DATE,
+      ORDER_DELIVERY_ADDRESS,
+      ORDER_CONTACT_NAME,
+      ORDER_CONTACT_PHONE,
+      ORDER_TOTAL_ESTIMATION,
+      ORDER_STATUS,
+      ORDER_EFFECTIVE_BEGIN_DATE,
+      ORDER_EFFECTIVE_END_DATE,
+      ORDER_BID_RECORD_LIMIT,
+      ORDER_FINAL_BID_UID,
+      ORDER_FINAL_BID_DESC,
+      ORDER_FINAL_BID_PRICE,
+      ORDER_COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      #{orderCode},
+      #{orderDesc},
+      #{orderDeliveryDate},
+      #{orderDeliveryAddress},
+      #{orderContactName},
+      #{orderContactPhone},
+      #{orderTotalEstimation},
+      #{orderStatus},
+      #{orderEffectiveBeginDate},
+      #{orderEffectiveEndDate},
+      #{orderBidRecordLimit},
+      #{orderFinalBidUid},
+      #{orderFinalBidDesc},
+      #{orderFinalBidPrice},
+      #{orderComment},
+      #{createAuthor},
+      current_timestamp(),
+      #{updateAuthor},
+      current_timestamp()
+    )
+  </insert>
+  
+  <!-- Update with optimism check) -->
+  <update id="ORDER_UPDATE" parameterType="cn.com.gxt.entity.OrderDto">
+    UPDATE ORDER
+    SET
+      ORDER_DESC = #{orderDesc},
+      ORDER_DELIVERY_DATE = #{orderDeliveryDate},
+      ORDER_DELIVERY_ADDRESS = #{orderDeliveryAddress},
+      ORDER_CONTACT_NAME = #{orderContactName},
+      ORDER_CONTACT_PHONE = #{orderContactPhone},
+      ORDER_TOTAL_ESTIMATION = #{orderTotalEstimation},
+      ORDER_STATUS = #{orderStatus},
+      ORDER_EFFECTIVE_BEGIN_DATE = #{orderEffectiveBeginDate},
+      ORDER_EFFECTIVE_END_DATE = #{orderEffectiveEndDate},
+      ORDER_BID_RECORD_LIMIT = #{orderBidRecordLimit},
+      ORDER_FINAL_BID_UID = #{orderFinalBidUid},
+      ORDER_FINAL_BID_DESC = #{orderFinalBidDesc},
+      ORDER_FINAL_BID_PRICE = #{orderFinalBidPrice},
+      ORDER_COMMENT = #{orderComment},
+      CREATE_AUTHOR = #{createAuthor},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_AUTHOR = #{updateAuthor},
+      UPDATE_DATETIME = current_timestamp() 
+    WHERE UPDATE_DATETIME = #{updateDatetime}
+      AND ORDER_CODE = #{orderCode}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+
+  <!-- Smart update -->
+  <update id="ORDER_SMART_UPDATE" parameterType="cn.com.gxt.entity.OrderDto">
+    UPDATE ORDER
+    <set>
+      <if test="orderDesc!=null">ORDER_DESC = #{orderDesc},</if>
+      <if test="orderDeliveryDate!=null">ORDER_DELIVERY_DATE = #{orderDeliveryDate},</if>
+      <if test="orderDeliveryAddress!=null">ORDER_DELIVERY_ADDRESS = #{orderDeliveryAddress},</if>
+      <if test="orderContactName!=null">ORDER_CONTACT_NAME = #{orderContactName},</if>
+      <if test="orderContactPhone!=null">ORDER_CONTACT_PHONE = #{orderContactPhone},</if>
+      <if test="orderTotalEstimation!=null">ORDER_TOTAL_ESTIMATION = #{orderTotalEstimation},</if>
+      <if test="orderStatus!=null">ORDER_STATUS = #{orderStatus},</if>
+      <if test="orderEffectiveBeginDate!=null">ORDER_EFFECTIVE_BEGIN_DATE = #{orderEffectiveBeginDate},</if>
+      <if test="orderEffectiveEndDate!=null">ORDER_EFFECTIVE_END_DATE = #{orderEffectiveEndDate},</if>
+      <if test="orderBidRecordLimit!=null">ORDER_BID_RECORD_LIMIT = #{orderBidRecordLimit},</if>
+      <if test="orderFinalBidUid!=null">ORDER_FINAL_BID_UID = #{orderFinalBidUid},</if>
+      <if test="orderFinalBidDesc!=null">ORDER_FINAL_BID_DESC = #{orderFinalBidDesc},</if>
+      <if test="orderFinalBidPrice!=null">ORDER_FINAL_BID_PRICE = #{orderFinalBidPrice},</if>
+      <if test="orderComment!=null">ORDER_COMMENT = #{orderComment},</if>
+      <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
+      <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
+      <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
+      UPDATE_DATETIME = current_timestamp()
+    </set>
+    WHERE 
+       ORDER_CODE = #{orderCode}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+  
+  <!-- Delete one -->
+  <delete id="ORDER_DELETE" parameterType="cn.com.gxt.entity.OrderDto">
+    DELETE FROM ORDER
+    WHERE
+      ORDER_CODE = #{orderCode} 
+  </delete>
+
+  <!-- Find by primary key -->
+  <select id="ORDER_FIND" resultType="cn.com.gxt.entity.OrderDto">
+    SELECT
+      ORDER_CODE AS "orderCode",
+      ORDER_DESC AS "orderDesc",
+      ORDER_DELIVERY_DATE AS "orderDeliveryDate",
+      ORDER_DELIVERY_ADDRESS AS "orderDeliveryAddress",
+      ORDER_CONTACT_NAME AS "orderContactName",
+      ORDER_CONTACT_PHONE AS "orderContactPhone",
+      ORDER_TOTAL_ESTIMATION AS "orderTotalEstimation",
+      ORDER_STATUS AS "orderStatus",
+      ORDER_EFFECTIVE_BEGIN_DATE AS "orderEffectiveBeginDate",
+      ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
+      ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
+      ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
+      ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
+      ORDER_COMMENT AS "orderComment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ORDER
+    WHERE
+      ORDER_CODE = #{orderCode} 
+  </select>
+
+  <!-- Find by primary key for update with row lock -->
+  <select id="ORDER_FIND_FOR_UPDATE" resultType="cn.com.gxt.entity.OrderDto">
+    SELECT
+      ORDER_CODE AS "orderCode",
+      ORDER_DESC AS "orderDesc",
+      ORDER_DELIVERY_DATE AS "orderDeliveryDate",
+      ORDER_DELIVERY_ADDRESS AS "orderDeliveryAddress",
+      ORDER_CONTACT_NAME AS "orderContactName",
+      ORDER_CONTACT_PHONE AS "orderContactPhone",
+      ORDER_TOTAL_ESTIMATION AS "orderTotalEstimation",
+      ORDER_STATUS AS "orderStatus",
+      ORDER_EFFECTIVE_BEGIN_DATE AS "orderEffectiveBeginDate",
+      ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
+      ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
+      ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
+      ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
+      ORDER_COMMENT AS "orderComment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ORDER
+    WHERE
+      ORDER_CODE = #{orderCode} 
+    FOR UPDATE
+  </select>
+
+  <!-- Search -->
+  <select id="ORDER_SEARCH" resultType="cn.com.gxt.entity.OrderDto">
+    SELECT
+      ORDER_CODE AS "orderCode",
+      ORDER_DESC AS "orderDesc",
+      ORDER_DELIVERY_DATE AS "orderDeliveryDate",
+      ORDER_DELIVERY_ADDRESS AS "orderDeliveryAddress",
+      ORDER_CONTACT_NAME AS "orderContactName",
+      ORDER_CONTACT_PHONE AS "orderContactPhone",
+      ORDER_TOTAL_ESTIMATION AS "orderTotalEstimation",
+      ORDER_STATUS AS "orderStatus",
+      ORDER_EFFECTIVE_BEGIN_DATE AS "orderEffectiveBeginDate",
+      ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
+      ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
+      ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
+      ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
+      ORDER_COMMENT AS "orderComment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ORDER
+    WHERE 1 = 1 
+      <if test="orderCode != null">AND ORDER_CODE = #{orderCode}</if>
+      <if test="orderDesc != null">AND ORDER_DESC = #{orderDesc}</if>
+      <if test="orderDeliveryDate != null">AND ORDER_DELIVERY_DATE = #{orderDeliveryDate}</if>
+      <if test="orderDeliveryAddress != null">AND ORDER_DELIVERY_ADDRESS = #{orderDeliveryAddress}</if>
+      <if test="orderContactName != null">AND ORDER_CONTACT_NAME = #{orderContactName}</if>
+      <if test="orderContactPhone != null">AND ORDER_CONTACT_PHONE = #{orderContactPhone}</if>
+      <if test="orderTotalEstimation != null">AND ORDER_TOTAL_ESTIMATION = #{orderTotalEstimation}</if>
+      <if test="orderStatus != null">AND ORDER_STATUS = #{orderStatus}</if>
+      <if test="orderEffectiveBeginDate != null">AND ORDER_EFFECTIVE_BEGIN_DATE = #{orderEffectiveBeginDate}</if>
+      <if test="orderEffectiveEndDate != null">AND ORDER_EFFECTIVE_END_DATE = #{orderEffectiveEndDate}</if>
+      <if test="orderBidRecordLimit != null">AND ORDER_BID_RECORD_LIMIT = #{orderBidRecordLimit}</if>
+      <if test="orderFinalBidUid != null">AND ORDER_FINAL_BID_UID = #{orderFinalBidUid}</if>
+      <if test="orderFinalBidDesc != null">AND ORDER_FINAL_BID_DESC = #{orderFinalBidDesc}</if>
+      <if test="orderFinalBidPrice != null">AND ORDER_FINAL_BID_PRICE = #{orderFinalBidPrice}</if>
+      <if test="orderComment != null">AND ORDER_COMMENT = #{orderComment}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+
+  <!-- Like Search -->
+  <select id="ORDER_LIKE_SEARCH" resultType="cn.com.gxt.entity.OrderDto">
+    SELECT
+      ORDER_CODE AS "orderCode",
+      ORDER_DESC AS "orderDesc",
+      ORDER_DELIVERY_DATE AS "orderDeliveryDate",
+      ORDER_DELIVERY_ADDRESS AS "orderDeliveryAddress",
+      ORDER_CONTACT_NAME AS "orderContactName",
+      ORDER_CONTACT_PHONE AS "orderContactPhone",
+      ORDER_TOTAL_ESTIMATION AS "orderTotalEstimation",
+      ORDER_STATUS AS "orderStatus",
+      ORDER_EFFECTIVE_BEGIN_DATE AS "orderEffectiveBeginDate",
+      ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
+      ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
+      ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
+      ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
+      ORDER_COMMENT AS "orderComment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ORDER
+    WHERE 1 = 1 
+      <if test="orderCode != null">AND ORDER_CODE LIKE CONCAT('%', #{orderCode}, '%')</if>
+      <if test="orderDesc != null">AND ORDER_DESC LIKE CONCAT('%', #{orderDesc}, '%')</if>
+      <if test="orderDeliveryDate != null">AND ORDER_DELIVERY_DATE LIKE CONCAT('%', #{orderDeliveryDate}, '%')</if>
+      <if test="orderDeliveryAddress != null">AND ORDER_DELIVERY_ADDRESS LIKE CONCAT('%', #{orderDeliveryAddress}, '%')</if>
+      <if test="orderContactName != null">AND ORDER_CONTACT_NAME LIKE CONCAT('%', #{orderContactName}, '%')</if>
+      <if test="orderContactPhone != null">AND ORDER_CONTACT_PHONE LIKE CONCAT('%', #{orderContactPhone}, '%')</if>
+      <if test="orderTotalEstimation != null">AND ORDER_TOTAL_ESTIMATION LIKE CONCAT('%', #{orderTotalEstimation}, '%')</if>
+      <if test="orderStatus != null">AND ORDER_STATUS LIKE CONCAT('%', #{orderStatus}, '%')</if>
+      <if test="orderEffectiveBeginDate != null">AND ORDER_EFFECTIVE_BEGIN_DATE LIKE CONCAT('%', #{orderEffectiveBeginDate}, '%')</if>
+      <if test="orderEffectiveEndDate != null">AND ORDER_EFFECTIVE_END_DATE LIKE CONCAT('%', #{orderEffectiveEndDate}, '%')</if>
+      <if test="orderBidRecordLimit != null">AND ORDER_BID_RECORD_LIMIT LIKE CONCAT('%', #{orderBidRecordLimit}, '%')</if>
+      <if test="orderFinalBidUid != null">AND ORDER_FINAL_BID_UID LIKE CONCAT('%', #{orderFinalBidUid}, '%')</if>
+      <if test="orderFinalBidDesc != null">AND ORDER_FINAL_BID_DESC LIKE CONCAT('%', #{orderFinalBidDesc}, '%')</if>
+      <if test="orderFinalBidPrice != null">AND ORDER_FINAL_BID_PRICE LIKE CONCAT('%', #{orderFinalBidPrice}, '%')</if>
+      <if test="orderComment != null">AND ORDER_COMMENT LIKE CONCAT('%', #{orderComment}, '%')</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>    
+  </select>
+  
+  <!-- Dynamic Search -->
+  <select id="ORDER_DYNA_SEARCH" resultType="cn.com.gxt.entity.OrderDto">
+    SELECT
+      ORDER_CODE AS "orderCode",
+      ORDER_DESC AS "orderDesc",
+      ORDER_DELIVERY_DATE AS "orderDeliveryDate",
+      ORDER_DELIVERY_ADDRESS AS "orderDeliveryAddress",
+      ORDER_CONTACT_NAME AS "orderContactName",
+      ORDER_CONTACT_PHONE AS "orderContactPhone",
+      ORDER_TOTAL_ESTIMATION AS "orderTotalEstimation",
+      ORDER_STATUS AS "orderStatus",
+      ORDER_EFFECTIVE_BEGIN_DATE AS "orderEffectiveBeginDate",
+      ORDER_EFFECTIVE_END_DATE AS "orderEffectiveEndDate",
+      ORDER_BID_RECORD_LIMIT AS "orderBidRecordLimit",
+      ORDER_FINAL_BID_UID AS "orderFinalBidUid",
+      ORDER_FINAL_BID_DESC AS "orderFinalBidDesc",
+      ORDER_FINAL_BID_PRICE AS "orderFinalBidPrice",
+      ORDER_COMMENT AS "orderComment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM ORDER
+    WHERE 1 = 1 
+      <if test="orderCode != null">AND ( ${orderCode} )</if>
+      <if test="orderDesc != null">AND ( ${orderDesc} )</if>
+      <if test="orderDeliveryDate != null">AND ( ${orderDeliveryDate} )</if>
+      <if test="orderDeliveryAddress != null">AND ( ${orderDeliveryAddress} )</if>
+      <if test="orderContactName != null">AND ( ${orderContactName} )</if>
+      <if test="orderContactPhone != null">AND ( ${orderContactPhone} )</if>
+      <if test="orderTotalEstimation != null">AND ( ${orderTotalEstimation} )</if>
+      <if test="orderStatus != null">AND ( ${orderStatus} )</if>
+      <if test="orderEffectiveBeginDate != null">AND ( ${orderEffectiveBeginDate} )</if>
+      <if test="orderEffectiveEndDate != null">AND ( ${orderEffectiveEndDate} )</if>
+      <if test="orderBidRecordLimit != null">AND ( ${orderBidRecordLimit} )</if>
+      <if test="orderFinalBidUid != null">AND ( ${orderFinalBidUid} )</if>
+      <if test="orderFinalBidDesc != null">AND ( ${orderFinalBidDesc} )</if>
+      <if test="orderFinalBidPrice != null">AND ( ${orderFinalBidPrice} )</if>
+      <if test="orderComment != null">AND ( ${orderComment} )</if>
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+      <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+      <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+  
+  <!-- Count by input condition -->
+  <select id="ORDER_COUNT" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM ORDER
+    WHERE 1 = 1 
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="orderCode != null">AND ORDER_CODE = #{orderCode}</if>
+      <if test="orderDesc != null">AND ORDER_DESC = #{orderDesc}</if>
+      <if test="orderDeliveryDate != null">AND ORDER_DELIVERY_DATE = #{orderDeliveryDate}</if>
+      <if test="orderDeliveryAddress != null">AND ORDER_DELIVERY_ADDRESS = #{orderDeliveryAddress}</if>
+      <if test="orderContactName != null">AND ORDER_CONTACT_NAME = #{orderContactName}</if>
+      <if test="orderContactPhone != null">AND ORDER_CONTACT_PHONE = #{orderContactPhone}</if>
+      <if test="orderTotalEstimation != null">AND ORDER_TOTAL_ESTIMATION = #{orderTotalEstimation}</if>
+      <if test="orderStatus != null">AND ORDER_STATUS = #{orderStatus}</if>
+      <if test="orderEffectiveBeginDate != null">AND ORDER_EFFECTIVE_BEGIN_DATE = #{orderEffectiveBeginDate}</if>
+      <if test="orderEffectiveEndDate != null">AND ORDER_EFFECTIVE_END_DATE = #{orderEffectiveEndDate}</if>
+      <if test="orderBidRecordLimit != null">AND ORDER_BID_RECORD_LIMIT = #{orderBidRecordLimit}</if>
+      <if test="orderFinalBidUid != null">AND ORDER_FINAL_BID_UID = #{orderFinalBidUid}</if>
+      <if test="orderFinalBidDesc != null">AND ORDER_FINAL_BID_DESC = #{orderFinalBidDesc}</if>
+      <if test="orderFinalBidPrice != null">AND ORDER_FINAL_BID_PRICE = #{orderFinalBidPrice}</if>
+      <if test="orderComment != null">AND ORDER_COMMENT = #{orderComment}</if>
+  </select>
+
+
+  <insert id="ORDER_HT_INSERT_C" parameterType="cn.com.gxt.entity.OrderDto">
+    INSERT INTO ORDER_HT (
+      ORDER_CODE,
+      ORDER_DESC,
+      ORDER_DELIVERY_DATE,
+      ORDER_DELIVERY_ADDRESS,
+      ORDER_CONTACT_NAME,
+      ORDER_CONTACT_PHONE,
+      ORDER_TOTAL_ESTIMATION,
+      ORDER_STATUS,
+      ORDER_EFFECTIVE_BEGIN_DATE,
+      ORDER_EFFECTIVE_END_DATE,
+      ORDER_BID_RECORD_LIMIT,
+      ORDER_FINAL_BID_UID,
+      ORDER_FINAL_BID_DESC,
+      ORDER_FINAL_BID_PRICE,
+      ORDER_COMMENT,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{orderCode},
+      #{orderDesc},
+      #{orderDeliveryDate},
+      #{orderDeliveryAddress},
+      #{orderContactName},
+      #{orderContactPhone},
+      #{orderTotalEstimation},
+      #{orderStatus},
+      #{orderEffectiveBeginDate},
+      #{orderEffectiveEndDate},
+      #{orderBidRecordLimit},
+      #{orderFinalBidUid},
+      #{orderFinalBidDesc},
+      #{orderFinalBidPrice},
+      #{orderComment},
+      current_timestamp(),
+      'C'
+    )
+  </insert>
+  <insert id="ORDER_HT_INSERT_U" parameterType="cn.com.gxt.entity.OrderDto">
+    INSERT INTO ORDER_HT (
+      ORDER_CODE,
+      ORDER_DESC,
+      ORDER_DELIVERY_DATE,
+      ORDER_DELIVERY_ADDRESS,
+      ORDER_CONTACT_NAME,
+      ORDER_CONTACT_PHONE,
+      ORDER_TOTAL_ESTIMATION,
+      ORDER_STATUS,
+      ORDER_EFFECTIVE_BEGIN_DATE,
+      ORDER_EFFECTIVE_END_DATE,
+      ORDER_BID_RECORD_LIMIT,
+      ORDER_FINAL_BID_UID,
+      ORDER_FINAL_BID_DESC,
+      ORDER_FINAL_BID_PRICE,
+      ORDER_COMMENT,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{orderCode},
+      #{orderDesc},
+      #{orderDeliveryDate},
+      #{orderDeliveryAddress},
+      #{orderContactName},
+      #{orderContactPhone},
+      #{orderTotalEstimation},
+      #{orderStatus},
+      #{orderEffectiveBeginDate},
+      #{orderEffectiveEndDate},
+      #{orderBidRecordLimit},
+      #{orderFinalBidUid},
+      #{orderFinalBidDesc},
+      #{orderFinalBidPrice},
+      #{orderComment},
+      current_timestamp(),
+      'U'
+    )
+  </insert>
+  <insert id="ORDER_HT_INSERT_D" parameterType="cn.com.gxt.entity.OrderDto">
+    INSERT INTO ORDER_HT (
+      ORDER_CODE,
+      ORDER_DESC,
+      ORDER_DELIVERY_DATE,
+      ORDER_DELIVERY_ADDRESS,
+      ORDER_CONTACT_NAME,
+      ORDER_CONTACT_PHONE,
+      ORDER_TOTAL_ESTIMATION,
+      ORDER_STATUS,
+      ORDER_EFFECTIVE_BEGIN_DATE,
+      ORDER_EFFECTIVE_END_DATE,
+      ORDER_BID_RECORD_LIMIT,
+      ORDER_FINAL_BID_UID,
+      ORDER_FINAL_BID_DESC,
+      ORDER_FINAL_BID_PRICE,
+      ORDER_COMMENT,
+      OPERATION_HISTORY_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{orderCode},
+      #{orderDesc},
+      #{orderDeliveryDate},
+      #{orderDeliveryAddress},
+      #{orderContactName},
+      #{orderContactPhone},
+      #{orderTotalEstimation},
+      #{orderStatus},
+      #{orderEffectiveBeginDate},
+      #{orderEffectiveEndDate},
+      #{orderBidRecordLimit},
+      #{orderFinalBidUid},
+      #{orderFinalBidDesc},
+      #{orderFinalBidPrice},
+      #{orderComment},
+      current_timestamp(),
+      'D'
+    )
+  </insert>
+
+</mapper>
+

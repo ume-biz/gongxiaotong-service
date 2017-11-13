@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Scope;
 import org.umeframework.dora.http.HttpProxy;
 import org.umeframework.dora.http.impl.HttpProxyImpl;
@@ -55,7 +54,7 @@ import cn.com.gxt.uac.user.impl.WechatUserCodeAuthenticatorImpl;
 		org.umeframework.dora.appconfig.DefaultTransactionManagerConfiguration.class,
 		org.umeframework.dora.appconfig.DefaultWebControllerConfiguration.class })
 // 该设置创建并导入示例用的数据库及数据脚本；如果应用(通过application.properties的ume.jdbc设置)已变更为其他的数据库，请删除此设置。
-@ImportResource("classpath:config/gongxiaotong-service/initDataConfiguration.xml")
+//@ImportResource("classpath:config/gongxiaotong-service/initDataConfiguration.xml")
 @ComponentScan(basePackages = "cn.com.gxt,org.umeframework.wechat")
 public class Application {
 

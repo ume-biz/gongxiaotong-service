@@ -344,6 +344,9 @@ public class UmeUserAddressDto extends TableEntity implements Serializable {
         public static final String LIKE_SEARCH = "cn.com.gxt.uac.entity.UME_USER_ADDRESS_LIKE_SEARCH"; 
         public static final String DYNA_SEARCH = "cn.com.gxt.uac.entity.UME_USER_ADDRESS_DYNA_SEARCH"; 
         public static final String COUNT = "cn.com.gxt.uac.entity.UME_USER_ADDRESS_COUNT";
+        public static final String INSERT_HISTORY_C = "cn.com.gxt.uac.entity.UME_USER_ADDRESS_HT_INSERT_C"; 
+        public static final String INSERT_HISTORY_U = "cn.com.gxt.uac.entity.UME_USER_ADDRESS_HT_INSERT_U"; 
+        public static final String INSERT_HISTORY_D = "cn.com.gxt.uac.entity.UME_USER_ADDRESS_HT_INSERT_D"; 
     } 
 
     /**

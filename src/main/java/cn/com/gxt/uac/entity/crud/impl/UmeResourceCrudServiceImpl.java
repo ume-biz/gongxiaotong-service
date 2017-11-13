@@ -10,13 +10,13 @@ import cn.com.gxt.uac.entity.UmeResourceDto;
 import cn.com.gxt.uac.entity.crud.UmeResourceCrudService;
 
 /**
- * 供销通资源管理表:UME_RESOURCE<br>
- * Crud service implementation class.<br>
+ * 供销通资源管理表:UME_RESOURCE CRUD service implementation.<br>
  *
- * @author DORA.Generator
+ * @author UME-Generator
  */
 @org.springframework.stereotype.Service
 public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeResourceCrudService {
+
     /* (non-Javadoc)
      * 
      * @see cn.com.gxt.uac.entity.crud.impl.UmeResourceCrudService
@@ -25,7 +25,8 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     @TransactionRequired
     public Integer create(UmeResourceDto entity) {
         validate(entity);
-        return getDao().update(UmeResourceDto.SQLID.INSERT, entity);
+        int result = super.getDao().update(UmeResourceDto.SQLID.INSERT, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -37,7 +38,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     public List<Integer> createList(List<UmeResourceDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeResourceDto entity : entityList) {
-            result.add(create(entity));
+            result.add(this.create(entity));
         }
         return result;
     }
@@ -49,12 +50,12 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     @Override
     @TransactionRequired
     public Integer createOrUpdate(UmeResourceDto entity) {
-        UmeResourceDto existed = getDao().queryForObject(UmeResourceDto.SQLID.FIND, entity, UmeResourceDto.class);
+        UmeResourceDto existed = super.getDao().queryForObject(UmeResourceDto.SQLID.FIND, entity, UmeResourceDto.class);
         if (existed == null) {
-            return getDao().update(UmeResourceDto.SQLID.INSERT, entity);
+            return this.create(entity);
         } else {
             validate(entity);
-            return getDao().update(UmeResourceDto.SQLID.SMART_UPDATE, entity);
+            return this.update(entity);
         }
     }
     
@@ -67,7 +68,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     public List<Integer> createOrUpdateList(List<UmeResourceDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeResourceDto entity : entityList) {
-            result.add(createOrUpdate(entity));
+            result.add(this.createOrUpdate(entity));
         }
         return result;
     }
@@ -80,7 +81,8 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     @TransactionRequired
     public Integer update(UmeResourceDto entity) {
         validate(entity);
-        return getDao().update(UmeResourceDto.SQLID.SMART_UPDATE, entity);
+        int result = super.getDao().update(UmeResourceDto.SQLID.SMART_UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -92,7 +94,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     public List<Integer> updateList(List<UmeResourceDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeResourceDto entity : entityList) {
-            result.add(update(entity));
+            result.add(this.update(entity));
         }
         return result;
     }
@@ -105,7 +107,8 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     @TransactionRequired
     public Integer updateFully(UmeResourceDto entity) {
         validate(entity);
-        return getDao().update(UmeResourceDto.SQLID.UPDATE, entity);
+        int result = super.getDao().update(UmeResourceDto.SQLID.UPDATE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -117,7 +120,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     public List<Integer> updateFullyList(List<UmeResourceDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeResourceDto entity : entityList) {
-            result.add(updateFully(entity));
+            result.add(this.updateFully(entity));
         }
         return result;
     }
@@ -129,7 +132,8 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     @Override
     @TransactionRequired
     public Integer delete(UmeResourceDto entity) {
-        return getDao().update(UmeResourceDto.SQLID.DELETE, entity);
+        int result = super.getDao().update(UmeResourceDto.SQLID.DELETE, entity);
+        return result;
     }
     
     /* (non-Javadoc)
@@ -141,7 +145,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
     public List<Integer> deleteList(List<UmeResourceDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
         for (UmeResourceDto entity : entityList) {
-            result.add(delete(entity));
+            result.add(this.delete(entity));
         }
         return result;
     }
@@ -152,7 +156,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
      */
     @Override
     public UmeResourceDto find(UmeResourceDto queryParam) {
-        return getDao().queryForObject(UmeResourceDto.SQLID.FIND, queryParam, UmeResourceDto.class);
+        return super.getDao().queryForObject(UmeResourceDto.SQLID.FIND, queryParam, UmeResourceDto.class);
     }
     
     /* (non-Javadoc)
@@ -161,7 +165,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
      */
     @Override
     public List<UmeResourceDto> search(UmeResourceDto condition) {
-        return getDao().queryForObjectList(UmeResourceDto.SQLID.SEARCH, condition, UmeResourceDto.class);
+        return super.getDao().queryForObjectList(UmeResourceDto.SQLID.SEARCH, condition, UmeResourceDto.class);
     }
     
     /* (non-Javadoc)
@@ -170,7 +174,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
      */
     @Override
     public List<UmeResourceDto> likeSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(UmeResourceDto.SQLID.LIKE_SEARCH, condition, UmeResourceDto.class);
+        return super.getDao().queryForObjectList(UmeResourceDto.SQLID.LIKE_SEARCH, condition, UmeResourceDto.class);
     }
     
     /* (non-Javadoc)
@@ -179,7 +183,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
      */
     @Override
     public List<UmeResourceDto> dynaSearch(Map<String, String> condition) {
-        return getDao().queryForObjectList(UmeResourceDto.SQLID.DYNA_SEARCH, condition, UmeResourceDto.class);
+        return super.getDao().queryForObjectList(UmeResourceDto.SQLID.DYNA_SEARCH, condition, UmeResourceDto.class);
     }
     
     /* (non-Javadoc)
@@ -188,7 +192,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
      */
     @Override
     public Integer count(Map<String, String> condition) {
-        return getDao().count(UmeResourceDto.SQLID.COUNT, condition);
+        return super.getDao().count(UmeResourceDto.SQLID.COUNT, condition);
     }
 
     /**

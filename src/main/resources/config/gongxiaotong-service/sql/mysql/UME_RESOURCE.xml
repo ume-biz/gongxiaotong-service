@@ -32,7 +32,7 @@
       current_timestamp()
     )
   </insert>
-
+  
   <!-- Update with optimism check) -->
   <update id="UME_RESOURCE_UPDATE" parameterType="cn.com.gxt.uac.entity.UmeResourceDto">
     UPDATE UME_RESOURCE
@@ -228,6 +228,8 @@
       <if test="resIndex != null">AND RES_INDEX = #{resIndex}</if>
       <if test="resStatus != null">AND RES_STATUS = #{resStatus}</if>
   </select>
+
+
 
 </mapper>
 

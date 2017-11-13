@@ -48,7 +48,7 @@
       current_timestamp()
     )
   </insert>
-
+  
   <!-- Update with optimism check) -->
   <update id="UME_WECHAT_USER_UPDATE" parameterType="cn.com.gxt.uac.entity.UmeWechatUserDto">
     UPDATE UME_WECHAT_USER
@@ -329,6 +329,8 @@
       <if test="wechatSubscribe != null">AND WECHAT_SUBSCRIBE = #{wechatSubscribe}</if>
       <if test="wechatSubscribeTime != null">AND WECHAT_SUBSCRIBE_TIME = #{wechatSubscribeTime}</if>
   </select>
+
+
 
 </mapper>
 

@@ -24,7 +24,7 @@
       current_timestamp()
     )
   </insert>
-
+  
   <!-- Update with optimism check) -->
   <update id="UME_ROLE_UPDATE" parameterType="cn.com.gxt.uac.entity.UmeRoleDto">
     UPDATE UME_ROLE
@@ -173,6 +173,8 @@
       <if test="roleName != null">AND ROLE_NAME = #{roleName}</if>
       <if test="roleDesc != null">AND ROLE_DESC = #{roleDesc}</if>
   </select>
+
+
 
 </mapper>
 

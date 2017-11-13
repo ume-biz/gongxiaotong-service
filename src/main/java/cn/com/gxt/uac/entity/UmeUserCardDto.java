@@ -19,9 +19,9 @@ import org.umeframework.dora.service.TableEntity;
  * @author ume-team
  */
 @Entity
-@Table(name="UME_USER_PAYMENT")
+@Table(name="UME_USER_CARD")
 @TableDesc(label="用户支付卡绑定管理表")
-public class UmeUserPaymentDto extends TableEntity implements Serializable {
+public class UmeUserCardDto extends TableEntity implements Serializable {
    /**
     * Default serial version code
     */
@@ -292,12 +292,12 @@ public class UmeUserPaymentDto extends TableEntity implements Serializable {
      *            - properties which copy to new instance
      * @return
      */
-    public UmeUserPaymentDto copyFrom(
+    public UmeUserCardDto copyFrom(
             Property... selectProperties) {
         if (selectProperties == null) {
             return null;
         }
-        UmeUserPaymentDto newInstance = new UmeUserPaymentDto();
+        UmeUserCardDto newInstance = new UmeUserCardDto();
         for (Property property : selectProperties) {
             String name = property.toString();
             Object value = BeanUtil.getBeanProperty(this, name);
@@ -310,16 +310,19 @@ public class UmeUserPaymentDto extends TableEntity implements Serializable {
      * Constant declare: SQL ID in config file
      */
     public static class SQLID {
-        public static final String INSERT = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_INSERT"; 
-        public static final String UPDATE = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_UPDATE"; 
-        public static final String SMART_UPDATE = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_SMART_UPDATE"; 
-        public static final String DELETE = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_DELETE"; 
-        public static final String FIND = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_FIND"; 
-        public static final String FIND_FOR_UPDATE = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_FIND_FOR_UPDATE"; 
-        public static final String SEARCH = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_SEARCH"; 
-        public static final String LIKE_SEARCH = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_LIKE_SEARCH"; 
-        public static final String DYNA_SEARCH = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_DYNA_SEARCH"; 
-        public static final String COUNT = "cn.com.gxt.uac.entity.UME_USER_PAYMENT_COUNT";
+        public static final String INSERT = "cn.com.gxt.uac.entity.UME_USER_CARD_INSERT"; 
+        public static final String UPDATE = "cn.com.gxt.uac.entity.UME_USER_CARD_UPDATE"; 
+        public static final String SMART_UPDATE = "cn.com.gxt.uac.entity.UME_USER_CARD_SMART_UPDATE"; 
+        public static final String DELETE = "cn.com.gxt.uac.entity.UME_USER_CARD_DELETE"; 
+        public static final String FIND = "cn.com.gxt.uac.entity.UME_USER_CARD_FIND"; 
+        public static final String FIND_FOR_UPDATE = "cn.com.gxt.uac.entity.UME_USER_CARD_FIND_FOR_UPDATE"; 
+        public static final String SEARCH = "cn.com.gxt.uac.entity.UME_USER_CARD_SEARCH"; 
+        public static final String LIKE_SEARCH = "cn.com.gxt.uac.entity.UME_USER_CARD_LIKE_SEARCH"; 
+        public static final String DYNA_SEARCH = "cn.com.gxt.uac.entity.UME_USER_CARD_DYNA_SEARCH"; 
+        public static final String COUNT = "cn.com.gxt.uac.entity.UME_USER_CARD_COUNT";
+        public static final String INSERT_HISTORY_C = "cn.com.gxt.uac.entity.UME_USER_CARD_HT_INSERT_C"; 
+        public static final String INSERT_HISTORY_U = "cn.com.gxt.uac.entity.UME_USER_CARD_HT_INSERT_U"; 
+        public static final String INSERT_HISTORY_D = "cn.com.gxt.uac.entity.UME_USER_CARD_HT_INSERT_D"; 
     } 
 
     /**
@@ -360,6 +363,6 @@ public class UmeUserPaymentDto extends TableEntity implements Serializable {
     /**
      * Constant declare: table name.<br>
      */
-    public static String TableName = "UME_USER_PAYMENT";
+    public static String TableName = "UME_USER_CARD";
 
 }
