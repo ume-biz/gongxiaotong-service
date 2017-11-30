@@ -1,4 +1,4 @@
-package cn.com.gxt.uac.entity.crud.impl;
+package cn.com.gxt.entity.crud.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,16 +6,16 @@ import java.util.Map;
 import org.umeframework.dora.bean.BeanValidator;
 import org.umeframework.dora.transaction.TransactionRequired;
 import org.umeframework.dora.service.BaseDBComponent;
-import cn.com.gxt.uac.entity.UmeUserCardDto;
-import cn.com.gxt.uac.entity.crud.UmeUserCardCrudService;
+import cn.com.gxt.entity.BidDto;
+import cn.com.gxt.entity.crud.BidCrudService;
 
 /**
- * 用户支付卡绑定管理表:UME_USER_CARD CRUD service implementation.<br>
+ * 抢单信息表:BID CRUD service implementation.<br>
  *
  * @author UME-Generator
  */
 @org.springframework.stereotype.Service
-public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUserCardCrudService {
+public class BidCrudServiceImpl extends BaseDBComponent implements BidCrudService {
     /**
      * Enable operation history table automatic insert flag.<br>
      */
@@ -23,7 +23,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#setEnableOperationHistory
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#setEnableOperationHistory
      */
     @Override
     public void setEnableOperationHistory(boolean enable) {
@@ -32,18 +32,18 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
 
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#create
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#create
      */
     @Override
     @TransactionRequired
-    public Integer create(UmeUserCardDto entity) {
+    public Integer create(BidDto entity) {
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
             if (entity.getCreateAuthor() == null) {
                 entity.setCreateAuthor(super.getUid());
             }
-            super.getDao().update(UmeUserCardDto.SQLID.INSERT_HISTORY_C, entity);
+            super.getDao().update(BidDto.SQLID.INSERT_HISTORY_C, entity);
         }
         if (entity.getCreateAuthor() == null) {
             entity.setCreateAuthor(super.getUid());
@@ -51,19 +51,19 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
         if (entity.getUpdateAuthor() == null) {
             entity.setUpdateAuthor(super.getUid());
         }
-        int result = super.getDao().update(UmeUserCardDto.SQLID.INSERT, entity);
+        int result = super.getDao().update(BidDto.SQLID.INSERT, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#createList
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#createList
      */
     @Override
     @TransactionRequired
-    public List<Integer> createList(List<UmeUserCardDto> entityList) {
+    public List<Integer> createList(List<BidDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (UmeUserCardDto entity : entityList) {
+        for (BidDto entity : entityList) {
             result.add(this.create(entity));
         }
         return result;
@@ -71,12 +71,12 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#createOrUpdate
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#createOrUpdate
      */
     @Override
     @TransactionRequired
-    public Integer createOrUpdate(UmeUserCardDto entity) {
-        UmeUserCardDto existed = super.getDao().queryForObject(UmeUserCardDto.SQLID.FIND, entity, UmeUserCardDto.class);
+    public Integer createOrUpdate(BidDto entity) {
+        BidDto existed = super.getDao().queryForObject(BidDto.SQLID.FIND, entity, BidDto.class);
         if (existed == null) {
             return this.create(entity);
         } else {
@@ -87,13 +87,13 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#createOrUpdateList
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#createOrUpdateList
      */
     @Override
     @TransactionRequired
-    public List<Integer> createOrUpdateList(List<UmeUserCardDto> entityList) {
+    public List<Integer> createOrUpdateList(List<BidDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (UmeUserCardDto entity : entityList) {
+        for (BidDto entity : entityList) {
             result.add(this.createOrUpdate(entity));
         }
         return result;
@@ -101,35 +101,35 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#update
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#update
      */
     @Override
     @TransactionRequired
-    public Integer update(UmeUserCardDto entity) {
+    public Integer update(BidDto entity) {
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
             if (entity.getCreateAuthor() == null) {
                 entity.setCreateAuthor(super.getUid());
             }
-            super.getDao().update(UmeUserCardDto.SQLID.INSERT_HISTORY_U, this.find(entity));
+            super.getDao().update(BidDto.SQLID.INSERT_HISTORY_U, this.find(entity));
         }
         if (entity.getUpdateAuthor() == null) {
             entity.setUpdateAuthor(super.getUid());
         }
-        int result = super.getDao().update(UmeUserCardDto.SQLID.SMART_UPDATE, entity);
+        int result = super.getDao().update(BidDto.SQLID.SMART_UPDATE, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#updateList
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#updateList
      */
     @Override
     @TransactionRequired
-    public List<Integer> updateList(List<UmeUserCardDto> entityList) {
+    public List<Integer> updateList(List<BidDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (UmeUserCardDto entity : entityList) {
+        for (BidDto entity : entityList) {
             result.add(this.update(entity));
         }
         return result;
@@ -137,29 +137,29 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#updateFully
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#updateFully
      */
     @Override
     @TransactionRequired
-    public Integer updateFully(UmeUserCardDto entity) {
+    public Integer updateFully(BidDto entity) {
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
-            super.getDao().update(UmeUserCardDto.SQLID.INSERT_HISTORY_U, entity);
+            super.getDao().update(BidDto.SQLID.INSERT_HISTORY_U, entity);
         }
-        int result = super.getDao().update(UmeUserCardDto.SQLID.UPDATE, entity);
+        int result = super.getDao().update(BidDto.SQLID.UPDATE, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#updateFullyList
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#updateFullyList
      */
     @Override
     @TransactionRequired
-    public List<Integer> updateFullyList(List<UmeUserCardDto> entityList) {
+    public List<Integer> updateFullyList(List<BidDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (UmeUserCardDto entity : entityList) {
+        for (BidDto entity : entityList) {
             result.add(this.updateFully(entity));
         }
         return result;
@@ -167,31 +167,31 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#delete
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#delete
      */
     @Override
     @TransactionRequired
-    public Integer delete(UmeUserCardDto entity) {
+    public Integer delete(BidDto entity) {
         if (this.enableOperationHistory) {
             // insert modified history
             if (entity.getCreateAuthor() == null) {
                 entity.setCreateAuthor(super.getUid());
             }
-            super.getDao().update(UmeUserCardDto.SQLID.INSERT_HISTORY_D, this.find(entity));
+            super.getDao().update(BidDto.SQLID.INSERT_HISTORY_D, this.find(entity));
         }
-        int result = super.getDao().update(UmeUserCardDto.SQLID.DELETE, entity);
+        int result = super.getDao().update(BidDto.SQLID.DELETE, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#deleteList
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#deleteList
      */
     @Override
     @TransactionRequired
-    public List<Integer> deleteList(List<UmeUserCardDto> entityList) {
+    public List<Integer> deleteList(List<BidDto> entityList) {
         List<Integer> result = new ArrayList<Integer>(entityList.size());
-        for (UmeUserCardDto entity : entityList) {
+        for (BidDto entity : entityList) {
             result.add(this.delete(entity));
         }
         return result;
@@ -199,47 +199,47 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#find
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#find
      */
     @Override
-    public UmeUserCardDto find(UmeUserCardDto queryParam) {
-        return super.getDao().queryForObject(UmeUserCardDto.SQLID.FIND, queryParam, UmeUserCardDto.class);
+    public BidDto find(BidDto queryParam) {
+        return super.getDao().queryForObject(BidDto.SQLID.FIND, queryParam, BidDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#findList
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#findList
      */
     @Override
-    public List<UmeUserCardDto> findList(UmeUserCardDto condition) {
-        return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.SEARCH, condition, UmeUserCardDto.class);
+    public List<BidDto> findList(BidDto condition) {
+        return super.getDao().queryForObjectList(BidDto.SQLID.SEARCH, condition, BidDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#findListLike
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#findListLike
      */
     @Override
-    public List<UmeUserCardDto> findListLike(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.LIKE_SEARCH, condition, UmeUserCardDto.class);
+    public List<BidDto> findListLike(Map<String, String> condition) {
+        return super.getDao().queryForObjectList(BidDto.SQLID.LIKE_SEARCH, condition, BidDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService#findListMatch
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService#findListMatch
      */
     @Override
-    public List<UmeUserCardDto> findListMatch(Map<String, String> dynaCondition) {
-        return super.getDao().queryForObjectList(UmeUserCardDto.SQLID.DYNA_SEARCH, dynaCondition, UmeUserCardDto.class);
+    public List<BidDto> findListMatch(Map<String, String> dynaCondition) {
+        return super.getDao().queryForObjectList(BidDto.SQLID.DYNA_SEARCH, dynaCondition, BidDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCardCrudService
+     * @see cn.com.gxt.entity.crud.impl.BidCrudService
      */
     @Override
     public Integer count(Map<String, String> condition) {
-        return super.getDao().count(UmeUserCardDto.SQLID.COUNT, condition);
+        return super.getDao().count(BidDto.SQLID.COUNT, condition);
     }
 
     /**
@@ -247,7 +247,7 @@ public class UmeUserCardCrudServiceImpl extends BaseDBComponent implements UmeUs
      * 
      * @param entity - Target doUpdate Entity
      */
-    protected void validate(UmeUserCardDto entity) {
+    protected void validate(BidDto entity) {
         // Here invoke the default entity check logic
         BeanValidator beanValidator = new BeanValidator();
         // Invoke validation rule

@@ -1,15 +1,15 @@
-package cn.com.gxt.uac.entity.crud;
+package cn.com.gxt.entity.crud;
 
 import java.util.List;
 import java.util.Map;
-import cn.com.gxt.uac.entity.UmeUserAddressDto;
+import cn.com.gxt.entity.ReqDescDto;
 
 /*
- * 用户配送地址管理表:UME_USER_ADDRESS CRUD service interface declare.<br>
+ * 需求描述属性表:REQ_DESC CRUD service interface declare.<br>
  *
  * @author UME-Generator
  */
-public interface UmeUserAddressCrudService {
+public interface ReqDescCrudService {
     /**
      * Enable/Disable operation history table automatic insert.<br>
      * 
@@ -23,7 +23,7 @@ public interface UmeUserAddressCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer create(UmeUserAddressDto entity);
+    Integer create(ReqDescDto entity);
     
     /**
      * Insert entity list.<br>
@@ -31,7 +31,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createList(List<UmeUserAddressDto> entityList);
+    List<Integer> createList(List<ReqDescDto> entityList);
     
     /**
      * Update entity when exist, insert new record if not exist.<br>
@@ -39,7 +39,7 @@ public interface UmeUserAddressCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer createOrUpdate(UmeUserAddressDto entity);
+    Integer createOrUpdate(ReqDescDto entity);
     
     /**
      * Update entity list when exist, insert new records if not exist.<br>
@@ -47,7 +47,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createOrUpdateList(List<UmeUserAddressDto> entityList);
+    List<Integer> createOrUpdateList(List<ReqDescDto> entityList);
     
     /**
      * Update entity.<br>
@@ -55,7 +55,7 @@ public interface UmeUserAddressCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer update(UmeUserAddressDto entity);
+    Integer update(ReqDescDto entity);
     
     /**
      * Update entity list.<br>
@@ -63,7 +63,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateList(List<UmeUserAddressDto> entityList);
+    List<Integer> updateList(List<ReqDescDto> entityList);
     
     /**
      * Update entity (full filed update include null value).<br>
@@ -71,7 +71,7 @@ public interface UmeUserAddressCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer updateFully(UmeUserAddressDto entity);
+    Integer updateFully(ReqDescDto entity);
     
     /**
      * Update entity list (full filed update include null value).<br>
@@ -79,7 +79,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateFullyList(List<UmeUserAddressDto> entityList);
+    List<Integer> updateFullyList(List<ReqDescDto> entityList);
 
     /**
      * Delete entity.<br>
@@ -87,7 +87,7 @@ public interface UmeUserAddressCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer delete(UmeUserAddressDto entity);
+    Integer delete(ReqDescDto entity);
     
     /**
      * Delete entity list.<br>
@@ -95,7 +95,7 @@ public interface UmeUserAddressCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> deleteList(List<UmeUserAddressDto> entityList);
+    List<Integer> deleteList(List<ReqDescDto> entityList);
     
     /**
      * Find entity by primary key set.<br>
@@ -103,7 +103,7 @@ public interface UmeUserAddressCrudService {
      * @param condition - query parameter
      * @return - matched entity instance
      */
-    UmeUserAddressDto find(UmeUserAddressDto condition);
+    ReqDescDto find(ReqDescDto condition);
     
     /**
      * Search entity list use equal match.<br>
@@ -111,7 +111,7 @@ public interface UmeUserAddressCrudService {
      * @param condition - query parameter describe by entity
      * @return - matched entity instance list
      */
-    List<UmeUserAddressDto> findList(UmeUserAddressDto condition);
+    List<ReqDescDto> findList(ReqDescDto condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
@@ -119,7 +119,7 @@ public interface UmeUserAddressCrudService {
      * @param condition - query parameter describe by map
      * @return - matched entity instance list
      */
-    List<UmeUserAddressDto> findListLike(Map<String, String> condition);
+    List<ReqDescDto> findListLike(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
@@ -127,7 +127,7 @@ public interface UmeUserAddressCrudService {
      * @param dynaCondition - dynamic query parameter describe by map
      * @return - matched entity instance list
      */
-    List<UmeUserAddressDto> findListMatch(Map<String, String> dynaCondition);
+    List<ReqDescDto> findListMatch(Map<String, String> dynaCondition);
     
     /**
      * Count.<br>

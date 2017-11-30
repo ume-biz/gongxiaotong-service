@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.gxt.entity">
+  <!-- 需求描述属性表 [REQ_DESC] -->
+  
+  <!-- Insert one -->
+  <insert id="REQ_DESC_INSERT" parameterType="cn.com.gxt.entity.ReqDescDto">
+    INSERT INTO REQ_DESC (
+      REQ_CD,
+      DESC_SEQ,
+      DESC_TYPE,
+      DESC_TAG,
+      DESC_TEXT,
+      DESC_MEDIA,
+      OPTIONAL,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      #{reqCd},
+      #{descSeq},
+      #{descType},
+      #{descTag},
+      #{descText},
+      #{descMedia},
+      #{optional},
+      #{createAuthor},
+      current_timestamp(),
+      #{updateAuthor},
+      current_timestamp()
+    )
+  </insert>
+  
+  <!-- Update with optimism check) -->
+  <update id="REQ_DESC_UPDATE" parameterType="cn.com.gxt.entity.ReqDescDto">
+    UPDATE REQ_DESC
+    SET
+      DESC_TYPE = #{descType},
+      DESC_TAG = #{descTag},
+      DESC_TEXT = #{descText},
+      DESC_MEDIA = #{descMedia},
+      OPTIONAL = #{optional},
+      CREATE_AUTHOR = #{createAuthor},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_AUTHOR = #{updateAuthor},
+      UPDATE_DATETIME = current_timestamp() 
+    WHERE UPDATE_DATETIME = #{updateDatetime}
+      AND REQ_CD = #{reqCd}
+      AND DESC_SEQ = #{descSeq}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+
+  <!-- Smart update -->
+  <update id="REQ_DESC_SMART_UPDATE" parameterType="cn.com.gxt.entity.ReqDescDto">
+    UPDATE REQ_DESC
+    <set>
+      <if test="descType!=null">DESC_TYPE = #{descType},</if>
+      <if test="descTag!=null">DESC_TAG = #{descTag},</if>
+      <if test="descText!=null">DESC_TEXT = #{descText},</if>
+      <if test="descMedia!=null">DESC_MEDIA = #{descMedia},</if>
+      <if test="optional!=null">OPTIONAL = #{optional},</if>
+      <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
+      <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
+      <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
+      UPDATE_DATETIME = current_timestamp()
+    </set>
+    WHERE 
+       REQ_CD = #{reqCd}
+       AND  DESC_SEQ = #{descSeq}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+  
+  <!-- Delete one -->
+  <delete id="REQ_DESC_DELETE" parameterType="cn.com.gxt.entity.ReqDescDto">
+    DELETE FROM REQ_DESC
+    WHERE
+      REQ_CD = #{reqCd} AND 
+      DESC_SEQ = #{descSeq} 
+  </delete>
+
+  <!-- Find by primary key -->
+  <select id="REQ_DESC_FIND" resultType="cn.com.gxt.entity.ReqDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      DESC_TYPE AS "descType",
+      DESC_TAG AS "descTag",
+      DESC_TEXT AS "descText",
+      DESC_MEDIA AS "descMedia",
+      OPTIONAL AS "optional",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_DESC
+    WHERE
+      REQ_CD = #{reqCd} AND 
+      DESC_SEQ = #{descSeq} 
+  </select>
+
+  <!-- Find by primary key for update with row lock -->
+  <select id="REQ_DESC_FIND_FOR_UPDATE" resultType="cn.com.gxt.entity.ReqDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      DESC_TYPE AS "descType",
+      DESC_TAG AS "descTag",
+      DESC_TEXT AS "descText",
+      DESC_MEDIA AS "descMedia",
+      OPTIONAL AS "optional",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_DESC
+    WHERE
+      REQ_CD = #{reqCd} AND 
+      DESC_SEQ = #{descSeq} 
+    FOR UPDATE
+  </select>
+
+  <!-- Search -->
+  <select id="REQ_DESC_SEARCH" resultType="cn.com.gxt.entity.ReqDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      DESC_TYPE AS "descType",
+      DESC_TAG AS "descTag",
+      DESC_TEXT AS "descText",
+      DESC_MEDIA AS "descMedia",
+      OPTIONAL AS "optional",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_DESC
+    WHERE 1 = 1 
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="descSeq != null">AND DESC_SEQ = #{descSeq}</if>
+      <if test="descType != null">AND DESC_TYPE = #{descType}</if>
+      <if test="descTag != null">AND DESC_TAG = #{descTag}</if>
+      <if test="descText != null">AND DESC_TEXT = #{descText}</if>
+      <if test="descMedia != null">AND DESC_MEDIA = #{descMedia}</if>
+      <if test="optional != null">AND OPTIONAL = #{optional}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+
+  <!-- Like Search -->
+  <select id="REQ_DESC_LIKE_SEARCH" resultType="cn.com.gxt.entity.ReqDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      DESC_TYPE AS "descType",
+      DESC_TAG AS "descTag",
+      DESC_TEXT AS "descText",
+      DESC_MEDIA AS "descMedia",
+      OPTIONAL AS "optional",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_DESC
+    WHERE 1 = 1 
+      <if test="reqCd != null">AND REQ_CD LIKE CONCAT('%', #{reqCd}, '%')</if>
+      <if test="descSeq != null">AND DESC_SEQ LIKE CONCAT('%', #{descSeq}, '%')</if>
+      <if test="descType != null">AND DESC_TYPE LIKE CONCAT('%', #{descType}, '%')</if>
+      <if test="descTag != null">AND DESC_TAG LIKE CONCAT('%', #{descTag}, '%')</if>
+      <if test="descText != null">AND DESC_TEXT LIKE CONCAT('%', #{descText}, '%')</if>
+      <if test="descMedia != null">AND DESC_MEDIA LIKE CONCAT('%', #{descMedia}, '%')</if>
+      <if test="optional != null">AND OPTIONAL LIKE CONCAT('%', #{optional}, '%')</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>    
+  </select>
+  
+  <!-- Dynamic Search -->
+  <select id="REQ_DESC_DYNA_SEARCH" resultType="cn.com.gxt.entity.ReqDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      DESC_TYPE AS "descType",
+      DESC_TAG AS "descTag",
+      DESC_TEXT AS "descText",
+      DESC_MEDIA AS "descMedia",
+      OPTIONAL AS "optional",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ_DESC
+    WHERE 1 = 1 
+      <if test="reqCd != null">AND ( ${reqCd} )</if>
+      <if test="descSeq != null">AND ( ${descSeq} )</if>
+      <if test="descType != null">AND ( ${descType} )</if>
+      <if test="descTag != null">AND ( ${descTag} )</if>
+      <if test="descText != null">AND ( ${descText} )</if>
+      <if test="descMedia != null">AND ( ${descMedia} )</if>
+      <if test="optional != null">AND ( ${optional} )</if>
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+      <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+      <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+  
+  <!-- Count by input condition -->
+  <select id="REQ_DESC_COUNT" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM REQ_DESC
+    WHERE 1 = 1 
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="descSeq != null">AND DESC_SEQ = #{descSeq}</if>
+      <if test="descType != null">AND DESC_TYPE = #{descType}</if>
+      <if test="descTag != null">AND DESC_TAG = #{descTag}</if>
+      <if test="descText != null">AND DESC_TEXT = #{descText}</if>
+      <if test="descMedia != null">AND DESC_MEDIA = #{descMedia}</if>
+      <if test="optional != null">AND OPTIONAL = #{optional}</if>
+  </select>
+
+
+  <insert id="REQ_DESC_HT_INSERT_C" parameterType="cn.com.gxt.entity.ReqDescDto">
+    INSERT INTO REQ_DESC_HT (
+      REQ_CD,
+      DESC_SEQ,
+      DESC_TYPE,
+      DESC_TAG,
+      DESC_TEXT,
+      DESC_MEDIA,
+      OPTIONAL,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{reqCd},
+      #{descSeq},
+      #{descType},
+      #{descTag},
+      #{descText},
+      #{descMedia},
+      #{optional},
+      #{createAuthor},
+      current_timestamp(),
+      'C'
+    )
+  </insert>
+  <insert id="REQ_DESC_HT_INSERT_U" parameterType="cn.com.gxt.entity.ReqDescDto">
+    INSERT INTO REQ_DESC_HT (
+      REQ_CD,
+      DESC_SEQ,
+      DESC_TYPE,
+      DESC_TAG,
+      DESC_TEXT,
+      DESC_MEDIA,
+      OPTIONAL,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{reqCd},
+      #{descSeq},
+      #{descType},
+      #{descTag},
+      #{descText},
+      #{descMedia},
+      #{optional},
+      #{createAuthor},
+      current_timestamp(),
+      'U'
+    )
+  </insert>
+  <insert id="REQ_DESC_HT_INSERT_D" parameterType="cn.com.gxt.entity.ReqDescDto">
+    INSERT INTO REQ_DESC_HT (
+      REQ_CD,
+      DESC_SEQ,
+      DESC_TYPE,
+      DESC_TAG,
+      DESC_TEXT,
+      DESC_MEDIA,
+      OPTIONAL,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{reqCd},
+      #{descSeq},
+      #{descType},
+      #{descTag},
+      #{descText},
+      #{descMedia},
+      #{optional},
+      #{createAuthor},
+      current_timestamp(),
+      'D'
+    )
+  </insert>
+
+</mapper>
+

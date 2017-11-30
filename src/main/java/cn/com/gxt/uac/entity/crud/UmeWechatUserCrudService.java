@@ -10,6 +10,7 @@ import cn.com.gxt.uac.entity.UmeWechatUserDto;
  * @author UME-Generator
  */
 public interface UmeWechatUserCrudService {
+
     /**
      * Insert entity.<br>
      * 
@@ -101,26 +102,26 @@ public interface UmeWechatUserCrudService {
     /**
      * Search entity list use equal match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by entity
      * @return - matched entity instance list
      */
-    List<UmeWechatUserDto> search(UmeWechatUserDto condition);
+    List<UmeWechatUserDto> findList(UmeWechatUserDto condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by map
      * @return - matched entity instance list
      */
-    List<UmeWechatUserDto> likeSearch(Map<String, String> condition);
+    List<UmeWechatUserDto> findListLike(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
      * 
-     * @param condition - query parameter
+     * @param dynaCondition - dynamic query parameter describe by map
      * @return - matched entity instance list
      */
-    List<UmeWechatUserDto> dynaSearch(Map<String, String> condition);
+    List<UmeWechatUserDto> findListMatch(Map<String, String> dynaCondition);
     
     /**
      * Count.<br>

@@ -253,7 +253,8 @@
       CARD_BANK,
       CARD_EXPIRATION_DATE,
       CARD_STATUS,
-      OPERATION_HISTORY_DATETIME,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
       OPERATION_HISTORY_CATEGORY
     ) VALUES (
       #{userId},
@@ -264,6 +265,7 @@
       #{cardBank},
       #{cardExpirationDate},
       #{cardStatus},
+      #{createAuthor},
       current_timestamp(),
       'C'
     )
@@ -278,7 +280,8 @@
       CARD_BANK,
       CARD_EXPIRATION_DATE,
       CARD_STATUS,
-      OPERATION_HISTORY_DATETIME,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
       OPERATION_HISTORY_CATEGORY
     ) VALUES (
       #{userId},
@@ -289,6 +292,7 @@
       #{cardBank},
       #{cardExpirationDate},
       #{cardStatus},
+      #{createAuthor},
       current_timestamp(),
       'U'
     )
@@ -303,7 +307,8 @@
       CARD_BANK,
       CARD_EXPIRATION_DATE,
       CARD_STATUS,
-      OPERATION_HISTORY_DATETIME,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
       OPERATION_HISTORY_CATEGORY
     ) VALUES (
       #{userId},
@@ -314,6 +319,7 @@
       #{cardBank},
       #{cardExpirationDate},
       #{cardStatus},
+      #{createAuthor},
       current_timestamp(),
       'D'
     )

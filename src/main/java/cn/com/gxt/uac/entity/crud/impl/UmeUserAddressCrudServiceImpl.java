@@ -20,18 +20,19 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
      * Enable operation history table automatic insert flag.<br>
      */
     private boolean enableOperationHistory = true;
-    /**
-     * Disable operation history table automatic insert.<br>
+    
+    /* (non-Javadoc)
      * 
-     * @param enableOperationHistory the enableOperationHistory to set
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#setEnableOperationHistory
      */
-    public void setEnableOperationHistory(boolean enableOperationHistory) {
-        this.enableOperationHistory = enableOperationHistory;
+    @Override
+    public void setEnableOperationHistory(boolean enable) {
+        this.enableOperationHistory = enable;
     }
 
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#create
      */
     @Override
     @TransactionRequired
@@ -39,7 +40,16 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
+            if (entity.getCreateAuthor() == null) {
+                entity.setCreateAuthor(super.getUid());
+            }
             super.getDao().update(UmeUserAddressDto.SQLID.INSERT_HISTORY_C, entity);
+        }
+        if (entity.getCreateAuthor() == null) {
+            entity.setCreateAuthor(super.getUid());
+        }
+        if (entity.getUpdateAuthor() == null) {
+            entity.setUpdateAuthor(super.getUid());
         }
         int result = super.getDao().update(UmeUserAddressDto.SQLID.INSERT, entity);
         return result;
@@ -47,7 +57,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#createList
      */
     @Override
     @TransactionRequired
@@ -61,7 +71,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#createOrUpdate
      */
     @Override
     @TransactionRequired
@@ -77,7 +87,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#createOrUpdateList
      */
     @Override
     @TransactionRequired
@@ -91,7 +101,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#update
      */
     @Override
     @TransactionRequired
@@ -99,7 +109,13 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
         validate(entity);
         if (this.enableOperationHistory) {
             // insert modified history
+            if (entity.getCreateAuthor() == null) {
+                entity.setCreateAuthor(super.getUid());
+            }
             super.getDao().update(UmeUserAddressDto.SQLID.INSERT_HISTORY_U, this.find(entity));
+        }
+        if (entity.getUpdateAuthor() == null) {
+            entity.setUpdateAuthor(super.getUid());
         }
         int result = super.getDao().update(UmeUserAddressDto.SQLID.SMART_UPDATE, entity);
         return result;
@@ -107,7 +123,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#updateList
      */
     @Override
     @TransactionRequired
@@ -121,7 +137,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#updateFully
      */
     @Override
     @TransactionRequired
@@ -137,7 +153,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#updateFullyList
      */
     @Override
     @TransactionRequired
@@ -151,13 +167,16 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#delete
      */
     @Override
     @TransactionRequired
     public Integer delete(UmeUserAddressDto entity) {
         if (this.enableOperationHistory) {
             // insert modified history
+            if (entity.getCreateAuthor() == null) {
+                entity.setCreateAuthor(super.getUid());
+            }
             super.getDao().update(UmeUserAddressDto.SQLID.INSERT_HISTORY_D, this.find(entity));
         }
         int result = super.getDao().update(UmeUserAddressDto.SQLID.DELETE, entity);
@@ -166,7 +185,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#deleteList
      */
     @Override
     @TransactionRequired
@@ -180,7 +199,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#find
      */
     @Override
     public UmeUserAddressDto find(UmeUserAddressDto queryParam) {
@@ -189,29 +208,29 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#findList
      */
     @Override
-    public List<UmeUserAddressDto> search(UmeUserAddressDto condition) {
+    public List<UmeUserAddressDto> findList(UmeUserAddressDto condition) {
         return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.SEARCH, condition, UmeUserAddressDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#findListLike
      */
     @Override
-    public List<UmeUserAddressDto> likeSearch(Map<String, String> condition) {
+    public List<UmeUserAddressDto> findListLike(Map<String, String> condition) {
         return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.LIKE_SEARCH, condition, UmeUserAddressDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserAddressCrudService#findListMatch
      */
     @Override
-    public List<UmeUserAddressDto> dynaSearch(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.DYNA_SEARCH, condition, UmeUserAddressDto.class);
+    public List<UmeUserAddressDto> findListMatch(Map<String, String> dynaCondition) {
+        return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.DYNA_SEARCH, dynaCondition, UmeUserAddressDto.class);
     }
     
     /* (non-Javadoc)

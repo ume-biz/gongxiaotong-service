@@ -14,14 +14,14 @@ import org.umeframework.dora.bean.BeanUtil;
 import org.umeframework.dora.service.TableEntity;
 
 /**
- * Entity class map to table "需求竞标信息表"
+ * Entity class map to table "抢单信息表"
  *
  * @author ume-team
  */
 @Entity
-@Table(name="ORDER_BID")
-@TableDesc(label="需求竞标信息表")
-public class OrderBidDto extends TableEntity implements Serializable {
+@Table(name="BID")
+@TableDesc(label="抢单信息表")
+public class BidDto extends TableEntity implements Serializable {
    /**
     * Default serial version code
     */
@@ -34,107 +34,98 @@ public class OrderBidDto extends TableEntity implements Serializable {
     @Size(max=32)
     @Id
     @ColumnDesc(index=1, type="VARCHAR", label="需求编号")
-    @Column(name="ORDER_CODE", nullable=false, length=32)
-    private String orderCode;
+    @Column(name="REQ_CD", nullable=false, length=32)
+    private String reqCd;
 
    /**
-    * 竞标者识别ID 
+    * 抢单UID 
     */
     @NotEmpty
     @Size(max=32)
     @Id
-    @ColumnDesc(index=2, type="VARCHAR", label="竞标者识别ID")
+    @ColumnDesc(index=2, type="VARCHAR", label="抢单UID")
     @Column(name="BID_UID", nullable=false, length=32)
     private String bidUid;
 
    /**
-    * 竞标描述 
-    * JSON格式
-    */
-    @Size(max=256)
-    @ColumnDesc(index=3, type="VARCHAR", label="竞标描述")
-    @Column(name="BID_DESC", nullable=true, length=256)
-    private String bidDesc;
-
-   /**
-    * 竞标报价 
+    * 抢单报价 
     * 单位:分
     */
-    @ColumnDesc(index=4, type="INT", label="竞标报价")
+    @ColumnDesc(index=3, type="INT", label="抢单报价")
     @Column(name="BID_PRICE", nullable=true)
     private Integer bidPrice;
 
    /**
-    * 竞标联系人姓名 
+    * 抢单联系人姓名 
     */
-    @Size(max=128)
-    @ColumnDesc(index=5, type="VARCHAR", label="竞标联系人姓名")
-    @Column(name="BID_CONTACT_NAME", nullable=true, length=128)
+    @Size(max=32)
+    @ColumnDesc(index=4, type="VARCHAR", label="抢单联系人姓名")
+    @Column(name="BID_CONTACT_NAME", nullable=true, length=32)
     private String bidContactName;
 
    /**
-    * 竞标联系人电话 
+    * 抢单联系人电话 
     */
     @Size(max=16)
-    @ColumnDesc(index=6, type="VARCHAR", label="竞标联系人电话")
+    @ColumnDesc(index=5, type="VARCHAR", label="抢单联系人电话")
     @Column(name="BID_CONTACT_PHONE", nullable=true, length=16)
     private String bidContactPhone;
 
    /**
-    * 备注 
+    * 抢单状态 
+    * 1:抢单中 2:抢单成功 0:抢单失败
     */
-    @Size(max=256)
-    @ColumnDesc(index=7, type="VARCHAR", label="备注")
-    @Column(name="BID_COMMENT", nullable=true, length=256)
-    private String bidComment;
+    @ColumnDesc(index=6, type="INT", label="抢单状态")
+    @Column(name="BID_STATUS", nullable=true)
+    private Integer bidStatus;
 
    /**
     * Create Author (default setting while insert)
     */
-    @ColumnDesc(index=(7 + 1), type="VARCHAR", label="createAuthor")
+    @ColumnDesc(index=(6 + 1), type="VARCHAR", label="createAuthor")
     @Column(name="CREATE_AUTHOR", nullable=true, length=32)
     private String createAuthor;
    /**
     * Create Datetime (default setting while insert)
     */
-    @ColumnDesc(index=(7 + 2), type="TIMESTAMP", label="createDatetime")
+    @ColumnDesc(index=(6 + 2), type="TIMESTAMP", label="createDatetime")
     @Column(name="CREATE_DATETIME", nullable=true)
     private java.sql.Timestamp createDatetime;
    /**
     * Update Author (refresh on each update)
     */
-    @ColumnDesc(index=(7 + 3), type="VARCHAR", label="updateAuthor")
+    @ColumnDesc(index=(6 + 3), type="VARCHAR", label="updateAuthor")
     @Column(name="UPDATE_AUTHOR", nullable=true, length=32)
     private String updateAuthor;
    /**
     * Update Datetime (refresh on each update)
     */
-    @ColumnDesc(index=(7 + 4), type="TIMESTAMP", label="updateDatetime")
+    @ColumnDesc(index=(6 + 4), type="TIMESTAMP", label="updateDatetime")
     @Column(name="UPDATE_DATETIME", nullable=true)
     private java.sql.Timestamp updateDatetime;
 
     /**
      *　Get the "需求编号"
      */
-    public String getOrderCode() {
-        return this.orderCode;
+    public String getReqCd() {
+        return this.reqCd;
     }
     /**
      *　Set the "需求编号"
      */
-    public void setOrderCode(
-            String orderCode) {
-        this.orderCode = orderCode;
+    public void setReqCd(
+            String reqCd) {
+        this.reqCd = reqCd;
     }
 
     /**
-     *　Get the "竞标者识别ID"
+     *　Get the "抢单UID"
      */
     public String getBidUid() {
         return this.bidUid;
     }
     /**
-     *　Set the "竞标者识别ID"
+     *　Set the "抢单UID"
      */
     public void setBidUid(
             String bidUid) {
@@ -142,27 +133,13 @@ public class OrderBidDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "竞标描述"
-     */
-    public String getBidDesc() {
-        return this.bidDesc;
-    }
-    /**
-     *　Set the "竞标描述"
-     */
-    public void setBidDesc(
-            String bidDesc) {
-        this.bidDesc = bidDesc;
-    }
-
-    /**
-     *　Get the "竞标报价"
+     *　Get the "抢单报价"
      */
     public Integer getBidPrice() {
         return this.bidPrice;
     }
     /**
-     *　Set the "竞标报价"
+     *　Set the "抢单报价"
      */
     public void setBidPrice(
             Integer bidPrice) {
@@ -170,13 +147,13 @@ public class OrderBidDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "竞标联系人姓名"
+     *　Get the "抢单联系人姓名"
      */
     public String getBidContactName() {
         return this.bidContactName;
     }
     /**
-     *　Set the "竞标联系人姓名"
+     *　Set the "抢单联系人姓名"
      */
     public void setBidContactName(
             String bidContactName) {
@@ -184,13 +161,13 @@ public class OrderBidDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "竞标联系人电话"
+     *　Get the "抢单联系人电话"
      */
     public String getBidContactPhone() {
         return this.bidContactPhone;
     }
     /**
-     *　Set the "竞标联系人电话"
+     *　Set the "抢单联系人电话"
      */
     public void setBidContactPhone(
             String bidContactPhone) {
@@ -198,17 +175,17 @@ public class OrderBidDto extends TableEntity implements Serializable {
     }
 
     /**
-     *　Get the "备注"
+     *　Get the "抢单状态"
      */
-    public String getBidComment() {
-        return this.bidComment;
+    public Integer getBidStatus() {
+        return this.bidStatus;
     }
     /**
-     *　Set the "备注"
+     *　Set the "抢单状态"
      */
-    public void setBidComment(
-            String bidComment) {
-        this.bidComment = bidComment;
+    public void setBidStatus(
+            Integer bidStatus) {
+        this.bidStatus = bidStatus;
     }
 
     /**
@@ -274,12 +251,12 @@ public class OrderBidDto extends TableEntity implements Serializable {
      *            - properties which copy to new instance
      * @return
      */
-    public OrderBidDto copyFrom(
+    public BidDto copyFrom(
             Property... selectProperties) {
         if (selectProperties == null) {
             return null;
         }
-        OrderBidDto newInstance = new OrderBidDto();
+        BidDto newInstance = new BidDto();
         for (Property property : selectProperties) {
             String name = property.toString();
             Object value = BeanUtil.getBeanProperty(this, name);
@@ -292,32 +269,31 @@ public class OrderBidDto extends TableEntity implements Serializable {
      * Constant declare: SQL ID in config file
      */
     public static class SQLID {
-        public static final String INSERT = "cn.com.gxt.entity.ORDER_BID_INSERT"; 
-        public static final String UPDATE = "cn.com.gxt.entity.ORDER_BID_UPDATE"; 
-        public static final String SMART_UPDATE = "cn.com.gxt.entity.ORDER_BID_SMART_UPDATE"; 
-        public static final String DELETE = "cn.com.gxt.entity.ORDER_BID_DELETE"; 
-        public static final String FIND = "cn.com.gxt.entity.ORDER_BID_FIND"; 
-        public static final String FIND_FOR_UPDATE = "cn.com.gxt.entity.ORDER_BID_FIND_FOR_UPDATE"; 
-        public static final String SEARCH = "cn.com.gxt.entity.ORDER_BID_SEARCH"; 
-        public static final String LIKE_SEARCH = "cn.com.gxt.entity.ORDER_BID_LIKE_SEARCH"; 
-        public static final String DYNA_SEARCH = "cn.com.gxt.entity.ORDER_BID_DYNA_SEARCH"; 
-        public static final String COUNT = "cn.com.gxt.entity.ORDER_BID_COUNT";
-        public static final String INSERT_HISTORY_C = "cn.com.gxt.entity.ORDER_BID_HT_INSERT_C"; 
-        public static final String INSERT_HISTORY_U = "cn.com.gxt.entity.ORDER_BID_HT_INSERT_U"; 
-        public static final String INSERT_HISTORY_D = "cn.com.gxt.entity.ORDER_BID_HT_INSERT_D"; 
+        public static final String INSERT = "cn.com.gxt.entity.BID_INSERT"; 
+        public static final String UPDATE = "cn.com.gxt.entity.BID_UPDATE"; 
+        public static final String SMART_UPDATE = "cn.com.gxt.entity.BID_SMART_UPDATE"; 
+        public static final String DELETE = "cn.com.gxt.entity.BID_DELETE"; 
+        public static final String FIND = "cn.com.gxt.entity.BID_FIND"; 
+        public static final String FIND_FOR_UPDATE = "cn.com.gxt.entity.BID_FIND_FOR_UPDATE"; 
+        public static final String SEARCH = "cn.com.gxt.entity.BID_SEARCH"; 
+        public static final String LIKE_SEARCH = "cn.com.gxt.entity.BID_LIKE_SEARCH"; 
+        public static final String DYNA_SEARCH = "cn.com.gxt.entity.BID_DYNA_SEARCH"; 
+        public static final String COUNT = "cn.com.gxt.entity.BID_COUNT";
+        public static final String INSERT_HISTORY_C = "cn.com.gxt.entity.BID_HT_INSERT_C"; 
+        public static final String INSERT_HISTORY_U = "cn.com.gxt.entity.BID_HT_INSERT_U"; 
+        public static final String INSERT_HISTORY_D = "cn.com.gxt.entity.BID_HT_INSERT_D"; 
     } 
 
     /**
      * Constant declare: entity property name.<br>
      */
     public static class Property {
-        public static final String orderCode = "orderCode";
+        public static final String reqCd = "reqCd";
         public static final String bidUid = "bidUid";
-        public static final String bidDesc = "bidDesc";
         public static final String bidPrice = "bidPrice";
         public static final String bidContactName = "bidContactName";
         public static final String bidContactPhone = "bidContactPhone";
-        public static final String bidComment = "bidComment";
+        public static final String bidStatus = "bidStatus";
         public static final String createAuthor = "createAuthor";
         public static final String createDatetime = "createDatetime";
         public static final String updateAuthor = "updateAuthor";
@@ -328,13 +304,12 @@ public class OrderBidDto extends TableEntity implements Serializable {
      * Constant declare: column name map with bean property.<br>
      */
     public static class ColumnName {
-        public static final String ORDER_CODE = "ORDER_CODE";
+        public static final String REQ_CD = "REQ_CD";
         public static final String BID_UID = "BID_UID";
-        public static final String BID_DESC = "BID_DESC";
         public static final String BID_PRICE = "BID_PRICE";
         public static final String BID_CONTACT_NAME = "BID_CONTACT_NAME";
         public static final String BID_CONTACT_PHONE = "BID_CONTACT_PHONE";
-        public static final String BID_COMMENT = "BID_COMMENT";
+        public static final String BID_STATUS = "BID_STATUS";
         public static final String CREATE_AUTHOR = "CREATE_AUTHOR";
         public static final String CREATE_DATETIME = "CREATE_DATETIME";
         public static final String UPDATE_AUTHOR = "UPDATE_AUTHOR";
@@ -343,6 +318,6 @@ public class OrderBidDto extends TableEntity implements Serializable {
     /**
      * Constant declare: table name.<br>
      */
-    public static String TableName = "ORDER_BID";
+    public static String TableName = "BID";
 
 }

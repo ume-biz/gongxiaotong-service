@@ -19,19 +19,25 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
 
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#create
      */
     @Override
     @TransactionRequired
     public Integer create(UmeWechatUserDto entity) {
         validate(entity);
+        if (entity.getCreateAuthor() == null) {
+            entity.setCreateAuthor(super.getUid());
+        }
+        if (entity.getUpdateAuthor() == null) {
+            entity.setUpdateAuthor(super.getUid());
+        }
         int result = super.getDao().update(UmeWechatUserDto.SQLID.INSERT, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#createList
      */
     @Override
     @TransactionRequired
@@ -45,7 +51,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#createOrUpdate
      */
     @Override
     @TransactionRequired
@@ -61,7 +67,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#createOrUpdateList
      */
     @Override
     @TransactionRequired
@@ -75,19 +81,22 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#update
      */
     @Override
     @TransactionRequired
     public Integer update(UmeWechatUserDto entity) {
         validate(entity);
+        if (entity.getUpdateAuthor() == null) {
+            entity.setUpdateAuthor(super.getUid());
+        }
         int result = super.getDao().update(UmeWechatUserDto.SQLID.SMART_UPDATE, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#updateList
      */
     @Override
     @TransactionRequired
@@ -101,7 +110,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#updateFully
      */
     @Override
     @TransactionRequired
@@ -113,7 +122,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#updateFullyList
      */
     @Override
     @TransactionRequired
@@ -127,7 +136,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#delete
      */
     @Override
     @TransactionRequired
@@ -138,7 +147,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#deleteList
      */
     @Override
     @TransactionRequired
@@ -152,7 +161,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#find
      */
     @Override
     public UmeWechatUserDto find(UmeWechatUserDto queryParam) {
@@ -161,29 +170,29 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#findList
      */
     @Override
-    public List<UmeWechatUserDto> search(UmeWechatUserDto condition) {
+    public List<UmeWechatUserDto> findList(UmeWechatUserDto condition) {
         return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.SEARCH, condition, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#findListLike
      */
     @Override
-    public List<UmeWechatUserDto> likeSearch(Map<String, String> condition) {
+    public List<UmeWechatUserDto> findListLike(Map<String, String> condition) {
         return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.LIKE_SEARCH, condition, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeWechatUserCrudService#findListMatch
      */
     @Override
-    public List<UmeWechatUserDto> dynaSearch(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.DYNA_SEARCH, condition, UmeWechatUserDto.class);
+    public List<UmeWechatUserDto> findListMatch(Map<String, String> dynaCondition) {
+        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.DYNA_SEARCH, dynaCondition, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)

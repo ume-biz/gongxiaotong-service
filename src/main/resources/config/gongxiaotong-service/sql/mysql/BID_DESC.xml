@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.gxt.entity">
+  <!-- 抢单描述属性表 [BID_DESC] -->
+  
+  <!-- Insert one -->
+  <insert id="BID_DESC_INSERT" parameterType="cn.com.gxt.entity.BidDescDto">
+    INSERT INTO BID_DESC (
+      REQ_CD,
+      DESC_SEQ,
+      BID_UID,
+      BID_DESC_TEXT,
+      BID_DESC_MEDIA,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      #{reqCd},
+      #{descSeq},
+      #{bidUid},
+      #{bidDescText},
+      #{bidDescMedia},
+      #{createAuthor},
+      current_timestamp(),
+      #{updateAuthor},
+      current_timestamp()
+    )
+  </insert>
+  
+  <!-- Update with optimism check) -->
+  <update id="BID_DESC_UPDATE" parameterType="cn.com.gxt.entity.BidDescDto">
+    UPDATE BID_DESC
+    SET
+      BID_DESC_TEXT = #{bidDescText},
+      BID_DESC_MEDIA = #{bidDescMedia},
+      CREATE_AUTHOR = #{createAuthor},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_AUTHOR = #{updateAuthor},
+      UPDATE_DATETIME = current_timestamp() 
+    WHERE UPDATE_DATETIME = #{updateDatetime}
+      AND REQ_CD = #{reqCd}
+      AND DESC_SEQ = #{descSeq}
+      AND BID_UID = #{bidUid}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+
+  <!-- Smart update -->
+  <update id="BID_DESC_SMART_UPDATE" parameterType="cn.com.gxt.entity.BidDescDto">
+    UPDATE BID_DESC
+    <set>
+      <if test="bidDescText!=null">BID_DESC_TEXT = #{bidDescText},</if>
+      <if test="bidDescMedia!=null">BID_DESC_MEDIA = #{bidDescMedia},</if>
+      <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
+      <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
+      <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
+      UPDATE_DATETIME = current_timestamp()
+    </set>
+    WHERE 
+       REQ_CD = #{reqCd}
+       AND  DESC_SEQ = #{descSeq}
+       AND  BID_UID = #{bidUid}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+  
+  <!-- Delete one -->
+  <delete id="BID_DESC_DELETE" parameterType="cn.com.gxt.entity.BidDescDto">
+    DELETE FROM BID_DESC
+    WHERE
+      REQ_CD = #{reqCd} AND 
+      DESC_SEQ = #{descSeq} AND 
+      BID_UID = #{bidUid} 
+  </delete>
+
+  <!-- Find by primary key -->
+  <select id="BID_DESC_FIND" resultType="cn.com.gxt.entity.BidDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      BID_UID AS "bidUid",
+      BID_DESC_TEXT AS "bidDescText",
+      BID_DESC_MEDIA AS "bidDescMedia",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM BID_DESC
+    WHERE
+      REQ_CD = #{reqCd} AND 
+      DESC_SEQ = #{descSeq} AND 
+      BID_UID = #{bidUid} 
+  </select>
+
+  <!-- Find by primary key for update with row lock -->
+  <select id="BID_DESC_FIND_FOR_UPDATE" resultType="cn.com.gxt.entity.BidDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      BID_UID AS "bidUid",
+      BID_DESC_TEXT AS "bidDescText",
+      BID_DESC_MEDIA AS "bidDescMedia",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM BID_DESC
+    WHERE
+      REQ_CD = #{reqCd} AND 
+      DESC_SEQ = #{descSeq} AND 
+      BID_UID = #{bidUid} 
+    FOR UPDATE
+  </select>
+
+  <!-- Search -->
+  <select id="BID_DESC_SEARCH" resultType="cn.com.gxt.entity.BidDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      BID_UID AS "bidUid",
+      BID_DESC_TEXT AS "bidDescText",
+      BID_DESC_MEDIA AS "bidDescMedia",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM BID_DESC
+    WHERE 1 = 1 
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="descSeq != null">AND DESC_SEQ = #{descSeq}</if>
+      <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
+      <if test="bidDescText != null">AND BID_DESC_TEXT = #{bidDescText}</if>
+      <if test="bidDescMedia != null">AND BID_DESC_MEDIA = #{bidDescMedia}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+
+  <!-- Like Search -->
+  <select id="BID_DESC_LIKE_SEARCH" resultType="cn.com.gxt.entity.BidDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      BID_UID AS "bidUid",
+      BID_DESC_TEXT AS "bidDescText",
+      BID_DESC_MEDIA AS "bidDescMedia",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM BID_DESC
+    WHERE 1 = 1 
+      <if test="reqCd != null">AND REQ_CD LIKE CONCAT('%', #{reqCd}, '%')</if>
+      <if test="descSeq != null">AND DESC_SEQ LIKE CONCAT('%', #{descSeq}, '%')</if>
+      <if test="bidUid != null">AND BID_UID LIKE CONCAT('%', #{bidUid}, '%')</if>
+      <if test="bidDescText != null">AND BID_DESC_TEXT LIKE CONCAT('%', #{bidDescText}, '%')</if>
+      <if test="bidDescMedia != null">AND BID_DESC_MEDIA LIKE CONCAT('%', #{bidDescMedia}, '%')</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>    
+  </select>
+  
+  <!-- Dynamic Search -->
+  <select id="BID_DESC_DYNA_SEARCH" resultType="cn.com.gxt.entity.BidDescDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      DESC_SEQ AS "descSeq",
+      BID_UID AS "bidUid",
+      BID_DESC_TEXT AS "bidDescText",
+      BID_DESC_MEDIA AS "bidDescMedia",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM BID_DESC
+    WHERE 1 = 1 
+      <if test="reqCd != null">AND ( ${reqCd} )</if>
+      <if test="descSeq != null">AND ( ${descSeq} )</if>
+      <if test="bidUid != null">AND ( ${bidUid} )</if>
+      <if test="bidDescText != null">AND ( ${bidDescText} )</if>
+      <if test="bidDescMedia != null">AND ( ${bidDescMedia} )</if>
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+      <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+      <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+  
+  <!-- Count by input condition -->
+  <select id="BID_DESC_COUNT" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM BID_DESC
+    WHERE 1 = 1 
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="descSeq != null">AND DESC_SEQ = #{descSeq}</if>
+      <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
+      <if test="bidDescText != null">AND BID_DESC_TEXT = #{bidDescText}</if>
+      <if test="bidDescMedia != null">AND BID_DESC_MEDIA = #{bidDescMedia}</if>
+  </select>
+
+
+  <insert id="BID_DESC_HT_INSERT_C" parameterType="cn.com.gxt.entity.BidDescDto">
+    INSERT INTO BID_DESC_HT (
+      REQ_CD,
+      DESC_SEQ,
+      BID_UID,
+      BID_DESC_TEXT,
+      BID_DESC_MEDIA,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{reqCd},
+      #{descSeq},
+      #{bidUid},
+      #{bidDescText},
+      #{bidDescMedia},
+      #{createAuthor},
+      current_timestamp(),
+      'C'
+    )
+  </insert>
+  <insert id="BID_DESC_HT_INSERT_U" parameterType="cn.com.gxt.entity.BidDescDto">
+    INSERT INTO BID_DESC_HT (
+      REQ_CD,
+      DESC_SEQ,
+      BID_UID,
+      BID_DESC_TEXT,
+      BID_DESC_MEDIA,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{reqCd},
+      #{descSeq},
+      #{bidUid},
+      #{bidDescText},
+      #{bidDescMedia},
+      #{createAuthor},
+      current_timestamp(),
+      'U'
+    )
+  </insert>
+  <insert id="BID_DESC_HT_INSERT_D" parameterType="cn.com.gxt.entity.BidDescDto">
+    INSERT INTO BID_DESC_HT (
+      REQ_CD,
+      DESC_SEQ,
+      BID_UID,
+      BID_DESC_TEXT,
+      BID_DESC_MEDIA,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{reqCd},
+      #{descSeq},
+      #{bidUid},
+      #{bidDescText},
+      #{bidDescMedia},
+      #{createAuthor},
+      current_timestamp(),
+      'D'
+    )
+  </insert>
+
+</mapper>
+

@@ -2,21 +2,28 @@ package cn.com.gxt.entity.crud;
 
 import java.util.List;
 import java.util.Map;
-import cn.com.gxt.entity.OrderItemPropDto;
+import cn.com.gxt.entity.BidDescDto;
 
 /*
- * 需求信息品类属性描述表:ORDER_ITEM_PROP CRUD service interface declare.<br>
+ * 抢单描述属性表:BID_DESC CRUD service interface declare.<br>
  *
  * @author UME-Generator
  */
-public interface OrderItemPropCrudService {
+public interface BidDescCrudService {
+    /**
+     * Enable/Disable operation history table automatic insert.<br>
+     * 
+     * @param enable the enable to set
+     */
+    void setEnableOperationHistory(boolean enable);
+
     /**
      * Insert entity.<br>
      * 
      * @param entity - entity instance
      * @return
      */
-    Integer create(OrderItemPropDto entity);
+    Integer create(BidDescDto entity);
     
     /**
      * Insert entity list.<br>
@@ -24,7 +31,7 @@ public interface OrderItemPropCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createList(List<OrderItemPropDto> entityList);
+    List<Integer> createList(List<BidDescDto> entityList);
     
     /**
      * Update entity when exist, insert new record if not exist.<br>
@@ -32,7 +39,7 @@ public interface OrderItemPropCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer createOrUpdate(OrderItemPropDto entity);
+    Integer createOrUpdate(BidDescDto entity);
     
     /**
      * Update entity list when exist, insert new records if not exist.<br>
@@ -40,7 +47,7 @@ public interface OrderItemPropCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createOrUpdateList(List<OrderItemPropDto> entityList);
+    List<Integer> createOrUpdateList(List<BidDescDto> entityList);
     
     /**
      * Update entity.<br>
@@ -48,7 +55,7 @@ public interface OrderItemPropCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer update(OrderItemPropDto entity);
+    Integer update(BidDescDto entity);
     
     /**
      * Update entity list.<br>
@@ -56,7 +63,7 @@ public interface OrderItemPropCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateList(List<OrderItemPropDto> entityList);
+    List<Integer> updateList(List<BidDescDto> entityList);
     
     /**
      * Update entity (full filed update include null value).<br>
@@ -64,7 +71,7 @@ public interface OrderItemPropCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer updateFully(OrderItemPropDto entity);
+    Integer updateFully(BidDescDto entity);
     
     /**
      * Update entity list (full filed update include null value).<br>
@@ -72,7 +79,7 @@ public interface OrderItemPropCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateFullyList(List<OrderItemPropDto> entityList);
+    List<Integer> updateFullyList(List<BidDescDto> entityList);
 
     /**
      * Delete entity.<br>
@@ -80,7 +87,7 @@ public interface OrderItemPropCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer delete(OrderItemPropDto entity);
+    Integer delete(BidDescDto entity);
     
     /**
      * Delete entity list.<br>
@@ -88,7 +95,7 @@ public interface OrderItemPropCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> deleteList(List<OrderItemPropDto> entityList);
+    List<Integer> deleteList(List<BidDescDto> entityList);
     
     /**
      * Find entity by primary key set.<br>
@@ -96,31 +103,31 @@ public interface OrderItemPropCrudService {
      * @param condition - query parameter
      * @return - matched entity instance
      */
-    OrderItemPropDto find(OrderItemPropDto condition);
+    BidDescDto find(BidDescDto condition);
     
     /**
      * Search entity list use equal match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by entity
      * @return - matched entity instance list
      */
-    List<OrderItemPropDto> search(OrderItemPropDto condition);
+    List<BidDescDto> findList(BidDescDto condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by map
      * @return - matched entity instance list
      */
-    List<OrderItemPropDto> likeSearch(Map<String, String> condition);
+    List<BidDescDto> findListLike(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
      * 
-     * @param condition - query parameter
+     * @param dynaCondition - dynamic query parameter describe by map
      * @return - matched entity instance list
      */
-    List<OrderItemPropDto> dynaSearch(Map<String, String> condition);
+    List<BidDescDto> findListMatch(Map<String, String> dynaCondition);
     
     /**
      * Count.<br>

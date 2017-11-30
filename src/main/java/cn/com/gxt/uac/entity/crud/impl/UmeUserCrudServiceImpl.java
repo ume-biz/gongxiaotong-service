@@ -19,19 +19,25 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
 
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#create
      */
     @Override
     @TransactionRequired
     public Integer create(UmeUserDto entity) {
         validate(entity);
+        if (entity.getCreateAuthor() == null) {
+            entity.setCreateAuthor(super.getUid());
+        }
+        if (entity.getUpdateAuthor() == null) {
+            entity.setUpdateAuthor(super.getUid());
+        }
         int result = super.getDao().update(UmeUserDto.SQLID.INSERT, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#createList
      */
     @Override
     @TransactionRequired
@@ -45,7 +51,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#createOrUpdate
      */
     @Override
     @TransactionRequired
@@ -61,7 +67,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#createOrUpdateList
      */
     @Override
     @TransactionRequired
@@ -75,19 +81,22 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#update
      */
     @Override
     @TransactionRequired
     public Integer update(UmeUserDto entity) {
         validate(entity);
+        if (entity.getUpdateAuthor() == null) {
+            entity.setUpdateAuthor(super.getUid());
+        }
         int result = super.getDao().update(UmeUserDto.SQLID.SMART_UPDATE, entity);
         return result;
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#updateList
      */
     @Override
     @TransactionRequired
@@ -101,7 +110,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#updateFully
      */
     @Override
     @TransactionRequired
@@ -113,7 +122,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#updateFullyList
      */
     @Override
     @TransactionRequired
@@ -127,7 +136,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#delete
      */
     @Override
     @TransactionRequired
@@ -138,7 +147,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#deleteList
      */
     @Override
     @TransactionRequired
@@ -152,7 +161,7 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#find
      */
     @Override
     public UmeUserDto find(UmeUserDto queryParam) {
@@ -161,29 +170,29 @@ public class UmeUserCrudServiceImpl extends BaseDBComponent implements UmeUserCr
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#findList
      */
     @Override
-    public List<UmeUserDto> search(UmeUserDto condition) {
+    public List<UmeUserDto> findList(UmeUserDto condition) {
         return super.getDao().queryForObjectList(UmeUserDto.SQLID.SEARCH, condition, UmeUserDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#findListLike
      */
     @Override
-    public List<UmeUserDto> likeSearch(Map<String, String> condition) {
+    public List<UmeUserDto> findListLike(Map<String, String> condition) {
         return super.getDao().queryForObjectList(UmeUserDto.SQLID.LIKE_SEARCH, condition, UmeUserDto.class);
     }
     
     /* (non-Javadoc)
      * 
-     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService
+     * @see cn.com.gxt.uac.entity.crud.impl.UmeUserCrudService#findListMatch
      */
     @Override
-    public List<UmeUserDto> dynaSearch(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(UmeUserDto.SQLID.DYNA_SEARCH, condition, UmeUserDto.class);
+    public List<UmeUserDto> findListMatch(Map<String, String> dynaCondition) {
+        return super.getDao().queryForObjectList(UmeUserDto.SQLID.DYNA_SEARCH, dynaCondition, UmeUserDto.class);
     }
     
     /* (non-Javadoc)

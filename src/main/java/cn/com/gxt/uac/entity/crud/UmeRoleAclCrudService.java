@@ -10,6 +10,7 @@ import cn.com.gxt.uac.entity.UmeRoleAclDto;
  * @author UME-Generator
  */
 public interface UmeRoleAclCrudService {
+
     /**
      * Insert entity.<br>
      * 
@@ -101,26 +102,26 @@ public interface UmeRoleAclCrudService {
     /**
      * Search entity list use equal match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by entity
      * @return - matched entity instance list
      */
-    List<UmeRoleAclDto> search(UmeRoleAclDto condition);
+    List<UmeRoleAclDto> findList(UmeRoleAclDto condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by map
      * @return - matched entity instance list
      */
-    List<UmeRoleAclDto> likeSearch(Map<String, String> condition);
+    List<UmeRoleAclDto> findListLike(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
      * 
-     * @param condition - query parameter
+     * @param dynaCondition - dynamic query parameter describe by map
      * @return - matched entity instance list
      */
-    List<UmeRoleAclDto> dynaSearch(Map<String, String> condition);
+    List<UmeRoleAclDto> findListMatch(Map<String, String> dynaCondition);
     
     /**
      * Count.<br>

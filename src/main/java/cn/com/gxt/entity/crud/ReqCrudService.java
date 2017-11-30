@@ -2,21 +2,28 @@ package cn.com.gxt.entity.crud;
 
 import java.util.List;
 import java.util.Map;
-import cn.com.gxt.entity.OrderBidDto;
+import cn.com.gxt.entity.ReqDto;
 
 /*
- * 需求竞标信息表:ORDER_BID CRUD service interface declare.<br>
+ * 需求信息表:REQ CRUD service interface declare.<br>
  *
  * @author UME-Generator
  */
-public interface OrderBidCrudService {
+public interface ReqCrudService {
+    /**
+     * Enable/Disable operation history table automatic insert.<br>
+     * 
+     * @param enable the enable to set
+     */
+    void setEnableOperationHistory(boolean enable);
+
     /**
      * Insert entity.<br>
      * 
      * @param entity - entity instance
      * @return
      */
-    Integer create(OrderBidDto entity);
+    Integer create(ReqDto entity);
     
     /**
      * Insert entity list.<br>
@@ -24,7 +31,7 @@ public interface OrderBidCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createList(List<OrderBidDto> entityList);
+    List<Integer> createList(List<ReqDto> entityList);
     
     /**
      * Update entity when exist, insert new record if not exist.<br>
@@ -32,7 +39,7 @@ public interface OrderBidCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer createOrUpdate(OrderBidDto entity);
+    Integer createOrUpdate(ReqDto entity);
     
     /**
      * Update entity list when exist, insert new records if not exist.<br>
@@ -40,7 +47,7 @@ public interface OrderBidCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> createOrUpdateList(List<OrderBidDto> entityList);
+    List<Integer> createOrUpdateList(List<ReqDto> entityList);
     
     /**
      * Update entity.<br>
@@ -48,7 +55,7 @@ public interface OrderBidCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer update(OrderBidDto entity);
+    Integer update(ReqDto entity);
     
     /**
      * Update entity list.<br>
@@ -56,7 +63,7 @@ public interface OrderBidCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateList(List<OrderBidDto> entityList);
+    List<Integer> updateList(List<ReqDto> entityList);
     
     /**
      * Update entity (full filed update include null value).<br>
@@ -64,7 +71,7 @@ public interface OrderBidCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer updateFully(OrderBidDto entity);
+    Integer updateFully(ReqDto entity);
     
     /**
      * Update entity list (full filed update include null value).<br>
@@ -72,7 +79,7 @@ public interface OrderBidCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> updateFullyList(List<OrderBidDto> entityList);
+    List<Integer> updateFullyList(List<ReqDto> entityList);
 
     /**
      * Delete entity.<br>
@@ -80,7 +87,7 @@ public interface OrderBidCrudService {
      * @param entity - entity instance
      * @return
      */
-    Integer delete(OrderBidDto entity);
+    Integer delete(ReqDto entity);
     
     /**
      * Delete entity list.<br>
@@ -88,7 +95,7 @@ public interface OrderBidCrudService {
      * @param entityList - entity instance list
      * @return
      */
-    List<Integer> deleteList(List<OrderBidDto> entityList);
+    List<Integer> deleteList(List<ReqDto> entityList);
     
     /**
      * Find entity by primary key set.<br>
@@ -96,31 +103,31 @@ public interface OrderBidCrudService {
      * @param condition - query parameter
      * @return - matched entity instance
      */
-    OrderBidDto find(OrderBidDto condition);
+    ReqDto find(ReqDto condition);
     
     /**
      * Search entity list use equal match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by entity
      * @return - matched entity instance list
      */
-    List<OrderBidDto> search(OrderBidDto condition);
+    List<ReqDto> findList(ReqDto condition);
     
     /**
      * Search entity list use like (%var%) match.<br>
      * 
-     * @param condition - query parameter
+     * @param condition - query parameter describe by map
      * @return - matched entity instance list
      */
-    List<OrderBidDto> likeSearch(Map<String, String> condition);
+    List<ReqDto> findListLike(Map<String, String> condition);
     
     /**
      * Search entity list use dynamic condition.<br>
      * 
-     * @param condition - query parameter
+     * @param dynaCondition - dynamic query parameter describe by map
      * @return - matched entity instance list
      */
-    List<OrderBidDto> dynaSearch(Map<String, String> condition);
+    List<ReqDto> findListMatch(Map<String, String> dynaCondition);
     
     /**
      * Count.<br>

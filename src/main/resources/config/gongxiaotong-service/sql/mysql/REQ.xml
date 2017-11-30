@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.com.gxt.entity">
+  <!-- 需求信息表 [REQ] -->
+  
+  <!-- Insert one -->
+  <insert id="REQ_INSERT" parameterType="cn.com.gxt.entity.ReqDto">
+    INSERT INTO REQ (
+      REQ_CD,
+      PRODUCT_CD,
+      PRODUCT_SPECS,
+      PRODUCT_QUANTITY,
+      PRODUCT_ESTIMATION,
+      CONTACT_ADDRESS,
+      CONTACT_NAME,
+      CONTACT_PHONE,
+      BID_DATE_BEGIN,
+      BID_DATE_END,
+      BID_MAX_LIMIT,
+      BID_STATUS,
+      BID_UID,
+      BID_PRICE,
+      LOGISTICS_CD,
+      LOGISTICS_DESC,
+      LOGISTICS_STATUS,
+      COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      #{reqCd},
+      #{productCd},
+      #{productSpecs},
+      #{productQuantity},
+      #{productEstimation},
+      #{contactAddress},
+      #{contactName},
+      #{contactPhone},
+      #{bidDateBegin},
+      #{bidDateEnd},
+      #{bidMaxLimit},
+      #{bidStatus},
+      #{bidUid},
+      #{bidPrice},
+      #{logisticsCd},
+      #{logisticsDesc},
+      #{logisticsStatus},
+      #{comment},
+      #{createAuthor},
+      current_timestamp(),
+      #{updateAuthor},
+      current_timestamp()
+    )
+  </insert>
+  
+  <!-- Update with optimism check) -->
+  <update id="REQ_UPDATE" parameterType="cn.com.gxt.entity.ReqDto">
+    UPDATE REQ
+    SET
+      PRODUCT_CD = #{productCd},
+      PRODUCT_SPECS = #{productSpecs},
+      PRODUCT_QUANTITY = #{productQuantity},
+      PRODUCT_ESTIMATION = #{productEstimation},
+      CONTACT_ADDRESS = #{contactAddress},
+      CONTACT_NAME = #{contactName},
+      CONTACT_PHONE = #{contactPhone},
+      BID_DATE_BEGIN = #{bidDateBegin},
+      BID_DATE_END = #{bidDateEnd},
+      BID_MAX_LIMIT = #{bidMaxLimit},
+      BID_STATUS = #{bidStatus},
+      BID_UID = #{bidUid},
+      BID_PRICE = #{bidPrice},
+      LOGISTICS_CD = #{logisticsCd},
+      LOGISTICS_DESC = #{logisticsDesc},
+      LOGISTICS_STATUS = #{logisticsStatus},
+      COMMENT = #{comment},
+      CREATE_AUTHOR = #{createAuthor},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_AUTHOR = #{updateAuthor},
+      UPDATE_DATETIME = current_timestamp() 
+    WHERE UPDATE_DATETIME = #{updateDatetime}
+      AND REQ_CD = #{reqCd}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+
+  <!-- Smart update -->
+  <update id="REQ_SMART_UPDATE" parameterType="cn.com.gxt.entity.ReqDto">
+    UPDATE REQ
+    <set>
+      <if test="productCd!=null">PRODUCT_CD = #{productCd},</if>
+      <if test="productSpecs!=null">PRODUCT_SPECS = #{productSpecs},</if>
+      <if test="productQuantity!=null">PRODUCT_QUANTITY = #{productQuantity},</if>
+      <if test="productEstimation!=null">PRODUCT_ESTIMATION = #{productEstimation},</if>
+      <if test="contactAddress!=null">CONTACT_ADDRESS = #{contactAddress},</if>
+      <if test="contactName!=null">CONTACT_NAME = #{contactName},</if>
+      <if test="contactPhone!=null">CONTACT_PHONE = #{contactPhone},</if>
+      <if test="bidDateBegin!=null">BID_DATE_BEGIN = #{bidDateBegin},</if>
+      <if test="bidDateEnd!=null">BID_DATE_END = #{bidDateEnd},</if>
+      <if test="bidMaxLimit!=null">BID_MAX_LIMIT = #{bidMaxLimit},</if>
+      <if test="bidStatus!=null">BID_STATUS = #{bidStatus},</if>
+      <if test="bidUid!=null">BID_UID = #{bidUid},</if>
+      <if test="bidPrice!=null">BID_PRICE = #{bidPrice},</if>
+      <if test="logisticsCd!=null">LOGISTICS_CD = #{logisticsCd},</if>
+      <if test="logisticsDesc!=null">LOGISTICS_DESC = #{logisticsDesc},</if>
+      <if test="logisticsStatus!=null">LOGISTICS_STATUS = #{logisticsStatus},</if>
+      <if test="comment!=null">COMMENT = #{comment},</if>
+      <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
+      <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
+      <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
+      UPDATE_DATETIME = current_timestamp()
+    </set>
+    WHERE 
+       REQ_CD = #{reqCd}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+  
+  <!-- Delete one -->
+  <delete id="REQ_DELETE" parameterType="cn.com.gxt.entity.ReqDto">
+    DELETE FROM REQ
+    WHERE
+      REQ_CD = #{reqCd} 
+  </delete>
+
+  <!-- Find by primary key -->
+  <select id="REQ_FIND" resultType="cn.com.gxt.entity.ReqDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      PRODUCT_CD AS "productCd",
+      PRODUCT_SPECS AS "productSpecs",
+      PRODUCT_QUANTITY AS "productQuantity",
+      PRODUCT_ESTIMATION AS "productEstimation",
+      CONTACT_ADDRESS AS "contactAddress",
+      CONTACT_NAME AS "contactName",
+      CONTACT_PHONE AS "contactPhone",
+      BID_DATE_BEGIN AS "bidDateBegin",
+      BID_DATE_END AS "bidDateEnd",
+      BID_MAX_LIMIT AS "bidMaxLimit",
+      BID_STATUS AS "bidStatus",
+      BID_UID AS "bidUid",
+      BID_PRICE AS "bidPrice",
+      LOGISTICS_CD AS "logisticsCd",
+      LOGISTICS_DESC AS "logisticsDesc",
+      LOGISTICS_STATUS AS "logisticsStatus",
+      COMMENT AS "comment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ
+    WHERE
+      REQ_CD = #{reqCd} 
+  </select>
+
+  <!-- Find by primary key for update with row lock -->
+  <select id="REQ_FIND_FOR_UPDATE" resultType="cn.com.gxt.entity.ReqDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      PRODUCT_CD AS "productCd",
+      PRODUCT_SPECS AS "productSpecs",
+      PRODUCT_QUANTITY AS "productQuantity",
+      PRODUCT_ESTIMATION AS "productEstimation",
+      CONTACT_ADDRESS AS "contactAddress",
+      CONTACT_NAME AS "contactName",
+      CONTACT_PHONE AS "contactPhone",
+      BID_DATE_BEGIN AS "bidDateBegin",
+      BID_DATE_END AS "bidDateEnd",
+      BID_MAX_LIMIT AS "bidMaxLimit",
+      BID_STATUS AS "bidStatus",
+      BID_UID AS "bidUid",
+      BID_PRICE AS "bidPrice",
+      LOGISTICS_CD AS "logisticsCd",
+      LOGISTICS_DESC AS "logisticsDesc",
+      LOGISTICS_STATUS AS "logisticsStatus",
+      COMMENT AS "comment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ
+    WHERE
+      REQ_CD = #{reqCd} 
+    FOR UPDATE
+  </select>
+
+  <!-- Search -->
+  <select id="REQ_SEARCH" resultType="cn.com.gxt.entity.ReqDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      PRODUCT_CD AS "productCd",
+      PRODUCT_SPECS AS "productSpecs",
+      PRODUCT_QUANTITY AS "productQuantity",
+      PRODUCT_ESTIMATION AS "productEstimation",
+      CONTACT_ADDRESS AS "contactAddress",
+      CONTACT_NAME AS "contactName",
+      CONTACT_PHONE AS "contactPhone",
+      BID_DATE_BEGIN AS "bidDateBegin",
+      BID_DATE_END AS "bidDateEnd",
+      BID_MAX_LIMIT AS "bidMaxLimit",
+      BID_STATUS AS "bidStatus",
+      BID_UID AS "bidUid",
+      BID_PRICE AS "bidPrice",
+      LOGISTICS_CD AS "logisticsCd",
+      LOGISTICS_DESC AS "logisticsDesc",
+      LOGISTICS_STATUS AS "logisticsStatus",
+      COMMENT AS "comment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ
+    WHERE 1 = 1 
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="productCd != null">AND PRODUCT_CD = #{productCd}</if>
+      <if test="productSpecs != null">AND PRODUCT_SPECS = #{productSpecs}</if>
+      <if test="productQuantity != null">AND PRODUCT_QUANTITY = #{productQuantity}</if>
+      <if test="productEstimation != null">AND PRODUCT_ESTIMATION = #{productEstimation}</if>
+      <if test="contactAddress != null">AND CONTACT_ADDRESS = #{contactAddress}</if>
+      <if test="contactName != null">AND CONTACT_NAME = #{contactName}</if>
+      <if test="contactPhone != null">AND CONTACT_PHONE = #{contactPhone}</if>
+      <if test="bidDateBegin != null">AND BID_DATE_BEGIN = #{bidDateBegin}</if>
+      <if test="bidDateEnd != null">AND BID_DATE_END = #{bidDateEnd}</if>
+      <if test="bidMaxLimit != null">AND BID_MAX_LIMIT = #{bidMaxLimit}</if>
+      <if test="bidStatus != null">AND BID_STATUS = #{bidStatus}</if>
+      <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
+      <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
+      <if test="logisticsCd != null">AND LOGISTICS_CD = #{logisticsCd}</if>
+      <if test="logisticsDesc != null">AND LOGISTICS_DESC = #{logisticsDesc}</if>
+      <if test="logisticsStatus != null">AND LOGISTICS_STATUS = #{logisticsStatus}</if>
+      <if test="comment != null">AND COMMENT = #{comment}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+
+  <!-- Like Search -->
+  <select id="REQ_LIKE_SEARCH" resultType="cn.com.gxt.entity.ReqDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      PRODUCT_CD AS "productCd",
+      PRODUCT_SPECS AS "productSpecs",
+      PRODUCT_QUANTITY AS "productQuantity",
+      PRODUCT_ESTIMATION AS "productEstimation",
+      CONTACT_ADDRESS AS "contactAddress",
+      CONTACT_NAME AS "contactName",
+      CONTACT_PHONE AS "contactPhone",
+      BID_DATE_BEGIN AS "bidDateBegin",
+      BID_DATE_END AS "bidDateEnd",
+      BID_MAX_LIMIT AS "bidMaxLimit",
+      BID_STATUS AS "bidStatus",
+      BID_UID AS "bidUid",
+      BID_PRICE AS "bidPrice",
+      LOGISTICS_CD AS "logisticsCd",
+      LOGISTICS_DESC AS "logisticsDesc",
+      LOGISTICS_STATUS AS "logisticsStatus",
+      COMMENT AS "comment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ
+    WHERE 1 = 1 
+      <if test="reqCd != null">AND REQ_CD LIKE CONCAT('%', #{reqCd}, '%')</if>
+      <if test="productCd != null">AND PRODUCT_CD LIKE CONCAT('%', #{productCd}, '%')</if>
+      <if test="productSpecs != null">AND PRODUCT_SPECS LIKE CONCAT('%', #{productSpecs}, '%')</if>
+      <if test="productQuantity != null">AND PRODUCT_QUANTITY LIKE CONCAT('%', #{productQuantity}, '%')</if>
+      <if test="productEstimation != null">AND PRODUCT_ESTIMATION LIKE CONCAT('%', #{productEstimation}, '%')</if>
+      <if test="contactAddress != null">AND CONTACT_ADDRESS LIKE CONCAT('%', #{contactAddress}, '%')</if>
+      <if test="contactName != null">AND CONTACT_NAME LIKE CONCAT('%', #{contactName}, '%')</if>
+      <if test="contactPhone != null">AND CONTACT_PHONE LIKE CONCAT('%', #{contactPhone}, '%')</if>
+      <if test="bidDateBegin != null">AND BID_DATE_BEGIN LIKE CONCAT('%', #{bidDateBegin}, '%')</if>
+      <if test="bidDateEnd != null">AND BID_DATE_END LIKE CONCAT('%', #{bidDateEnd}, '%')</if>
+      <if test="bidMaxLimit != null">AND BID_MAX_LIMIT LIKE CONCAT('%', #{bidMaxLimit}, '%')</if>
+      <if test="bidStatus != null">AND BID_STATUS LIKE CONCAT('%', #{bidStatus}, '%')</if>
+      <if test="bidUid != null">AND BID_UID LIKE CONCAT('%', #{bidUid}, '%')</if>
+      <if test="bidPrice != null">AND BID_PRICE LIKE CONCAT('%', #{bidPrice}, '%')</if>
+      <if test="logisticsCd != null">AND LOGISTICS_CD LIKE CONCAT('%', #{logisticsCd}, '%')</if>
+      <if test="logisticsDesc != null">AND LOGISTICS_DESC LIKE CONCAT('%', #{logisticsDesc}, '%')</if>
+      <if test="logisticsStatus != null">AND LOGISTICS_STATUS LIKE CONCAT('%', #{logisticsStatus}, '%')</if>
+      <if test="comment != null">AND COMMENT LIKE CONCAT('%', #{comment}, '%')</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>    
+  </select>
+  
+  <!-- Dynamic Search -->
+  <select id="REQ_DYNA_SEARCH" resultType="cn.com.gxt.entity.ReqDto">
+    SELECT
+      REQ_CD AS "reqCd",
+      PRODUCT_CD AS "productCd",
+      PRODUCT_SPECS AS "productSpecs",
+      PRODUCT_QUANTITY AS "productQuantity",
+      PRODUCT_ESTIMATION AS "productEstimation",
+      CONTACT_ADDRESS AS "contactAddress",
+      CONTACT_NAME AS "contactName",
+      CONTACT_PHONE AS "contactPhone",
+      BID_DATE_BEGIN AS "bidDateBegin",
+      BID_DATE_END AS "bidDateEnd",
+      BID_MAX_LIMIT AS "bidMaxLimit",
+      BID_STATUS AS "bidStatus",
+      BID_UID AS "bidUid",
+      BID_PRICE AS "bidPrice",
+      LOGISTICS_CD AS "logisticsCd",
+      LOGISTICS_DESC AS "logisticsDesc",
+      LOGISTICS_STATUS AS "logisticsStatus",
+      COMMENT AS "comment",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM REQ
+    WHERE 1 = 1 
+      <if test="reqCd != null">AND ( ${reqCd} )</if>
+      <if test="productCd != null">AND ( ${productCd} )</if>
+      <if test="productSpecs != null">AND ( ${productSpecs} )</if>
+      <if test="productQuantity != null">AND ( ${productQuantity} )</if>
+      <if test="productEstimation != null">AND ( ${productEstimation} )</if>
+      <if test="contactAddress != null">AND ( ${contactAddress} )</if>
+      <if test="contactName != null">AND ( ${contactName} )</if>
+      <if test="contactPhone != null">AND ( ${contactPhone} )</if>
+      <if test="bidDateBegin != null">AND ( ${bidDateBegin} )</if>
+      <if test="bidDateEnd != null">AND ( ${bidDateEnd} )</if>
+      <if test="bidMaxLimit != null">AND ( ${bidMaxLimit} )</if>
+      <if test="bidStatus != null">AND ( ${bidStatus} )</if>
+      <if test="bidUid != null">AND ( ${bidUid} )</if>
+      <if test="bidPrice != null">AND ( ${bidPrice} )</if>
+      <if test="logisticsCd != null">AND ( ${logisticsCd} )</if>
+      <if test="logisticsDesc != null">AND ( ${logisticsDesc} )</if>
+      <if test="logisticsStatus != null">AND ( ${logisticsStatus} )</if>
+      <if test="comment != null">AND ( ${comment} )</if>
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+      <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+      <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+  
+  <!-- Count by input condition -->
+  <select id="REQ_COUNT" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM REQ
+    WHERE 1 = 1 
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="productCd != null">AND PRODUCT_CD = #{productCd}</if>
+      <if test="productSpecs != null">AND PRODUCT_SPECS = #{productSpecs}</if>
+      <if test="productQuantity != null">AND PRODUCT_QUANTITY = #{productQuantity}</if>
+      <if test="productEstimation != null">AND PRODUCT_ESTIMATION = #{productEstimation}</if>
+      <if test="contactAddress != null">AND CONTACT_ADDRESS = #{contactAddress}</if>
+      <if test="contactName != null">AND CONTACT_NAME = #{contactName}</if>
+      <if test="contactPhone != null">AND CONTACT_PHONE = #{contactPhone}</if>
+      <if test="bidDateBegin != null">AND BID_DATE_BEGIN = #{bidDateBegin}</if>
+      <if test="bidDateEnd != null">AND BID_DATE_END = #{bidDateEnd}</if>
+      <if test="bidMaxLimit != null">AND BID_MAX_LIMIT = #{bidMaxLimit}</if>
+      <if test="bidStatus != null">AND BID_STATUS = #{bidStatus}</if>
+      <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
+      <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
+      <if test="logisticsCd != null">AND LOGISTICS_CD = #{logisticsCd}</if>
+      <if test="logisticsDesc != null">AND LOGISTICS_DESC = #{logisticsDesc}</if>
+      <if test="logisticsStatus != null">AND LOGISTICS_STATUS = #{logisticsStatus}</if>
+      <if test="comment != null">AND COMMENT = #{comment}</if>
+  </select>
+
+
+  <insert id="REQ_HT_INSERT_C" parameterType="cn.com.gxt.entity.ReqDto">
+    INSERT INTO REQ_HT (
+      REQ_CD,
+      PRODUCT_CD,
+      PRODUCT_SPECS,
+      PRODUCT_QUANTITY,
+      PRODUCT_ESTIMATION,
+      CONTACT_ADDRESS,
+      CONTACT_NAME,
+      CONTACT_PHONE,
+      BID_DATE_BEGIN,
+      BID_DATE_END,
+      BID_MAX_LIMIT,
+      BID_STATUS,
+      BID_UID,
+      BID_PRICE,
+      LOGISTICS_CD,
+      LOGISTICS_DESC,
+      LOGISTICS_STATUS,
+      COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{reqCd},
+      #{productCd},
+      #{productSpecs},
+      #{productQuantity},
+      #{productEstimation},
+      #{contactAddress},
+      #{contactName},
+      #{contactPhone},
+      #{bidDateBegin},
+      #{bidDateEnd},
+      #{bidMaxLimit},
+      #{bidStatus},
+      #{bidUid},
+      #{bidPrice},
+      #{logisticsCd},
+      #{logisticsDesc},
+      #{logisticsStatus},
+      #{comment},
+      #{createAuthor},
+      current_timestamp(),
+      'C'
+    )
+  </insert>
+  <insert id="REQ_HT_INSERT_U" parameterType="cn.com.gxt.entity.ReqDto">
+    INSERT INTO REQ_HT (
+      REQ_CD,
+      PRODUCT_CD,
+      PRODUCT_SPECS,
+      PRODUCT_QUANTITY,
+      PRODUCT_ESTIMATION,
+      CONTACT_ADDRESS,
+      CONTACT_NAME,
+      CONTACT_PHONE,
+      BID_DATE_BEGIN,
+      BID_DATE_END,
+      BID_MAX_LIMIT,
+      BID_STATUS,
+      BID_UID,
+      BID_PRICE,
+      LOGISTICS_CD,
+      LOGISTICS_DESC,
+      LOGISTICS_STATUS,
+      COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{reqCd},
+      #{productCd},
+      #{productSpecs},
+      #{productQuantity},
+      #{productEstimation},
+      #{contactAddress},
+      #{contactName},
+      #{contactPhone},
+      #{bidDateBegin},
+      #{bidDateEnd},
+      #{bidMaxLimit},
+      #{bidStatus},
+      #{bidUid},
+      #{bidPrice},
+      #{logisticsCd},
+      #{logisticsDesc},
+      #{logisticsStatus},
+      #{comment},
+      #{createAuthor},
+      current_timestamp(),
+      'U'
+    )
+  </insert>
+  <insert id="REQ_HT_INSERT_D" parameterType="cn.com.gxt.entity.ReqDto">
+    INSERT INTO REQ_HT (
+      REQ_CD,
+      PRODUCT_CD,
+      PRODUCT_SPECS,
+      PRODUCT_QUANTITY,
+      PRODUCT_ESTIMATION,
+      CONTACT_ADDRESS,
+      CONTACT_NAME,
+      CONTACT_PHONE,
+      BID_DATE_BEGIN,
+      BID_DATE_END,
+      BID_MAX_LIMIT,
+      BID_STATUS,
+      BID_UID,
+      BID_PRICE,
+      LOGISTICS_CD,
+      LOGISTICS_DESC,
+      LOGISTICS_STATUS,
+      COMMENT,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      OPERATION_HISTORY_CATEGORY
+    ) VALUES (
+      #{reqCd},
+      #{productCd},
+      #{productSpecs},
+      #{productQuantity},
+      #{productEstimation},
+      #{contactAddress},
+      #{contactName},
+      #{contactPhone},
+      #{bidDateBegin},
+      #{bidDateEnd},
+      #{bidMaxLimit},
+      #{bidStatus},
+      #{bidUid},
+      #{bidPrice},
+      #{logisticsCd},
+      #{logisticsDesc},
+      #{logisticsStatus},
+      #{comment},
+      #{createAuthor},
+      current_timestamp(),
+      'D'
+    )
+  </insert>
+
+</mapper>
+

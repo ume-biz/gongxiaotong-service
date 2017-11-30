@@ -267,7 +267,8 @@
       CONTACT_PERSON,
       CONTACT_NUMBER,
       ADDRESS_TYPE,
-      OPERATION_HISTORY_DATETIME,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
       OPERATION_HISTORY_CATEGORY
     ) VALUES (
       #{userId},
@@ -279,6 +280,7 @@
       #{contactPerson},
       #{contactNumber},
       #{addressType},
+      #{createAuthor},
       current_timestamp(),
       'C'
     )
@@ -294,7 +296,8 @@
       CONTACT_PERSON,
       CONTACT_NUMBER,
       ADDRESS_TYPE,
-      OPERATION_HISTORY_DATETIME,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
       OPERATION_HISTORY_CATEGORY
     ) VALUES (
       #{userId},
@@ -306,6 +309,7 @@
       #{contactPerson},
       #{contactNumber},
       #{addressType},
+      #{createAuthor},
       current_timestamp(),
       'U'
     )
@@ -321,7 +325,8 @@
       CONTACT_PERSON,
       CONTACT_NUMBER,
       ADDRESS_TYPE,
-      OPERATION_HISTORY_DATETIME,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
       OPERATION_HISTORY_CATEGORY
     ) VALUES (
       #{userId},
@@ -333,6 +338,7 @@
       #{contactPerson},
       #{contactNumber},
       #{addressType},
+      #{createAuthor},
       current_timestamp(),
       'D'
     )
