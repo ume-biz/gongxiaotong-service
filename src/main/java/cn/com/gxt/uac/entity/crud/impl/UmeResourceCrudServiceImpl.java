@@ -174,7 +174,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
      */
     @Override
     public List<UmeResourceDto> findList(UmeResourceDto condition) {
-        return super.getDao().queryForObjectList(UmeResourceDto.SQLID.SEARCH, condition, UmeResourceDto.class);
+        return super.getDao().queryForObjectList(UmeResourceDto.SQLID.FIND_LIST, condition, UmeResourceDto.class);
     }
     
     /* (non-Javadoc)
@@ -183,7 +183,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
      */
     @Override
     public List<UmeResourceDto> findListLike(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(UmeResourceDto.SQLID.LIKE_SEARCH, condition, UmeResourceDto.class);
+        return super.getDao().queryForObjectList(UmeResourceDto.SQLID.FIND_LIST_LIKE, condition, UmeResourceDto.class);
     }
     
     /* (non-Javadoc)
@@ -192,7 +192,7 @@ public class UmeResourceCrudServiceImpl extends BaseDBComponent implements UmeRe
      */
     @Override
     public List<UmeResourceDto> findListMatch(Map<String, String> dynaCondition) {
-        return super.getDao().queryForObjectList(UmeResourceDto.SQLID.DYNA_SEARCH, dynaCondition, UmeResourceDto.class);
+        return super.getDao().queryForObjectList(UmeResourceDto.SQLID.FIND_LIST_MATCH, dynaCondition, UmeResourceDto.class);
     }
     
     /* (non-Javadoc)

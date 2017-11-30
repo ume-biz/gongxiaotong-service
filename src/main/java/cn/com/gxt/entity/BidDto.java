@@ -273,11 +273,12 @@ public class BidDto extends TableEntity implements Serializable {
         public static final String UPDATE = "cn.com.gxt.entity.BID_UPDATE"; 
         public static final String SMART_UPDATE = "cn.com.gxt.entity.BID_SMART_UPDATE"; 
         public static final String DELETE = "cn.com.gxt.entity.BID_DELETE"; 
+        public static final String DELETE_ALL = "cn.com.gxt.entity.BID_DELETE_ALL"; 
         public static final String FIND = "cn.com.gxt.entity.BID_FIND"; 
         public static final String FIND_FOR_UPDATE = "cn.com.gxt.entity.BID_FIND_FOR_UPDATE"; 
-        public static final String SEARCH = "cn.com.gxt.entity.BID_SEARCH"; 
-        public static final String LIKE_SEARCH = "cn.com.gxt.entity.BID_LIKE_SEARCH"; 
-        public static final String DYNA_SEARCH = "cn.com.gxt.entity.BID_DYNA_SEARCH"; 
+        public static final String FIND_LIST = "cn.com.gxt.entity.BID_FIND_LIST"; 
+        public static final String FIND_LIST_LIKE = "cn.com.gxt.entity.BID_FIND_LIST_LIKE"; 
+        public static final String FIND_LIST_MATCH = "cn.com.gxt.entity.BID_FIND_LIST_MATCH"; 
         public static final String COUNT = "cn.com.gxt.entity.BID_COUNT";
         public static final String INSERT_HISTORY_C = "cn.com.gxt.entity.BID_HT_INSERT_C"; 
         public static final String INSERT_HISTORY_U = "cn.com.gxt.entity.BID_HT_INSERT_U"; 

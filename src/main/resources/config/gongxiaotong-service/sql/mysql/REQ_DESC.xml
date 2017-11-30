@@ -78,6 +78,24 @@
     WHERE
       REQ_CD = #{reqCd} AND 
       DESC_SEQ = #{descSeq} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="REQ_DESC_DELETE_ALL" parameterType="cn.com.gxt.entity.ReqDescDto">
+    DELETE FROM REQ_DESC
+    WHERE 1=1
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="descSeq != null">AND DESC_SEQ = #{descSeq}</if>
+      <if test="descType != null">AND DESC_TYPE = #{descType}</if>
+      <if test="descTag != null">AND DESC_TAG = #{descTag}</if>
+      <if test="descText != null">AND DESC_TEXT = #{descText}</if>
+      <if test="descMedia != null">AND DESC_MEDIA = #{descMedia}</if>
+      <if test="optional != null">AND OPTIONAL = #{optional}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
   </delete>
 
   <!-- Find by primary key -->
@@ -122,7 +140,7 @@
   </select>
 
   <!-- Search -->
-  <select id="REQ_DESC_SEARCH" resultType="cn.com.gxt.entity.ReqDescDto">
+  <select id="REQ_DESC_FIND_LIST" resultType="cn.com.gxt.entity.ReqDescDto">
     SELECT
       REQ_CD AS "reqCd",
       DESC_SEQ AS "descSeq",
@@ -154,7 +172,7 @@
   </select>
 
   <!-- Like Search -->
-  <select id="REQ_DESC_LIKE_SEARCH" resultType="cn.com.gxt.entity.ReqDescDto">
+  <select id="REQ_DESC_FIND_LIST_LIKE" resultType="cn.com.gxt.entity.ReqDescDto">
     SELECT
       REQ_CD AS "reqCd",
       DESC_SEQ AS "descSeq",
@@ -186,7 +204,7 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="REQ_DESC_DYNA_SEARCH" resultType="cn.com.gxt.entity.ReqDescDto">
+  <select id="REQ_DESC_FIND_LIST_MATCH" resultType="cn.com.gxt.entity.ReqDescDto">
     SELECT
       REQ_CD AS "reqCd",
       DESC_SEQ AS "descSeq",

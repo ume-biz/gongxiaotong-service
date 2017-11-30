@@ -544,11 +544,12 @@ public class ReqDto extends TableEntity implements Serializable {
         public static final String UPDATE = "cn.com.gxt.entity.REQ_UPDATE"; 
         public static final String SMART_UPDATE = "cn.com.gxt.entity.REQ_SMART_UPDATE"; 
         public static final String DELETE = "cn.com.gxt.entity.REQ_DELETE"; 
+        public static final String DELETE_ALL = "cn.com.gxt.entity.REQ_DELETE_ALL"; 
         public static final String FIND = "cn.com.gxt.entity.REQ_FIND"; 
         public static final String FIND_FOR_UPDATE = "cn.com.gxt.entity.REQ_FIND_FOR_UPDATE"; 
-        public static final String SEARCH = "cn.com.gxt.entity.REQ_SEARCH"; 
-        public static final String LIKE_SEARCH = "cn.com.gxt.entity.REQ_LIKE_SEARCH"; 
-        public static final String DYNA_SEARCH = "cn.com.gxt.entity.REQ_DYNA_SEARCH"; 
+        public static final String FIND_LIST = "cn.com.gxt.entity.REQ_FIND_LIST"; 
+        public static final String FIND_LIST_LIKE = "cn.com.gxt.entity.REQ_FIND_LIST_LIKE"; 
+        public static final String FIND_LIST_MATCH = "cn.com.gxt.entity.REQ_FIND_LIST_MATCH"; 
         public static final String COUNT = "cn.com.gxt.entity.REQ_COUNT";
         public static final String INSERT_HISTORY_C = "cn.com.gxt.entity.REQ_HT_INSERT_C"; 
         public static final String INSERT_HISTORY_U = "cn.com.gxt.entity.REQ_HT_INSERT_U"; 

@@ -174,7 +174,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
      */
     @Override
     public List<UmeWechatUserDto> findList(UmeWechatUserDto condition) {
-        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.SEARCH, condition, UmeWechatUserDto.class);
+        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.FIND_LIST, condition, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -183,7 +183,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
      */
     @Override
     public List<UmeWechatUserDto> findListLike(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.LIKE_SEARCH, condition, UmeWechatUserDto.class);
+        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.FIND_LIST_LIKE, condition, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)
@@ -192,7 +192,7 @@ public class UmeWechatUserCrudServiceImpl extends BaseDBComponent implements Ume
      */
     @Override
     public List<UmeWechatUserDto> findListMatch(Map<String, String> dynaCondition) {
-        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.DYNA_SEARCH, dynaCondition, UmeWechatUserDto.class);
+        return super.getDao().queryForObjectList(UmeWechatUserDto.SQLID.FIND_LIST_MATCH, dynaCondition, UmeWechatUserDto.class);
     }
     
     /* (non-Javadoc)

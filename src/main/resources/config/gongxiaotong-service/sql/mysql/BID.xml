@@ -74,6 +74,23 @@
     WHERE
       REQ_CD = #{reqCd} AND 
       BID_UID = #{bidUid} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="BID_DELETE_ALL" parameterType="cn.com.gxt.entity.BidDto">
+    DELETE FROM BID
+    WHERE 1=1
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
+      <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
+      <if test="bidContactName != null">AND BID_CONTACT_NAME = #{bidContactName}</if>
+      <if test="bidContactPhone != null">AND BID_CONTACT_PHONE = #{bidContactPhone}</if>
+      <if test="bidStatus != null">AND BID_STATUS = #{bidStatus}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
   </delete>
 
   <!-- Find by primary key -->
@@ -116,7 +133,7 @@
   </select>
 
   <!-- Search -->
-  <select id="BID_SEARCH" resultType="cn.com.gxt.entity.BidDto">
+  <select id="BID_FIND_LIST" resultType="cn.com.gxt.entity.BidDto">
     SELECT
       REQ_CD AS "reqCd",
       BID_UID AS "bidUid",
@@ -146,7 +163,7 @@
   </select>
 
   <!-- Like Search -->
-  <select id="BID_LIKE_SEARCH" resultType="cn.com.gxt.entity.BidDto">
+  <select id="BID_FIND_LIST_LIKE" resultType="cn.com.gxt.entity.BidDto">
     SELECT
       REQ_CD AS "reqCd",
       BID_UID AS "bidUid",
@@ -176,7 +193,7 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="BID_DYNA_SEARCH" resultType="cn.com.gxt.entity.BidDto">
+  <select id="BID_FIND_LIST_MATCH" resultType="cn.com.gxt.entity.BidDto">
     SELECT
       REQ_CD AS "reqCd",
       BID_UID AS "bidUid",

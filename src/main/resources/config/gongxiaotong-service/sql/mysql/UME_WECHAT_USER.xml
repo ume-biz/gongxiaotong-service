@@ -109,6 +109,32 @@
     DELETE FROM UME_WECHAT_USER
     WHERE
       USER_ID = #{userId} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="UME_WECHAT_USER_DELETE_ALL" parameterType="cn.com.gxt.uac.entity.UmeWechatUserDto">
+    DELETE FROM UME_WECHAT_USER
+    WHERE 1=1
+      <if test="userId != null">AND USER_ID = #{userId}</if>
+      <if test="wechatOpenid != null">AND WECHAT_OPENID = #{wechatOpenid}</if>
+      <if test="wechatCity != null">AND WECHAT_CITY = #{wechatCity}</if>
+      <if test="wechatCountry != null">AND WECHAT_COUNTRY = #{wechatCountry}</if>
+      <if test="wechatHeadimgurl != null">AND WECHAT_HEADIMGURL = #{wechatHeadimgurl}</if>
+      <if test="wechatLanguage != null">AND WECHAT_LANGUAGE = #{wechatLanguage}</if>
+      <if test="wechatNickname != null">AND WECHAT_NICKNAME = #{wechatNickname}</if>
+      <if test="wechatProvince != null">AND WECHAT_PROVINCE = #{wechatProvince}</if>
+      <if test="wechatSex != null">AND WECHAT_SEX = #{wechatSex}</if>
+      <if test="wechatUnionid != null">AND WECHAT_UNIONID = #{wechatUnionid}</if>
+      <if test="wechatPrivilege != null">AND WECHAT_PRIVILEGE = #{wechatPrivilege}</if>
+      <if test="wechatGroupid != null">AND WECHAT_GROUPID = #{wechatGroupid}</if>
+      <if test="wechatTagidList != null">AND WECHAT_TAGID_LIST = #{wechatTagidList}</if>
+      <if test="wechatSubscribe != null">AND WECHAT_SUBSCRIBE = #{wechatSubscribe}</if>
+      <if test="wechatSubscribeTime != null">AND WECHAT_SUBSCRIBE_TIME = #{wechatSubscribeTime}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
   </delete>
 
   <!-- Find by primary key -->
@@ -167,7 +193,7 @@
   </select>
 
   <!-- Search -->
-  <select id="UME_WECHAT_USER_SEARCH" resultType="cn.com.gxt.uac.entity.UmeWechatUserDto">
+  <select id="UME_WECHAT_USER_FIND_LIST" resultType="cn.com.gxt.uac.entity.UmeWechatUserDto">
     SELECT
       USER_ID AS "userId",
       WECHAT_OPENID AS "wechatOpenid",
@@ -215,7 +241,7 @@
   </select>
 
   <!-- Like Search -->
-  <select id="UME_WECHAT_USER_LIKE_SEARCH" resultType="cn.com.gxt.uac.entity.UmeWechatUserDto">
+  <select id="UME_WECHAT_USER_FIND_LIST_LIKE" resultType="cn.com.gxt.uac.entity.UmeWechatUserDto">
     SELECT
       USER_ID AS "userId",
       WECHAT_OPENID AS "wechatOpenid",
@@ -263,7 +289,7 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="UME_WECHAT_USER_DYNA_SEARCH" resultType="cn.com.gxt.uac.entity.UmeWechatUserDto">
+  <select id="UME_WECHAT_USER_FIND_LIST_MATCH" resultType="cn.com.gxt.uac.entity.UmeWechatUserDto">
     SELECT
       USER_ID AS "userId",
       WECHAT_OPENID AS "wechatOpenid",

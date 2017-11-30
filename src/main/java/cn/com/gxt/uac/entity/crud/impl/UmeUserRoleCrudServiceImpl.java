@@ -174,7 +174,7 @@ public class UmeUserRoleCrudServiceImpl extends BaseDBComponent implements UmeUs
      */
     @Override
     public List<UmeUserRoleDto> findList(UmeUserRoleDto condition) {
-        return super.getDao().queryForObjectList(UmeUserRoleDto.SQLID.SEARCH, condition, UmeUserRoleDto.class);
+        return super.getDao().queryForObjectList(UmeUserRoleDto.SQLID.FIND_LIST, condition, UmeUserRoleDto.class);
     }
     
     /* (non-Javadoc)
@@ -183,7 +183,7 @@ public class UmeUserRoleCrudServiceImpl extends BaseDBComponent implements UmeUs
      */
     @Override
     public List<UmeUserRoleDto> findListLike(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(UmeUserRoleDto.SQLID.LIKE_SEARCH, condition, UmeUserRoleDto.class);
+        return super.getDao().queryForObjectList(UmeUserRoleDto.SQLID.FIND_LIST_LIKE, condition, UmeUserRoleDto.class);
     }
     
     /* (non-Javadoc)
@@ -192,7 +192,7 @@ public class UmeUserRoleCrudServiceImpl extends BaseDBComponent implements UmeUs
      */
     @Override
     public List<UmeUserRoleDto> findListMatch(Map<String, String> dynaCondition) {
-        return super.getDao().queryForObjectList(UmeUserRoleDto.SQLID.DYNA_SEARCH, dynaCondition, UmeUserRoleDto.class);
+        return super.getDao().queryForObjectList(UmeUserRoleDto.SQLID.FIND_LIST_MATCH, dynaCondition, UmeUserRoleDto.class);
     }
     
     /* (non-Javadoc)

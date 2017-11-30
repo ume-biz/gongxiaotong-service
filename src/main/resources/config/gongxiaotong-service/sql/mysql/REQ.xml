@@ -121,6 +121,35 @@
     DELETE FROM REQ
     WHERE
       REQ_CD = #{reqCd} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="REQ_DELETE_ALL" parameterType="cn.com.gxt.entity.ReqDto">
+    DELETE FROM REQ
+    WHERE 1=1
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="productCd != null">AND PRODUCT_CD = #{productCd}</if>
+      <if test="productSpecs != null">AND PRODUCT_SPECS = #{productSpecs}</if>
+      <if test="productQuantity != null">AND PRODUCT_QUANTITY = #{productQuantity}</if>
+      <if test="productEstimation != null">AND PRODUCT_ESTIMATION = #{productEstimation}</if>
+      <if test="contactAddress != null">AND CONTACT_ADDRESS = #{contactAddress}</if>
+      <if test="contactName != null">AND CONTACT_NAME = #{contactName}</if>
+      <if test="contactPhone != null">AND CONTACT_PHONE = #{contactPhone}</if>
+      <if test="bidDateBegin != null">AND BID_DATE_BEGIN = #{bidDateBegin}</if>
+      <if test="bidDateEnd != null">AND BID_DATE_END = #{bidDateEnd}</if>
+      <if test="bidMaxLimit != null">AND BID_MAX_LIMIT = #{bidMaxLimit}</if>
+      <if test="bidStatus != null">AND BID_STATUS = #{bidStatus}</if>
+      <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
+      <if test="bidPrice != null">AND BID_PRICE = #{bidPrice}</if>
+      <if test="logisticsCd != null">AND LOGISTICS_CD = #{logisticsCd}</if>
+      <if test="logisticsDesc != null">AND LOGISTICS_DESC = #{logisticsDesc}</if>
+      <if test="logisticsStatus != null">AND LOGISTICS_STATUS = #{logisticsStatus}</if>
+      <if test="comment != null">AND COMMENT = #{comment}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
   </delete>
 
   <!-- Find by primary key -->
@@ -185,7 +214,7 @@
   </select>
 
   <!-- Search -->
-  <select id="REQ_SEARCH" resultType="cn.com.gxt.entity.ReqDto">
+  <select id="REQ_FIND_LIST" resultType="cn.com.gxt.entity.ReqDto">
     SELECT
       REQ_CD AS "reqCd",
       PRODUCT_CD AS "productCd",
@@ -239,7 +268,7 @@
   </select>
 
   <!-- Like Search -->
-  <select id="REQ_LIKE_SEARCH" resultType="cn.com.gxt.entity.ReqDto">
+  <select id="REQ_FIND_LIST_LIKE" resultType="cn.com.gxt.entity.ReqDto">
     SELECT
       REQ_CD AS "reqCd",
       PRODUCT_CD AS "productCd",
@@ -293,7 +322,7 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="REQ_DYNA_SEARCH" resultType="cn.com.gxt.entity.ReqDto">
+  <select id="REQ_FIND_LIST_MATCH" resultType="cn.com.gxt.entity.ReqDto">
     SELECT
       REQ_CD AS "reqCd",
       PRODUCT_CD AS "productCd",

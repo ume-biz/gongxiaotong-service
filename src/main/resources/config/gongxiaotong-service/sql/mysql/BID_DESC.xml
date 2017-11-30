@@ -71,6 +71,22 @@
       REQ_CD = #{reqCd} AND 
       DESC_SEQ = #{descSeq} AND 
       BID_UID = #{bidUid} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="BID_DESC_DELETE_ALL" parameterType="cn.com.gxt.entity.BidDescDto">
+    DELETE FROM BID_DESC
+    WHERE 1=1
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="descSeq != null">AND DESC_SEQ = #{descSeq}</if>
+      <if test="bidUid != null">AND BID_UID = #{bidUid}</if>
+      <if test="bidDescText != null">AND BID_DESC_TEXT = #{bidDescText}</if>
+      <if test="bidDescMedia != null">AND BID_DESC_MEDIA = #{bidDescMedia}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
   </delete>
 
   <!-- Find by primary key -->
@@ -113,7 +129,7 @@
   </select>
 
   <!-- Search -->
-  <select id="BID_DESC_SEARCH" resultType="cn.com.gxt.entity.BidDescDto">
+  <select id="BID_DESC_FIND_LIST" resultType="cn.com.gxt.entity.BidDescDto">
     SELECT
       REQ_CD AS "reqCd",
       DESC_SEQ AS "descSeq",
@@ -141,7 +157,7 @@
   </select>
 
   <!-- Like Search -->
-  <select id="BID_DESC_LIKE_SEARCH" resultType="cn.com.gxt.entity.BidDescDto">
+  <select id="BID_DESC_FIND_LIST_LIKE" resultType="cn.com.gxt.entity.BidDescDto">
     SELECT
       REQ_CD AS "reqCd",
       DESC_SEQ AS "descSeq",
@@ -169,7 +185,7 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="BID_DESC_DYNA_SEARCH" resultType="cn.com.gxt.entity.BidDescDto">
+  <select id="BID_DESC_FIND_LIST_MATCH" resultType="cn.com.gxt.entity.BidDescDto">
     SELECT
       REQ_CD AS "reqCd",
       DESC_SEQ AS "descSeq",

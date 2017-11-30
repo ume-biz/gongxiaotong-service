@@ -212,7 +212,7 @@ public class ReqCrudServiceImpl extends BaseDBComponent implements ReqCrudServic
      */
     @Override
     public List<ReqDto> findList(ReqDto condition) {
-        return super.getDao().queryForObjectList(ReqDto.SQLID.SEARCH, condition, ReqDto.class);
+        return super.getDao().queryForObjectList(ReqDto.SQLID.FIND_LIST, condition, ReqDto.class);
     }
     
     /* (non-Javadoc)
@@ -221,7 +221,7 @@ public class ReqCrudServiceImpl extends BaseDBComponent implements ReqCrudServic
      */
     @Override
     public List<ReqDto> findListLike(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(ReqDto.SQLID.LIKE_SEARCH, condition, ReqDto.class);
+        return super.getDao().queryForObjectList(ReqDto.SQLID.FIND_LIST_LIKE, condition, ReqDto.class);
     }
     
     /* (non-Javadoc)
@@ -230,7 +230,7 @@ public class ReqCrudServiceImpl extends BaseDBComponent implements ReqCrudServic
      */
     @Override
     public List<ReqDto> findListMatch(Map<String, String> dynaCondition) {
-        return super.getDao().queryForObjectList(ReqDto.SQLID.DYNA_SEARCH, dynaCondition, ReqDto.class);
+        return super.getDao().queryForObjectList(ReqDto.SQLID.FIND_LIST_MATCH, dynaCondition, ReqDto.class);
     }
     
     /* (non-Javadoc)

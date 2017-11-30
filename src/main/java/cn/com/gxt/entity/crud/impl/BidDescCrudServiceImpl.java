@@ -212,7 +212,7 @@ public class BidDescCrudServiceImpl extends BaseDBComponent implements BidDescCr
      */
     @Override
     public List<BidDescDto> findList(BidDescDto condition) {
-        return super.getDao().queryForObjectList(BidDescDto.SQLID.SEARCH, condition, BidDescDto.class);
+        return super.getDao().queryForObjectList(BidDescDto.SQLID.FIND_LIST, condition, BidDescDto.class);
     }
     
     /* (non-Javadoc)
@@ -221,7 +221,7 @@ public class BidDescCrudServiceImpl extends BaseDBComponent implements BidDescCr
      */
     @Override
     public List<BidDescDto> findListLike(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(BidDescDto.SQLID.LIKE_SEARCH, condition, BidDescDto.class);
+        return super.getDao().queryForObjectList(BidDescDto.SQLID.FIND_LIST_LIKE, condition, BidDescDto.class);
     }
     
     /* (non-Javadoc)
@@ -230,7 +230,7 @@ public class BidDescCrudServiceImpl extends BaseDBComponent implements BidDescCr
      */
     @Override
     public List<BidDescDto> findListMatch(Map<String, String> dynaCondition) {
-        return super.getDao().queryForObjectList(BidDescDto.SQLID.DYNA_SEARCH, dynaCondition, BidDescDto.class);
+        return super.getDao().queryForObjectList(BidDescDto.SQLID.FIND_LIST_MATCH, dynaCondition, BidDescDto.class);
     }
     
     /* (non-Javadoc)

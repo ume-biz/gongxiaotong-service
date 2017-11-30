@@ -54,7 +54,7 @@ public class WechatUserCodeAuthenticatorImpl extends BaseAuthenticator<Map<Strin
 
 		UmeWechatUserDto param = new UmeWechatUserDto();
 		param.setWechatOpenid(openid);
-		List<UmeWechatUserDto> existUmeWechatUser = getDao().queryForObjectList(UmeWechatUserDto.SQLID.SEARCH, param, UmeWechatUserDto.class);
+		List<UmeWechatUserDto> existUmeWechatUser = getDao().queryForObjectList(UmeWechatUserDto.SQLID.FIND_LIST, param, UmeWechatUserDto.class);
 
 		UmeWechatUserDto umeWechatUser = null;
 		UmeUserDto umeUser = null;

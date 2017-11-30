@@ -62,6 +62,20 @@
     WHERE
       PUB_CD = #{pubCd} AND 
       REQ_CD = #{reqCd} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="REQ_PUB_DELETE_ALL" parameterType="cn.com.gxt.entity.ReqPubDto">
+    DELETE FROM REQ_PUB
+    WHERE 1=1
+      <if test="pubCd != null">AND PUB_CD = #{pubCd}</if>
+      <if test="reqCd != null">AND REQ_CD = #{reqCd}</if>
+      <if test="comment != null">AND COMMENT = #{comment}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
   </delete>
 
   <!-- Find by primary key -->
@@ -98,7 +112,7 @@
   </select>
 
   <!-- Search -->
-  <select id="REQ_PUB_SEARCH" resultType="cn.com.gxt.entity.ReqPubDto">
+  <select id="REQ_PUB_FIND_LIST" resultType="cn.com.gxt.entity.ReqPubDto">
     SELECT
       PUB_CD AS "pubCd",
       REQ_CD AS "reqCd",
@@ -122,7 +136,7 @@
   </select>
 
   <!-- Like Search -->
-  <select id="REQ_PUB_LIKE_SEARCH" resultType="cn.com.gxt.entity.ReqPubDto">
+  <select id="REQ_PUB_FIND_LIST_LIKE" resultType="cn.com.gxt.entity.ReqPubDto">
     SELECT
       PUB_CD AS "pubCd",
       REQ_CD AS "reqCd",
@@ -146,7 +160,7 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="REQ_PUB_DYNA_SEARCH" resultType="cn.com.gxt.entity.ReqPubDto">
+  <select id="REQ_PUB_FIND_LIST_MATCH" resultType="cn.com.gxt.entity.ReqPubDto">
     SELECT
       PUB_CD AS "pubCd",
       REQ_CD AS "reqCd",

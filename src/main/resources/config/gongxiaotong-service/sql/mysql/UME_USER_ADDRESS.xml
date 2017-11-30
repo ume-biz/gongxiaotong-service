@@ -86,6 +86,26 @@
     WHERE
       USER_ID = #{userId} AND 
       SEQ = #{seq} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="UME_USER_ADDRESS_DELETE_ALL" parameterType="cn.com.gxt.uac.entity.UmeUserAddressDto">
+    DELETE FROM UME_USER_ADDRESS
+    WHERE 1=1
+      <if test="userId != null">AND USER_ID = #{userId}</if>
+      <if test="seq != null">AND SEQ = #{seq}</if>
+      <if test="addressProvince != null">AND ADDRESS_PROVINCE = #{addressProvince}</if>
+      <if test="addressCity != null">AND ADDRESS_CITY = #{addressCity}</if>
+      <if test="addressDistrict != null">AND ADDRESS_DISTRICT = #{addressDistrict}</if>
+      <if test="addressRest != null">AND ADDRESS_REST = #{addressRest}</if>
+      <if test="contactPerson != null">AND CONTACT_PERSON = #{contactPerson}</if>
+      <if test="contactNumber != null">AND CONTACT_NUMBER = #{contactNumber}</if>
+      <if test="addressType != null">AND ADDRESS_TYPE = #{addressType}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
   </delete>
 
   <!-- Find by primary key -->
@@ -134,7 +154,7 @@
   </select>
 
   <!-- Search -->
-  <select id="UME_USER_ADDRESS_SEARCH" resultType="cn.com.gxt.uac.entity.UmeUserAddressDto">
+  <select id="UME_USER_ADDRESS_FIND_LIST" resultType="cn.com.gxt.uac.entity.UmeUserAddressDto">
     SELECT
       USER_ID AS "userId",
       SEQ AS "seq",
@@ -170,7 +190,7 @@
   </select>
 
   <!-- Like Search -->
-  <select id="UME_USER_ADDRESS_LIKE_SEARCH" resultType="cn.com.gxt.uac.entity.UmeUserAddressDto">
+  <select id="UME_USER_ADDRESS_FIND_LIST_LIKE" resultType="cn.com.gxt.uac.entity.UmeUserAddressDto">
     SELECT
       USER_ID AS "userId",
       SEQ AS "seq",
@@ -206,7 +226,7 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="UME_USER_ADDRESS_DYNA_SEARCH" resultType="cn.com.gxt.uac.entity.UmeUserAddressDto">
+  <select id="UME_USER_ADDRESS_FIND_LIST_MATCH" resultType="cn.com.gxt.uac.entity.UmeUserAddressDto">
     SELECT
       USER_ID AS "userId",
       SEQ AS "seq",

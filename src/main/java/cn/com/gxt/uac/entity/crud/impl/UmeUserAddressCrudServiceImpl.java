@@ -212,7 +212,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
      */
     @Override
     public List<UmeUserAddressDto> findList(UmeUserAddressDto condition) {
-        return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.SEARCH, condition, UmeUserAddressDto.class);
+        return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.FIND_LIST, condition, UmeUserAddressDto.class);
     }
     
     /* (non-Javadoc)
@@ -221,7 +221,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
      */
     @Override
     public List<UmeUserAddressDto> findListLike(Map<String, String> condition) {
-        return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.LIKE_SEARCH, condition, UmeUserAddressDto.class);
+        return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.FIND_LIST_LIKE, condition, UmeUserAddressDto.class);
     }
     
     /* (non-Javadoc)
@@ -230,7 +230,7 @@ public class UmeUserAddressCrudServiceImpl extends BaseDBComponent implements Um
      */
     @Override
     public List<UmeUserAddressDto> findListMatch(Map<String, String> dynaCondition) {
-        return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.DYNA_SEARCH, dynaCondition, UmeUserAddressDto.class);
+        return super.getDao().queryForObjectList(UmeUserAddressDto.SQLID.FIND_LIST_MATCH, dynaCondition, UmeUserAddressDto.class);
     }
     
     /* (non-Javadoc)

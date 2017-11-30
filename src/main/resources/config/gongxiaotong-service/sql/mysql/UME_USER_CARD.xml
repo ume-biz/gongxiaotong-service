@@ -82,6 +82,25 @@
     WHERE
       USER_ID = #{userId} AND 
       SEQ = #{seq} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="UME_USER_CARD_DELETE_ALL" parameterType="cn.com.gxt.uac.entity.UmeUserCardDto">
+    DELETE FROM UME_USER_CARD
+    WHERE 1=1
+      <if test="userId != null">AND USER_ID = #{userId}</if>
+      <if test="seq != null">AND SEQ = #{seq}</if>
+      <if test="cardType != null">AND CARD_TYPE = #{cardType}</if>
+      <if test="cardNumber != null">AND CARD_NUMBER = #{cardNumber}</if>
+      <if test="cardOwner != null">AND CARD_OWNER = #{cardOwner}</if>
+      <if test="cardBank != null">AND CARD_BANK = #{cardBank}</if>
+      <if test="cardExpirationDate != null">AND CARD_EXPIRATION_DATE = #{cardExpirationDate}</if>
+      <if test="cardStatus != null">AND CARD_STATUS = #{cardStatus}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
   </delete>
 
   <!-- Find by primary key -->
@@ -128,7 +147,7 @@
   </select>
 
   <!-- Search -->
-  <select id="UME_USER_CARD_SEARCH" resultType="cn.com.gxt.uac.entity.UmeUserCardDto">
+  <select id="UME_USER_CARD_FIND_LIST" resultType="cn.com.gxt.uac.entity.UmeUserCardDto">
     SELECT
       USER_ID AS "userId",
       SEQ AS "seq",
@@ -162,7 +181,7 @@
   </select>
 
   <!-- Like Search -->
-  <select id="UME_USER_CARD_LIKE_SEARCH" resultType="cn.com.gxt.uac.entity.UmeUserCardDto">
+  <select id="UME_USER_CARD_FIND_LIST_LIKE" resultType="cn.com.gxt.uac.entity.UmeUserCardDto">
     SELECT
       USER_ID AS "userId",
       SEQ AS "seq",
@@ -196,7 +215,7 @@
   </select>
   
   <!-- Dynamic Search -->
-  <select id="UME_USER_CARD_DYNA_SEARCH" resultType="cn.com.gxt.uac.entity.UmeUserCardDto">
+  <select id="UME_USER_CARD_FIND_LIST_MATCH" resultType="cn.com.gxt.uac.entity.UmeUserCardDto">
     SELECT
       USER_ID AS "userId",
       SEQ AS "seq",
